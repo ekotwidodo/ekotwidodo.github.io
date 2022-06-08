@@ -1,12 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Page | Eko Teguh Widodo</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eko Teguh Widodo</title>
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- TailwindCSS -->
+    <link rel="stylesheet" href="https://www.unpkg.com/browse/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
-    <h1>This is personal page of Eko Teguh Widodo</h1>
+    
+    <div id="app" class="container">
+        <!-- Header -->
+        <profile-card></profile-card>
+
+        <!-- Main -->
+        <profile-tab></profile-tab>
+
+    </div>
+
+    <script type="text/x-template" id="profile-card-template">
+        <div class="card">
+            this is card
+        </div>
+    </script>
+
+    <script type="text/x-template" id="profile-tab-template">
+        <div class="card">
+            this is tab
+        </div>
+    </script>
+
+    <script type="text/x-template" id="profile-tab-experience-template">
+        <div class="footer">
+            this is experience tab
+        </div>
+    </script>
+
+    <script type="text/x-template" id="profile-tab-education-template">
+        <div class="footer">
+            this is education tab
+        </div>
+    </script>
+
+    <script type="text/x-template" id="profile-tab-certification-template">
+        <div class="footer">
+            this is certification tab
+        </div>
+    </script>
+
+    <script type="text/x-template" id="profile-tab-blog-template">
+        <div class="footer">
+            this is blog tab
+        </div>
+    </script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+    </script>
+
+    <!-- VueJS -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/app.js"></script>
 </body>
+
 </html>
