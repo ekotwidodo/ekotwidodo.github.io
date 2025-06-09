@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game - 2048</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,800" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="game">
+    <div class="head">
+      <div class="a">2048 <button class="info" onClick='info()'>i</button> <button id="repeat" class="info repeat"
+          onClick='reset()'>↻</button></div>
+      <div class="score">Score<br /><span id="value"></span></div>
+    </div>
+    <div class="description" id="description">
+      How to play:<br /><br />
+      Use the arrow keys to slide the tiles. When two tiles with the same number collide, they merge into one. Keep
+      merging to create the 2048 tile! Your score is the total of all merged values.
+    </div>
+    <div class="field">
+
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class='' id='status'>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

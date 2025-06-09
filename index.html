@@ -1,59 +1,127 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en">
 
 <head>
-  <script src="/assets/js/color-modes.js"></script>
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Personal website of Eko Teguh Widodo" />
   <meta name="author" content="Eko Teguh Widodo" />
   <title>Personal Web - Eko Teguh Widodo</title>
-
-  <link rel="icon" href="/assets/img/file-earmark-person.svg" />
+  <link rel="icon" href="assets/img/file-earmark-person.svg" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css" />
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/assets/css/style.css" rel="stylesheet" />
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Eko Teguh Widodo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link"
+              href="https://www.researchgate.net/profile/Eko-Teguh-Widodo">ResearchGate</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container">
+    <div class="main-page">
+      <div class="row">
+        <div class="col-md-3 left-column">
+          <div class="profile">
+            <div class="photo">
+              <img src="assets/img/ekoteguh.jpg" class="rounded-circle" alt="Eko Teguh Widodo" width="192" height="192" />
+            </div>
+            <div class="name">
+              <h4 class="text-body-emphasis">Eko Teguh Widodo</h2>
+                <p class="text-muted">Bandar Lampung, Indonesia</p>
+            </div>
+          </div>
 
-  <div class="container py-4">
-    <main>
-      <div class="p-5 text-center bg-body-tertiary rounded-3 mb-3">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D5603AQH18BglFCJZzg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1704815537611?e=1746662400&v=beta&t=cfSgx8ysn8iyOihzUfbsgQQxJutup7Ia_UjR-D8-Kxg"
-          class="rounded-circle" alt="Eko Teguh Widodo" width="128" height="128" />
-        <h1 class="text-body-emphasis">Eko Teguh Widodo</h1>
-        <h3 class="col-lg-9 mx-auto fs-5 text-muted">Lampung, Indonesia</h3>
-        <p class="col-lg-9 mx-auto fs-5 text-muted">
-          Computer Specialist &copy;
-          <a href="https://bps.go.id">Statistics Indonesia</a> | Software
-          Engineering | Data and Knowledge Engineering | Lecturer | AI Research Enthusiast
-        </p>
-        <div class="d-inline-flex gap-2">
-          <a class="d-inline-flex align-items-center" href="https://www.linkedin.com/in/ekoteguh"><i
-              class="bi bi-linkedin" style="font-size: 2rem; color: #0A67C2"></i></a>
-          <a class="d-inline-flex align-items-center" href="https://www.github.com/ekotwidodo"><i class="bi bi-github"
-              style="font-size: 2rem; color: #1F2329"></i></a>
-          <a class="d-inline-flex align-items-center" href="https://www.medium.com/ekoteguh"><i class="bi bi-medium"
-              style="font-size: 2rem; color: #242424"></i></a>
-          <a class="d-inline-flex align-items-center" href="https://www.instagram.com/ekotwidodo"><i
-              class="bi bi-instagram" style="font-size: 2rem; color: #FF0290"></i></a>
-          <a class="d-inline-flex align-items-center" href="https://x.com/ekotwidodo"><i class="bi bi-twitter-x"
-              style="font-size: 2rem; color: #000000"></i></a>
+          <div class="description">
+            <h5>Position/Role:</h5>
+            <p>Computer Specialist &copy; <a href="https://bps.go.id">Statistics Indonesia</a></p>
+            <p>Software Engineering, Data and Knowledge Engineering, Lecturer, AI Research Enthusiast</p>
+            <h5>Contact:</h5>
+            <p>
+              <a href="https://www.linkedin.com/in/ekoteguh" class="d-inline-flex align-items-center">
+                <i class="bi bi-linkedin" style="font-size: 1.5rem; color: #0A67C2"></i>
+              </a>
+              <a href="https://www.github.com/ekotwidodo" class="d-inline-flex align-items-center">
+                <i class="bi bi-github" style="font-size: 1.5rem; color: #1F2329"></i>
+              </a>
+              <a href="https://www.medium.com/ekoteguh" class="d-inline-flex align-items-center">
+                <i class="bi bi-medium" style="font-size: 1.5rem; color: #242424"></i>
+              </a>
+              <a href="https://www.instagram.com/ekotwidodo" class="d-inline-flex align-items-center">
+                <i class="bi bi-instagram" style="font-size: 1.5rem; color: #FF0290"></i>
+              </a>
+              <a href="https://x.com/ekotwidodo" class="d-inline-flex align-items-center">
+                <i class="bi bi-twitter-x" style="font-size: 1.5rem; color: #000000"></i>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="col-md-9 right-column">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                type="button" role="tab" aria-controls="nav-about" aria-selected="true">About</button>
+              <button class="nav-link" id="nav-misc-tab" data-bs-toggle="tab" data-bs-target="#nav-misc" type="button"
+                role="tab" aria-controls="nav-misc" aria-selected="false">Misc</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active left-aligned" id="nav-about" role="tabpanel"
+              aria-labelledby="nav-about-tab" tabindex="0">
+              <p>
+                I am a Senior Computer Specialist at <a href="https://bps.go.id">Statistics Indonesia</a>, bringing a
+                strong <b>work ethic</b>, <b>collaborative mindset</b>, and a friendly approach to
+                <b>problem-solving</b> in public services.
+              </p>
+              <p>
+                In daily activities, I do some tasks, particularly technical things, such as:
+                <ul>
+                  <li>develop applications using programming languages: Python, Java, PHP, and JavaScript (Vanilla, NodeJS, React, Vue);</li>                
+                  <li>build an ETL data processing using Python and Java, as data engineering tools: Airflow, Kafka, etc.;</li>
+                  <li>analyzing data using statistical tools using R and Python;</li>
+                  <li>other technical tasks mainly utilize technologies to gather insights.</li>
+                </ul>
+              </p>
+              <p>
+                In advance, I do research in <b>data and knowledge engineering</b>, <b>knowledge graphs</b>,
+                <b>semantic web technologies</b>, <b>software engineering</b> (especially in software testing), <b>machine learning</b> and 
+                <b>generative AI</b> (particularly in large language models). I open for you to collaborate with me on those research interests. Besides, I also received requests to be a university lecturer or instructor for some courses, including statistics, data processing and analysis, graph databases, and programming languages at Universities or other institutions.
+              </p>
+              <p>
+                For my educational background, I hold a Bachelor's degree in Statistical Computing from the <b>Institute of Statistics (STIS)</b> (known as <a href="https://www.stis.ac.id">Politeknik Statistika STIS</a>) in Jakarta, where it combines statistics, computer science, and software engineering disciplines. I also completed my Master's degree in Information and Telecommunication Technology at <b>Korea Advanced Institute of Science and Technology (KAIST)</b> in South Korea, specializing in Data and Knowledge Engineering. My academic journey has equipped me with a
+                solid foundation in computer science principles and practices, which I apply in my professional work, pursuing study, and research endeavors.
+              </p>
+              <h4>News</h4>
+              <div class="alert alert-info" role="alert">
+                <strong>Open to work</strong> I am openly seeking new opportunities as a Software Quality Assurance Engineer (QA Engineer), Software Engineer, Data Engineer, or Data Scientist.
+              </div>
+              <div class="alert alert-primary" role="alert">
+                <strong>Open to study</strong> I am also openly seeking new opportunities as a Doctoral Student in Data and Knowledge Engineering, Knowledge Graphs, Semantic Web Technologies, Software Engineering (Software Testing), Machine Learning, and Generative AI.
+              </div>
+            </div>
+            <div class="tab-pane fade left-aligned" id="nav-misc" role="tabpanel" aria-labelledby="nav-misc-tab" tabindex="0">
+              <div id="game">
+                <h4>Game: <a href="2048/index.html">2048</a></h4>
+                <p>Play the game 2048, a simple and fun puzzle game.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
-
-    <footer class="pt-3 mt-4 text-center text-body-secondary border-top">
-      &copy; 2025 <a href="/">Eko Teguh Widodo</a>. Made with &#128151; and designed
-      using
-      <a href="https://getbootstrap.com/docs/5.3/examples/jumbotron/" target="_blank">Bootstrap Jumbotron template</a>.
-    </footer>
-  </div>
-
-  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    </div>
+  </main>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
