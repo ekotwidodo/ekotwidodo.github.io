@@ -1,1 +1,24 @@
-*.json
+# Build output
+dist/
+
+# Dependencies
+node_modules/
+
+# Astro cache and generated types
+.astro/
+
+# Environment variables
+.env
+.env.production
+.env.local
+
+# macOS and Windows system files
+.DS_Store
+Thumbs.db
+
+# IDE configuration
+.vscode/
+.idea/
+
+# npm logs
+npm-debug.log*

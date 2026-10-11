@@ -1,0 +1,320 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Badge from '@/components/common/Badge.astro';
+import Button from '@/components/common/Button.astro';
+import { siteConfig } from '@/config/site';
+
+/**
+ * About Page (/about)
+ * Overview of the personal IT & AI publication portal,
+ * loaded dynamically from site.config.yaml for complete reusability.
+ */
+const pageConfig = siteConfig.pages.about;
+const breadcrumbs = [{ name: pageConfig.menu_label || pageConfig.title || 'About' }];
+const socials = siteConfig.author.socials;
+
+const hero = pageConfig.hero;
+const domainsSection = pageConfig.domains_section;
+const techStackSection = pageConfig.tech_stack_section;
+const connectSection = pageConfig.connect_section;
+
+const coreDomains = domainsSection?.items || [];
+const techStackIcons = techStackSection?.items || [];
+---
+
+<PageLayout
+  title={pageConfig.meta_title || `${pageConfig.title} | ${siteConfig.name}`}
+  description={pageConfig.meta_description || siteConfig.description}
+  pageTitle={pageConfig.title}
+  pageSubtitle={pageConfig.subtitle}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="w-full space-y-10">
+    <!-- 1. Hero / Portal Mission & Overview -->
+    {hero && (
+      <div
+        class="rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 md:p-10 shadow-xs dark:border-slate-800/90 dark:bg-slate-900/80 transition-colors"
+      >
+        <div class="w-full space-y-5">
+          {hero.badges && hero.badges.length > 0 && (
+            <div class="flex flex-wrap items-center gap-2">
+              {hero.badges.map((b) => (
+                <Badge variant={b.variant || 'primary'} size="md">
+                  {b.text}
+                </Badge>
+              ))}
+            </div>
+          )}
+
+          {hero.heading && (
+            <h2 class="heading-section text-slate-900 dark:text-white">
+              {hero.heading}
+            </h2>
+          )}
+
+          {hero.description && (
+            <p class="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              {hero.description.includes('{name}')
+                ? hero.description.split('{name}').map((part, i, arr) => (
+                    <>
+                      {part}
+                      {i < arr.length - 1 && <strong>{siteConfig.author.name}</strong>}
+                    </>
+                  ))
+                : hero.description}
+            </p>
+          )}
+
+          <!-- Daily Posting Commitment Card -->
+          {hero.commitment?.enabled && hero.commitment?.title && (
+            <div class="mt-6 rounded-xl border border-blue-200/80 bg-blue-50/60 p-4 sm:p-5 dark:border-blue-900/50 dark:bg-blue-950/30">
+              <div class="flex items-start gap-3.5">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white shadow-xs">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                    {hero.commitment.title}
+                  </h3>
+                  {hero.commitment.description && (
+                    <p class="mt-1 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                      {hero.commitment.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    <!-- 2. Focus Topics & Core Domains (Interactive Accordion) -->
+    {coreDomains.length > 0 && (
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <h2 class="heading-section text-slate-900 dark:text-white">
+              {domainsSection?.title || 'Fokus Topik & Domain Teknologi'}
+            </h2>
+            {domainsSection?.subtitle && (
+              <p class="subtitle-section text-slate-500 dark:text-slate-400">
+                {domainsSection.subtitle}
+              </p>
+            )}
+          </div>
+          {domainsSection?.hierarchy_note && (
+            <span class="text-xs font-mono text-slate-400 dark:text-slate-500 shrink-0">
+              {domainsSection.hierarchy_note}
+            </span>
+          )}
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="space-y-2.5">
+          {coreDomains.map((domain, index) => (
+            <details
+              class="group rounded-xl border border-slate-200/90 bg-white overflow-hidden shadow-2xs dark:border-slate-800/90 dark:bg-slate-900/80 transition-all"
+              open={index === 0 ? true : undefined}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between p-4 sm:p-4.5 select-none hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors focus:outline-none">
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                  <span class="flex h-5.5 w-5.5 items-center justify-center rounded-md bg-slate-100 font-mono text-[11px] font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                    {index + 1}
+                  </span>
+                  <Badge variant={domain.variant || 'primary'} size="sm">
+                    {domain.badge}
+                  </Badge>
+                  <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                    {domain.title}
+                  </h3>
+                </div>
+
+                <div class="flex items-center gap-2 pl-2 shrink-0">
+                  {domain.level && (
+                    <span class="hidden md:inline-block text-[11px] font-mono text-slate-400 dark:text-slate-500">
+                      {domain.level}
+                    </span>
+                  )}
+                  <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600 dark:bg-slate-800 dark:text-slate-400 dark:group-hover:bg-blue-950 dark:group-hover:text-blue-400 transition-colors">
+                    <svg
+                      class="h-4 w-4 transform transition-transform duration-200 group-open:rotate-180"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </summary>
+
+              <div class="border-t border-slate-100 bg-slate-50/50 px-4 py-4 sm:px-5 sm:py-4.5 dark:border-slate-800/80 dark:bg-slate-950/40 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                <p>{domain.description}</p>
+
+                {domain.topics && domain.topics.length > 0 && (
+                  <div class="mt-3.5 flex flex-wrap items-center gap-1.5 pt-3 border-t border-slate-200/60 dark:border-slate-800/60">
+                    <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500 mr-1">
+                      {domainsSection?.topics_label || 'Topik Kunci:'}
+                    </span>
+                    {domain.topics.map((topic) => (
+                      <span class="inline-block rounded-md bg-white px-2 py-0.5 text-[11px] font-mono text-slate-700 shadow-2xs border border-slate-200/80 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700">
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- 3. Tech Stack Architecture Icons -->
+    {techStackIcons.length > 0 && (
+      <div class="space-y-4">
+        <div>
+          <h2 class="heading-section text-slate-900 dark:text-white">
+            {techStackSection?.title || 'Arsitektur & Teknologi Pembangun Sistem'}
+          </h2>
+          {techStackSection?.subtitle && (
+            <p class="subtitle-section text-slate-500 dark:text-slate-400">
+              {techStackSection.subtitle}
+            </p>
+          )}
+        </div>
+
+        <div class="rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-xs dark:border-slate-800/90 dark:bg-slate-900/80 transition-colors">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+            {techStackIcons.map((tech) => (
+              <div class="group flex flex-col items-center justify-center rounded-xl border border-slate-200/80 bg-slate-50/50 p-4 text-center shadow-2xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xs dark:border-slate-800/80 dark:bg-slate-950/40 dark:hover:border-slate-700">
+                <div class={`flex h-12 w-12 items-center justify-center rounded-xl ${tech.bgColor || 'bg-slate-100 dark:bg-slate-800'} transition-transform duration-200 group-hover:scale-110 shadow-2xs`}>
+                  {tech.iconType === 'astro' && (
+                    <svg class={`h-6 w-6 ${tech.iconColor || 'text-orange-600 dark:text-orange-400'}`} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.164 6.839 9.504.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.16 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                    </svg>
+                  )}
+                  {tech.iconType === 'tailwind' && (
+                    <svg class={`h-6 w-6 ${tech.iconColor || 'text-sky-600 dark:text-sky-400'}`} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.335 6.182 14.974 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.335 13.382 8.974 12 6.001 12z"/>
+                    </svg>
+                  )}
+                  {tech.iconType === 'typescript' && (
+                    <span class={`font-mono text-lg font-extrabold tracking-tight ${tech.iconColor || 'text-blue-600 dark:text-blue-400'}`}>
+                      TS
+                    </span>
+                  )}
+                  {tech.iconType === 'markdown' && (
+                    <svg class={`h-6 w-6 ${tech.iconColor || 'text-emerald-600 dark:text-emerald-400'}`} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22.27 19.385H1.73A1.73 1.73 0 0 1 0 17.655V6.345a1.73 1.73 0 0 1 1.73-1.73h20.54A1.73 1.73 0 0 1 24 6.345v11.31a1.73 1.73 0 0 1-1.73 1.73zM5.769 15.923v-4.5l2.308 2.885 2.308-2.885v4.5h2.307V8.077h-2.307l-2.308 2.885-2.308-2.885H3.462v7.846h2.307zm11.539 0l3.462-4.038h-2.308V8.077h-2.308v3.808h-2.308l3.462 4.038z"/>
+                    </svg>
+                  )}
+                  {tech.iconType === 'github' && (
+                    <svg class={`h-6 w-6 ${tech.iconColor || 'text-slate-800 dark:text-slate-200'}`} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                  )}
+                  {tech.iconType === 'rss' && (
+                    <svg class={`h-6 w-6 ${tech.iconColor || 'text-amber-600 dark:text-amber-400'}`} viewBox="0 0 24 24" fill="currentColor">
+                      <circle cx="6.18" cy="17.82" r="2.18" />
+                      <path d="M4 4.44v2.83c8.16 0 14.73 6.57 14.73 14.73h2.83c0-9.73-7.84-17.56-17.56-17.56zm0 5.66v2.83c5.03 0 9.07 4.04 9.07 9.07h2.83c0-6.6-5.3-11.9-11.9-11.9z" />
+                    </svg>
+                  )}
+                  {tech.iconType === 'code' && (
+                    <svg class={`h-6 w-6 ${tech.iconColor || 'text-primary-600 dark:text-primary-400'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  )}
+                </div>
+                <span class="mt-2 text-xs font-bold text-slate-800 dark:text-slate-200">
+                  {tech.name}
+                </span>
+                <span class="text-[10px] font-mono text-slate-400 dark:text-slate-500">
+                  {tech.category}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- 4. Direct Connect via Socials (Tanpa Form Kontak) -->
+    <div
+      class="rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 md:p-10 shadow-xs dark:border-slate-800/90 dark:bg-slate-900/80 transition-colors"
+    >
+      <div class="w-full">
+        <h2 class="heading-section text-slate-900 dark:text-white">
+          {connectSection?.title || 'Connect & Contact'}
+        </h2>
+        {connectSection?.description && (
+          <p class="mt-1 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+            {connectSection.description}
+          </p>
+        )}
+
+        <!-- Standardized Social Buttons Row -->
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <!-- LinkedIn Button -->
+          {
+            socials.linkedin && (
+              <Button
+                variant="linkedin"
+                size="md"
+                href={socials.linkedin}
+                target="_blank"
+                title="Connect via LinkedIn"
+              >
+                <svg class="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.4 9.74v-8.37H5.06v8.37h2.8z" />
+                </svg>
+                <span>Connect on LinkedIn</span>
+                <span class="opacity-80">&rarr;</span>
+              </Button>
+            )
+          }
+
+          <!-- Instagram Button -->
+          {
+            socials.instagram && (
+              <Button
+                variant="instagram"
+                size="md"
+                href={socials.instagram}
+                target="_blank"
+                title="Visit Instagram"
+              >
+                <svg class="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+                <span>Visit Instagram</span>
+                <span class="opacity-80">&rarr;</span>
+              </Button>
+            )
+          }
+
+          <!-- GitHub Button -->
+          {
+            socials.github && (
+              <Button
+                variant="outline"
+                size="md"
+                href={socials.github}
+                target="_blank"
+                title="View GitHub Profile"
+              >
+                <svg class="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                <span>GitHub</span>
+              </Button>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>

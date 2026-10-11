@@ -1,0 +1,90 @@
+---
+/**
+ * Button Component (Standard Design Pakem)
+ * Provides standardized button styles, sizes, and colors across the entire website.
+ * Supports both link (<a>) and button (<button>) elements with consistent typography,
+ * padding, transitions, and dark mode support.
+ */
+interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'linkedin' | 'instagram' | 'github';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  target?: string;
+  rel?: string;
+  class?: string;
+  id?: string;
+  title?: string;
+  ariaLabel?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  target,
+  rel,
+  class: className = '',
+  id,
+  title,
+  ariaLabel
+} = Astro.props;
+
+// Base styles for all buttons (pakem standard)
+const baseStyles =
+  'inline-flex items-center justify-center font-sans font-semibold tracking-normal transition-all duration-200 cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-slate-950 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]';
+
+// Size styles (pakem standard)
+const sizeStyles = {
+  sm: 'px-3 py-1.5 text-xs rounded-lg gap-1.5',
+  md: 'px-4 py-2 text-xs sm:text-sm rounded-xl gap-2 shadow-xs',
+  lg: 'px-5 py-2.5 text-sm sm:text-base rounded-xl gap-2.5 shadow-xs'
+};
+
+// Variant color styles (pakem standard)
+const variantStyles = {
+  primary:
+    'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-500/10 focus:ring-blue-500/40 border border-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 dark:border-blue-500',
+  secondary:
+    'bg-slate-100 text-slate-800 hover:bg-slate-200 hover:text-slate-900 focus:ring-slate-400/30 border border-slate-200 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:bg-slate-700 dark:border-slate-700',
+  outline:
+    'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-400 shadow-2xs focus:ring-slate-400/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white dark:hover:border-slate-600',
+  ghost:
+    'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-400/30 dark:text-slate-400 dark:hover:bg-slate-800/80 dark:hover:text-white border border-transparent',
+  linkedin:
+    'bg-[#0A66C2] text-white hover:bg-[#084e96] shadow-sm focus:ring-[#0A66C2]/40 border border-[#0A66C2]',
+  instagram:
+    'bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white hover:opacity-95 shadow-sm focus:ring-rose-500/40 border border-transparent',
+  github:
+    'bg-slate-900 text-white hover:bg-slate-800 focus:ring-slate-500/40 border border-slate-800 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700'
+};
+
+const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={target === '_blank' ? rel || 'noopener noreferrer' : rel}
+      class={combinedClasses}
+      id={id}
+      title={title}
+      aria-label={ariaLabel}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={combinedClasses}
+      id={id}
+      title={title}
+      aria-label={ariaLabel}
+    >
+      <slot />
+    </button>
+  )
+}

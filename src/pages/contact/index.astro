@@ -1,0 +1,332 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { siteConfig } from '@/config/site';
+
+/**
+ * Contact Page (/contact)
+ * Redesigned structure featuring a clean Send Message interface
+ * and an interactive map displaying the author's base region (default: Bandar Lampung).
+ */
+const pageConfig = siteConfig.pages.contact;
+const breadcrumbs = [{ name: pageConfig.menu_label || pageConfig.title || 'Contact' }];
+const contactInfo = siteConfig.contact;
+const rawEmail = contactInfo.email || siteConfig.author.email || siteConfig.author.socials?.email || '';
+const defaultEmail = rawEmail.replace(/^mailto:/i, '');
+const defaultLocation = contactInfo.location || siteConfig.author.location || '';
+const mapEmbedUrl =
+  contactInfo.map?.embed_url ||
+  (defaultLocation
+    ? `https://maps.google.com/maps?q=${encodeURIComponent(defaultLocation)}&t=&z=12&ie=UTF8&iwloc=&output=embed`
+    : '');
+const googleMapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  defaultLocation
+)}`;
+---
+
+<PageLayout
+  title={pageConfig.meta_title || (pageConfig.title ? `${pageConfig.title} | ${siteConfig.name}` : siteConfig.name)}
+  description={pageConfig.meta_description || `Contact ${siteConfig.name} for research collaborations, technical inquiries, or consultations. Based in ${defaultLocation}.`}
+  pageTitle={pageConfig.title || 'Contact'}
+  pageSubtitle={pageConfig.subtitle}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 items-start">
+    <!-- Left Column (7 cols): Send Message Form -->
+    <div class="lg:col-span-7 rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-xs dark:border-slate-800/90 dark:bg-slate-900/80 transition-colors">
+      <div class="flex items-center gap-3 pb-5 border-b border-slate-100 dark:border-slate-800/80">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/70 dark:text-blue-400">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Send a Message
+          </h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Send a direct inquiry or message through the form below.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feedback Banner (Hidden by default) -->
+      <div
+        id="form-feedback"
+        class="hidden mt-5 rounded-xl border border-blue-200 bg-blue-50/90 p-4 text-xs font-medium text-blue-900 dark:border-blue-900/60 dark:bg-blue-950/50 dark:text-blue-200"
+        role="alert"
+      >
+        <div class="flex items-center gap-2">
+          <svg class="h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span id="feedback-message">Preparing draft in your email application...</span>
+        </div>
+      </div>
+
+      <form
+        id="contact-form"
+        class="mt-6 space-y-4.5"
+        data-author-name={siteConfig.author.name}
+        data-site-url={siteConfig.url}
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="sender-name" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              Full Name <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <input
+                type="text"
+                id="sender-name"
+                name="name"
+                required
+                placeholder="e.g. John Doe"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-800 dark:bg-slate-950/60 dark:text-white dark:focus:bg-slate-900"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="sender-email" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              Email Address <span class="text-rose-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="sender-email"
+              name="email"
+              required
+              placeholder="name@example.com"
+              class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-800 dark:bg-slate-950/60 dark:text-white dark:focus:bg-slate-900"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="message-subject" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            Subject <span class="text-rose-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="message-subject"
+            name="subject"
+            required
+            placeholder="Topic: Research Discussion / Consultation / Collaboration"
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-800 dark:bg-slate-950/60 dark:text-white dark:focus:bg-slate-900"
+          />
+        </div>
+
+        <div>
+          <label for="message-content" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+            Message <span class="text-rose-500">*</span>
+          </label>
+          <textarea
+            id="message-content"
+            name="message"
+            rows="5"
+            required
+            placeholder="Write your message or inquiry details here..."
+            class="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-slate-800 dark:bg-slate-950/60 dark:text-white dark:focus:bg-slate-900"
+          ></textarea>
+        </div>
+
+        <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <button
+            type="submit"
+            id="submit-btn"
+            class="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 text-sm font-semibold text-white shadow-xs transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:hover:bg-blue-500 cursor-pointer active:scale-[0.98]"
+          >
+            <span>Send Message</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+
+          <span class="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
+            The message will open in your default email client ready to send.
+          </span>
+        </div>
+      </form>
+
+      <!-- Quick Copy Direct Email Box -->
+      <div class="mt-8 rounded-xl border border-slate-100 bg-slate-50/70 p-4 dark:border-slate-800/60 dark:bg-slate-950/40">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-200/80 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                Direct Email Address
+              </p>
+              <a
+                href={`mailto:${defaultEmail}`}
+                class="text-xs font-bold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {defaultEmail}
+              </a>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="copy-email-btn"
+            data-email={defaultEmail}
+            class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-2xs transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-600 cursor-pointer"
+          >
+            <svg id="copy-icon" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            <span id="copy-label">Copy Email Address</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column (5 cols): Location & Map -->
+    <div class="lg:col-span-5 space-y-4">
+      <div class="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs dark:border-slate-800/90 dark:bg-slate-900/80 transition-colors">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800/80">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/70 dark:text-emerald-400">
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white">
+                Location & Base
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Activity & Research Hub
+              </p>
+            </div>
+          </div>
+
+          <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            {contactInfo.timezone || 'UTC+7'}
+          </span>
+        </div>
+
+        <!-- Location Description & Quick Badges -->
+        <div class="mt-4 space-y-3">
+          <div class="flex items-baseline justify-between text-xs">
+            <span class="text-slate-500 dark:text-slate-400">Primary Location:</span>
+            <span class="font-bold text-slate-900 dark:text-white">{defaultLocation || 'Not specified'}</span>
+          </div>
+          <div class="flex items-baseline justify-between text-xs">
+            <span class="text-slate-500 dark:text-slate-400">Coordinates:</span>
+            <span class="font-mono text-slate-700 dark:text-slate-300">{contactInfo.coordinates || '-'}</span>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-600 dark:text-slate-400 pt-1">
+            {defaultLocation && <>Based in <strong>{defaultLocation}</strong>. </>}Open for research collaborations and technical discussions both online and offline.
+          </p>
+        </div>
+
+        <!-- Embedded Interactive Map -->
+        <div class="mt-5 overflow-hidden rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-2xs">
+          <div class="relative h-64 w-full bg-slate-100 dark:bg-slate-950">
+            <iframe
+              title={`Location map of ${defaultLocation}`}
+              src={mapEmbedUrl}
+              class="h-full w-full border-0 filter dark:contrast-90 dark:brightness-90"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              aria-label={`Interactive map of ${defaultLocation}`}
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Map Footer Action -->
+        <div class="mt-4 flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800/80">
+          <span class="text-[11px] text-slate-400">
+            {contactInfo.map?.title || defaultLocation}
+          </span>
+          <a
+            href={googleMapsSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+          >
+            <span>Open in Google Maps</span>
+            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 01-2-2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  function setupContactInteractions() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const feedbackBox = document.getElementById('form-feedback');
+    const feedbackMsg = document.getElementById('feedback-message');
+    const copyBtn = document.getElementById('copy-email-btn');
+    const copyLabel = document.getElementById('copy-label');
+
+    // Handle interactive Send Message submission
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('sender-name') as HTMLInputElement | null;
+        const emailInput = document.getElementById('sender-email') as HTMLInputElement | null;
+        const subjectInput = document.getElementById('message-subject') as HTMLInputElement | null;
+        const messageInput = document.getElementById('message-content') as HTMLTextAreaElement | null;
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const subject = subjectInput ? subjectInput.value.trim() : 'Website Contact Message';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        const targetEmail = copyBtn?.getAttribute('data-email') || '';
+        const authorName = form.dataset.authorName || 'Author';
+        const siteUrl = form.dataset.siteUrl || '';
+
+        // Format clean mailto URL
+        const emailSubject = `[Website Contact] ${subject}`;
+        const emailBody = `Hello ${authorName},\n\nName: ${name}\nSender Email: ${email}\n\n---\nMessage:\n${message}\n\n---\nSent via contact form on ${siteUrl}`;
+
+        const mailtoUrl = `mailto:${encodeURIComponent(targetEmail)}?subject=${encodeURIComponent(
+          emailSubject
+        )}&body=${encodeURIComponent(emailBody)}`;
+
+        if (feedbackBox && feedbackMsg) {
+          feedbackMsg.textContent = 'Opening your email client to send message...';
+          feedbackBox.classList.remove('hidden');
+        }
+
+        // Open mail client
+        window.location.href = mailtoUrl;
+      });
+    }
+
+    // Handle 1-click Copy Email
+    if (copyBtn && copyLabel) {
+      copyBtn.addEventListener('click', async () => {
+        const email = copyBtn.getAttribute('data-email') || '';
+        try {
+          await navigator.clipboard.writeText(email);
+          copyLabel.textContent = 'Email Copied to Clipboard!';
+          copyBtn.classList.add('text-emerald-600', 'border-emerald-400');
+          setTimeout(() => {
+            copyLabel.textContent = 'Copy Email Address';
+            copyBtn.classList.remove('text-emerald-600', 'border-emerald-400');
+          }, 2500);
+        } catch {
+          // Fallback if clipboard API is blocked
+          window.prompt('Copy email address:', email);
+        }
+      });
+    }
+  }
+
+  setupContactInteractions();
+  document.addEventListener('astro:after-swap', setupContactInteractions);
+</script>

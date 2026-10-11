@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+/* 
+ * Theme configuration and custom variants
+ * Supports class-based dark mode (html.dark) and data-theme="dark"
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+}
+
+html {
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased transition-colors duration-200;
+}
+
+html.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+/* ==============================================================================
+ * PAKEM TIPOGRAFI STANDAR (TYPOGRAPHY TOKENS)
+ * Standar hierarki judul, sub-judul, teks bacaan, dan kartu portal
+ * ============================================================================== */
+.heading-page {
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+.subtitle-page {
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.65;
+}
+@media (min-width: 640px) {
+  .subtitle-page {
+    font-size: 1rem; /* 16px */
+  }
+}
+
+.heading-section {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.subtitle-section {
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.5;
+}
+@media (min-width: 640px) {
+  .subtitle-section {
+    font-size: 0.875rem; /* 14px */
+  }
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+/* Universal code block reset for Astro / Shiki syntax highlighting */
+pre.astro-code code,
+pre.astro-code code span,
+pre.astro-code .line {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}

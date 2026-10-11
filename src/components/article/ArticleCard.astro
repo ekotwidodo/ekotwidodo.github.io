@@ -1,0 +1,108 @@
+---
+import { formatDate } from '@/utils/date';
+import { calculateReadingTime } from '@/utils/readingTime';
+import Badge from '@/components/common/Badge.astro';
+import type { ArticleEntry } from '@/utils/content';
+
+/**
+ * ArticleCard Component
+ * Editorial Medium-style layout with a square thumbnail on the side,
+ * dynamic category color coding, and reading time indicator.
+ */
+interface Props {
+  article: ArticleEntry;
+  className?: string;
+}
+
+const { article, className = '' } = Astro.props;
+const readingTime = calculateReadingTime(article.body || '');
+const formattedDate = formatDate(article.data.date);
+const articleUrl = `/articles/${article.id.replace(/\.(md|mdx)$/, '')}`;
+const imageSrc = article.data.image || '/assets/img/articles/astro-jamstack.jpg';
+
+/**
+ * Maps categories to rich distinct color palettes
+ */
+function getCategoryColor(category: string): 'purple' | 'indigo' | 'emerald' | 'amber' | 'teal' | 'info' | 'primary' {
+  const cat = category.toLowerCase();
+  if (cat.includes('artificial') || cat.includes('ai')) return 'purple';
+  if (cat.includes('knowledge')) return 'indigo';
+  if (cat.includes('data')) return 'emerald';
+  if (cat.includes('software') || cat.includes('testing')) return 'amber';
+  if (cat.includes('semantic')) return 'teal';
+  if (cat.includes('web')) return 'info';
+  return 'primary';
+}
+
+const categoryVariant = getCategoryColor(article.data.category);
+---
+
+<article
+  class={`group relative flex flex-col-reverse sm:flex-row items-center sm:items-stretch justify-between gap-5 sm:gap-6 overflow-hidden rounded-xl border border-slate-200/90 bg-white p-5 sm:p-6 transition-colors duration-200 hover:border-slate-400 hover:bg-slate-50/40 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-600 dark:hover:bg-slate-900/90 shadow-2xs ${className}`}
+>
+  <!-- Left: Content Meta, Title, and Summary -->
+  <div class="flex flex-1 flex-col justify-between w-full">
+    <div>
+      <!-- Meta Information (Date, Reading Time, Category) -->
+      <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
+        <time datetime={article.data.date.toISOString()}>
+          {formattedDate}
+        </time>
+        <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+        <span>{readingTime}</span>
+        <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+        <Badge variant={categoryVariant} size="sm">
+          {article.data.category}
+        </Badge>
+      </div>
+
+      <!-- Title with Link -->
+      <h3 class="mt-2.5 text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-600 sm:text-xl dark:text-white dark:group-hover:text-blue-400 leading-snug">
+        <a href={articleUrl} class="focus:outline-none">
+          <span class="absolute inset-0" aria-hidden="true" />
+          {article.data.title}
+        </a>
+      </h3>
+
+      <!-- Summary -->
+      <p class="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-2 dark:text-slate-300">
+        {article.data.summary}
+      </p>
+    </div>
+
+    <!-- Tags & Action -->
+    <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-3 dark:border-slate-800/60">
+      <div class="relative z-10 flex flex-wrap gap-1.5 font-mono">
+        {
+          article.data.tags.slice(0, 3).map((tag, idx) => {
+            const tagVariants = ['neutral', 'teal', 'rose', 'indigo'] as const;
+            const tagVariant = tagVariants[idx % tagVariants.length];
+            return (
+              <Badge variant={tagVariant} size="sm" href={`/archives?tag=${encodeURIComponent(tag)}`}>
+                #{tag}
+              </Badge>
+            );
+          })
+        }
+      </div>
+
+      <span class="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 transition-colors group-hover:text-blue-600 dark:text-slate-300 dark:group-hover:text-blue-400">
+        <span>Read &rarr;</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Right: Square Thumbnail Image (Medium-style kotak) -->
+  <div class="relative shrink-0 w-full sm:w-auto flex justify-center">
+    <div class="relative h-44 w-full sm:h-34 sm:w-34 aspect-square overflow-hidden rounded-lg border border-slate-200/80 bg-slate-100 shadow-2xs dark:border-slate-800 dark:bg-slate-800">
+      <img
+        src={imageSrc}
+        alt={article.data.title}
+        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-102"
+        width="136"
+        height="136"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</article>

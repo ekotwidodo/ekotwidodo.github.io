@@ -1,0 +1,84 @@
+---
+/**
+ * ThemeToggle Component
+ * Provides an accessible toggle switch between Light Mode and Dark Mode.
+ * Persists user preference in localStorage and synchronizes with html.dark class.
+ */
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  id="theme-toggle-btn"
+  class={`relative inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 shadow-xs transition hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white ${className}`}
+  aria-label="Toggle theme mode"
+  title="Toggle theme (Light / Dark)"
+>
+  <!-- Sun Icon (shown in dark mode) -->
+  <svg
+    class="hidden h-4.5 w-4.5 transition-transform duration-300 dark:block"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+
+  <!-- Moon Icon (shown in light mode) -->
+  <svg
+    class="block h-4.5 w-4.5 transition-transform duration-300 dark:hidden"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<script>
+  function setupThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      const newTheme = isDark ? 'light' : 'dark';
+
+      if (newTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+
+      localStorage.setItem('theme', newTheme);
+    });
+  }
+
+  // Setup on initial load and view transition swap
+  setupThemeToggle();
+  document.addEventListener('astro:after-swap', setupThemeToggle);
+</script>

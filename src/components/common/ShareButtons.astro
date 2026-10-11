@@ -1,0 +1,164 @@
+---
+/**
+ * ShareButtons Component
+ * Pure icon-only sharing buttons for social media (WhatsApp, X/Twitter, LinkedIn, Telegram, and Copy Link).
+ * Features zero text labels, hover brand accents, and copy-to-clipboard state feedback.
+ */
+interface Props {
+  title: string;
+  summary?: string;
+  url?: string;
+  className?: string;
+}
+
+const {
+  title,
+  summary = '',
+  url: propUrl,
+  className = ''
+} = Astro.props;
+
+const canonicalUrl = propUrl || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href);
+
+const encodedTitle = encodeURIComponent(title);
+const encodedSummary = encodeURIComponent(summary);
+const encodedUrl = encodeURIComponent(canonicalUrl);
+
+const shareLinks = {
+  whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
+  x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+  telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`
+};
+---
+
+<div
+  class={`inline-flex items-center gap-1.5 sm:gap-2 ${className}`}
+  data-share-container
+  data-share-title={title}
+  data-share-url={canonicalUrl}
+>
+  <!-- WhatsApp -->
+  <a
+    href={shareLinks.whatsapp}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-600 transition-all duration-200 hover:scale-105 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-emerald-600 dark:hover:bg-emerald-950/40 dark:hover:text-emerald-400 shadow-2xs"
+    title="Share on WhatsApp"
+    aria-label="Share on WhatsApp"
+  >
+    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.83a8.216 8.216 0 01-5.82 2.41c-1.46 0-2.88-.39-4.13-1.12l-.3-.18-3.07.81.82-2.99-.19-.31a8.24 8.24 0 01-1.26-4.45c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.78 2.71 4.3 3.8 2.53 1.09 2.53.73 2.99.69.45-.04 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29z"/>
+    </svg>
+  </a>
+
+  <!-- X / Twitter -->
+  <a
+    href={shareLinks.x}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-600 transition-all duration-200 hover:scale-105 hover:border-slate-800 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:bg-slate-800 dark:hover:text-white shadow-2xs"
+    title="Share on X"
+    aria-label="Share on X"
+  >
+    <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  </a>
+
+  <!-- LinkedIn -->
+  <a
+    href={shareLinks.linkedin}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-600 transition-all duration-200 hover:scale-105 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-blue-700 dark:hover:bg-blue-950/40 dark:hover:text-blue-400 shadow-2xs"
+    title="Share on LinkedIn"
+    aria-label="Share on LinkedIn"
+  >
+    <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.07v8.37h2.78z"/>
+    </svg>
+  </a>
+
+  <!-- Telegram -->
+  <a
+    href={shareLinks.telegram}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-600 transition-all duration-200 hover:scale-105 hover:border-sky-500 hover:bg-sky-50 hover:text-sky-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-sky-600 dark:hover:bg-sky-950/40 dark:hover:text-sky-400 shadow-2xs"
+    title="Share on Telegram"
+    aria-label="Share on Telegram"
+  >
+    <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+    </svg>
+  </a>
+
+  <!-- Copy Link -->
+  <button
+    type="button"
+    class="share-copy-btn inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-slate-200/90 bg-white text-slate-600 transition-all duration-200 hover:scale-105 hover:border-purple-500 hover:bg-purple-50 hover:text-purple-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:border-purple-600 dark:hover:bg-purple-950/40 dark:hover:text-purple-400 shadow-2xs"
+    title="Copy Link"
+    aria-label="Copy Link"
+  >
+    <svg class="copy-icon h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+    </svg>
+    <svg class="check-icon hidden h-4 w-4 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  function setupShareButtons() {
+    const containers = document.querySelectorAll('[data-share-container]');
+
+    containers.forEach((container) => {
+      const copyBtn = container.querySelector('.share-copy-btn') as HTMLButtonElement | null;
+      if (!copyBtn) return;
+
+      const targetUrl = (container as HTMLElement).dataset.shareUrl || window.location.href;
+      const copyIcon = copyBtn.querySelector('.copy-icon');
+      const checkIcon = copyBtn.querySelector('.check-icon');
+
+      if (copyBtn.dataset.listenerAttached === 'true') return;
+      copyBtn.dataset.listenerAttached = 'true';
+
+      copyBtn.addEventListener('click', async () => {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(targetUrl);
+          } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = targetUrl;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+          }
+
+          if (copyIcon && checkIcon) {
+            copyIcon.classList.add('hidden');
+            checkIcon.classList.remove('hidden');
+          }
+
+          setTimeout(() => {
+            if (copyIcon && checkIcon) {
+              copyIcon.classList.remove('hidden');
+              checkIcon.classList.add('hidden');
+            }
+          }, 2500);
+        } catch (err) {
+          console.error('Failed to copy URL:', err);
+        }
+      });
+    });
+  }
+
+  setupShareButtons();
+  document.addEventListener('astro:after-swap', setupShareButtons);
+</script>

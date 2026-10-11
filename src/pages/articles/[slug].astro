@@ -1,0 +1,67 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getAllArticles, type ArticleEntry } from '@/utils/content';
+import { calculateReadingTime } from '@/utils/readingTime';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await getAllArticles();
+  return articles.map((article) => {
+    // Generate clean slug from file id (strips extension)
+    const slug = article.id.replace(/\.(md|mdx)$/, '');
+    return {
+      params: { slug },
+      props: { article }
+    };
+  });
+};
+
+interface Props {
+  article: ArticleEntry;
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const readingTime = calculateReadingTime(article.body || '');
+
+// Compute related articles (prioritize matching category, overlapping tags, and recent date)
+const allArticles = await getAllArticles();
+const otherArticles = allArticles.filter((item) => item.id !== article.id);
+
+const currentCategory = article.data.category;
+const currentTags = article.data.tags || [];
+
+const scoredArticles = otherArticles.map((item) => {
+  let score = 0;
+  if (item.data.category === currentCategory) {
+    score += 5;
+  }
+  const itemTags = item.data.tags || [];
+  const sharedTags = itemTags.filter((tag) => currentTags.includes(tag)).length;
+  score += sharedTags * 2;
+
+  return { item, score };
+});
+
+scoredArticles.sort((a, b) => {
+  if (b.score !== a.score) return b.score - a.score;
+  return new Date(b.item.data.date).getTime() - new Date(a.item.data.date).getTime();
+});
+
+// Take top 2 most relevant articles for clean presentation
+const relatedArticles = scoredArticles.slice(0, 2).map((s) => s.item);
+---
+
+<ArticleLayout
+  title={article.data.title}
+  date={article.data.date}
+  summary={article.data.summary}
+  category={article.data.category}
+  tags={article.data.tags}
+  readingTime={readingTime}
+  image={article.data.image}
+  relatedArticles={relatedArticles}
+>
+  <Content />
+</ArticleLayout>

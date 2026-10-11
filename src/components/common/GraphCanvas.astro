@@ -1,0 +1,259 @@
+---
+interface Props {
+  class?: string;
+  id?: string;
+  nodeCount?: number;
+}
+
+const {
+  class: className = '',
+  id = 'knowledge-graph-canvas',
+  nodeCount = 45
+} = Astro.props;
+---
+
+<canvas
+  id={id}
+  class={`pointer-events-none absolute inset-0 h-full w-full ${className}`}
+  data-node-count={nodeCount}
+  aria-hidden="true"
+></canvas>
+
+<script>
+  function initGraphCanvas() {
+    const canvas = document.getElementById('knowledge-graph-canvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let animationFrameId: number | null = null;
+    let isVisible = true;
+
+    const baseCount = parseInt(canvas.dataset.nodeCount || '45', 10);
+    let nodes: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      isHub: boolean;
+    }> = [];
+
+    const mouse = {
+      x: null as number | null,
+      y: null as number | null,
+      radius: 140
+    };
+
+    function resize() {
+      if (!canvas || !parent) return;
+      const rect = parent.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      ctx!.setTransform(1, 0, 0, 1, 0, 0);
+      ctx!.scale(dpr, dpr);
+
+      // Adaptive count: fewer nodes on mobile to keep 60fps effortlessly
+      const targetCount =
+        width < 640
+          ? Math.floor(baseCount * 0.45)
+          : width < 1024
+            ? Math.floor(baseCount * 0.7)
+            : baseCount;
+      initNodes(targetCount);
+    }
+
+    function initNodes(count: number) {
+      nodes = [];
+      for (let i = 0; i < count; i++) {
+        const isHub = i % 7 === 0;
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: isHub ? 3.0 : Math.random() * 1.5 + 1.2,
+          isHub
+        });
+      }
+    }
+
+    function getColors() {
+      const isDarkTheme = document.documentElement.classList.contains('dark');
+      if (isDarkTheme) {
+        // Hero has light background in dark theme (dark:bg-slate-100)
+        return {
+          node: 'rgba(37, 99, 235, 0.65)',
+          nodeHub: 'rgba(79, 70, 229, 0.85)',
+          edgeRgb: '37, 99, 235',
+          mouseEdgeRgb: '79, 70, 229'
+        };
+      } else {
+        // Hero has dark navy background in light theme (bg-slate-900)
+        return {
+          node: 'rgba(96, 165, 250, 0.75)',
+          nodeHub: 'rgba(56, 189, 248, 0.95)',
+          edgeRgb: '147, 197, 253',
+          mouseEdgeRgb: '56, 189, 248'
+        };
+      }
+    }
+
+    function draw() {
+      if (!ctx || !isVisible) return;
+      ctx.clearRect(0, 0, width, height);
+
+      const colors = getColors();
+      const maxDist = width < 640 ? 85 : 120;
+
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+
+        if (!prefersReducedMotion) {
+          a.x += a.vx;
+          a.y += a.vy;
+
+          if (a.x < 0 || a.x > width) a.vx *= -1;
+          if (a.y < 0 || a.y > height) a.vy *= -1;
+
+          // Interactive cursor connection & gentle magnetic pull
+          if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - a.x;
+            const dy = mouse.y - a.y;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < mouse.radius && dist > 0) {
+              const force = (1 - dist / mouse.radius) * 0.025;
+              a.x += dx * force;
+              a.y += dy * force;
+
+              // Connect node to mouse cursor
+              const mouseAlpha = (1 - dist / mouse.radius) * 0.45;
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(${colors.mouseEdgeRgb}, ${mouseAlpha})`;
+              ctx.lineWidth = 1;
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Connect adjacent nodes
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < maxDist) {
+            const alpha = (1 - dist / maxDist) * 0.22;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${colors.edgeRgb}, ${alpha})`;
+            ctx.lineWidth = a.isHub || b.isHub ? 1 : 0.75;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+
+        // Draw node dot
+        ctx.beginPath();
+        ctx.arc(a.x, a.y, a.radius, 0, Math.PI * 2);
+        ctx.fillStyle = a.isHub ? colors.nodeHub : colors.node;
+        ctx.fill();
+
+        // Draw subtle halo for hub entities
+        if (a.isHub) {
+          ctx.beginPath();
+          ctx.arc(a.x, a.y, a.radius + 2.5, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${colors.edgeRgb}, 0.25)`;
+          ctx.lineWidth = 0.75;
+          ctx.stroke();
+        }
+      }
+
+      if (!prefersReducedMotion && isVisible) {
+        animationFrameId = requestAnimationFrame(draw);
+      }
+    }
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = parent.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+
+    const onMouseLeave = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
+    parent.addEventListener('mousemove', onMouseMove, { passive: true });
+    parent.addEventListener('mouseleave', onMouseLeave, { passive: true });
+
+    let resizeTimer: number;
+    const onResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        resize();
+        if (!animationFrameId && isVisible && !prefersReducedMotion) {
+          animationFrameId = requestAnimationFrame(draw);
+        }
+      }, 100);
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+
+    // Zero CPU/GPU cost when scrolled away
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !prefersReducedMotion && !animationFrameId) {
+          animationFrameId = requestAnimationFrame(draw);
+        } else if (!isVisible && animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(parent);
+
+    resize();
+    draw();
+
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+      parent.removeEventListener('mousemove', onMouseMove);
+      parent.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('resize', onResize);
+    };
+  }
+
+  let cleanupGraph: (() => void) | undefined;
+  function start() {
+    if (cleanupGraph) cleanupGraph();
+    cleanupGraph = initGraphCanvas();
+  }
+
+  start();
+  document.addEventListener('astro:after-swap', start);
+</script>

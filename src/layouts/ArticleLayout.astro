@@ -1,0 +1,452 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Badge from '@/components/common/Badge.astro';
+import Breadcrumbs from '@/components/common/Breadcrumbs.astro';
+import ShareButtons from '@/components/common/ShareButtons.astro';
+import ArticleCard from '@/components/article/ArticleCard.astro';
+import { formatDate } from '@/utils/date';
+import { siteConfig } from '@/config/site';
+import type { ArticleEntry } from '@/utils/content';
+
+/**
+ * ArticleLayout Component
+ * Implements a clean, editorial Medium-style reading layout:
+ * 1. Dominant Title (H1) and Subtitle/Summary.
+ * 2. Author byline row (Circular Avatar, Name, Follow badge, Reading time · Date).
+ * 3. Featured Cover image banner.
+ * 4. Article prose content with editorial drop-cap.
+ * 5. Tags & Bottom action bar (Icon-only share buttons).
+ * 6. Related Articles ("Artikel Terkait") showcase.
+ */
+interface Props {
+  title: string;
+  date: Date;
+  summary: string;
+  category: string;
+  tags: string[];
+  readingTime: string;
+  image?: string;
+  relatedArticles?: ArticleEntry[];
+}
+
+const {
+  title,
+  date,
+  summary,
+  category,
+  tags,
+  readingTime,
+  image,
+  relatedArticles = []
+} = Astro.props;
+
+/**
+ * Maps categories to rich distinct color palettes
+ */
+function getCategoryColor(category: string): 'purple' | 'indigo' | 'emerald' | 'amber' | 'teal' | 'info' | 'primary' {
+  const cat = category.toLowerCase();
+  if (cat.includes('artificial') || cat.includes('ai')) return 'purple';
+  if (cat.includes('knowledge')) return 'indigo';
+  if (cat.includes('data')) return 'emerald';
+  if (cat.includes('software') || cat.includes('testing')) return 'amber';
+  if (cat.includes('semantic')) return 'teal';
+  if (cat.includes('web')) return 'info';
+  return 'primary';
+}
+
+const categoryVariant = getCategoryColor(category);
+const breadcrumbs = [
+  { name: 'Archives', href: '/archives' },
+  { name: category, href: `/archives?category=${encodeURIComponent(category)}` }
+];
+---
+
+<BaseLayout title={`${title} | ${siteConfig.name}`} description={summary} image={image}>
+  <article class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+    <!-- Breadcrumb Navigation Trail (Standard Pakem) -->
+    <div class="mb-6">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+
+    <!-- Header: Judul Besar & Subtitle/Summary (Gaya Editorial Medium) -->
+    <header class="mb-6">
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white leading-[1.15]">
+        {title}
+      </h1>
+
+      {
+        summary && (
+          <p class="mt-4 text-lg sm:text-xl font-normal leading-relaxed text-slate-600 dark:text-slate-300">
+            {summary}
+          </p>
+        )
+      }
+
+      <!-- Author Byline Row -->
+      <div class="mt-6 flex items-center gap-3.5">
+        <a href="/about" class="shrink-0 group">
+          <img
+            src={siteConfig.author.avatar}
+            alt={siteConfig.author.name}
+            class="h-11 w-11 rounded-full object-cover object-top ring-1 ring-slate-300 dark:ring-slate-700 shadow-2xs transition group-hover:ring-blue-500"
+            width="44"
+            height="44"
+          />
+        </a>
+
+        <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-sm">
+          <a
+            href="/about"
+            class="font-semibold text-slate-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-colors"
+          >
+            {siteConfig.author.name}
+          </a>
+
+          <!-- Follow Button -->
+          <a
+            href="/about"
+            class="inline-flex items-center rounded-full border border-slate-300 bg-white px-2.5 py-0.5 text-xs font-medium text-slate-700 shadow-2xs hover:border-slate-800 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white transition-colors"
+          >
+            Follow
+          </a>
+
+          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+
+          <span class="text-slate-500 dark:text-slate-400 font-sans">{readingTime}</span>
+
+          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+
+          <time datetime={date.toISOString()} class="text-slate-500 dark:text-slate-400 font-sans">
+            {formatDate(date)}
+          </time>
+
+          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+
+          <Badge variant={categoryVariant} size="sm">
+            {category}
+          </Badge>
+        </div>
+      </div>
+    </header>
+
+    <!-- Featured Cover Image Banner -->
+    {
+      image && (
+        <div class="my-7 overflow-hidden rounded-xl border border-slate-200/90 bg-slate-100 shadow-2xs dark:border-slate-800 dark:bg-slate-900">
+          <img
+            src={image}
+            alt={title}
+            class="h-auto w-full max-h-[520px] object-cover"
+            loading="eager"
+          />
+        </div>
+      )
+    }
+
+    <!-- Markdown Content Body dengan Tipografi Editorial & Drop-Cap -->
+    <div class="prose-content py-4 text-base leading-relaxed text-slate-700 dark:text-slate-200">
+      <slot />
+    </div>
+
+    <!-- Bottom Action Divider Bar (Claps + Icon-Only Share Buttons) -->
+    <div class="my-8 flex flex-wrap items-center justify-between gap-3 border-y border-slate-200/90 py-2.5 dark:border-slate-800/90">
+      <!-- Claps -->
+      <button
+        type="button"
+        class="article-clap-btn inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-mono text-slate-600 hover:bg-slate-100 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-rose-400 transition cursor-pointer"
+        data-clap-key={`clap_${title.replace(/\s+/g, '_').toLowerCase()}`}
+        title="Beri apresiasi (Clap)"
+      >
+        <svg class="clap-icon h-4 w-4 text-rose-500 transition-transform active:scale-125" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 10.5V6a2 2 0 0 0-2-2c-.34 0-.66.08-.94.23A1.99 1.99 0 0 0 14.5 3c-.47 0-.91.16-1.26.44A2 2 0 0 0 11.5 3c-.76 0-1.42.42-1.76 1.05A1.99 1.99 0 0 0 8.5 4a2 2 0 0 0-2 2v8.5a7.5 7.5 0 1 0 15 0v-4h-2.5zm.5 4a5.5 5.5 0 1 1-11 0V6a.5.5 0 0 1 1 0v5.5h1.5V5a.5.5 0 0 1 1 0v6.5h1.5V4.5a.5.5 0 0 1 1 0v7h1.5V5.5a.5.5 0 0 1 1 0v6h1.5v-1a.5.5 0 0 1 1 0v4z"/>
+        </svg>
+        <span class="clap-count font-bold">129</span>
+      </button>
+
+      <!-- Icon-only Share Buttons -->
+      <ShareButtons title={title} summary={summary} />
+    </div>
+
+    <!-- Tags Navigation -->
+    <div class="mb-10 flex flex-wrap items-center gap-1.5 font-mono text-xs">
+      <span class="mr-1 text-slate-500 dark:text-slate-400">Tags:</span>
+      {
+        tags.map((tag, idx) => {
+          const tagVariants = ['neutral', 'teal', 'rose', 'indigo', 'amber'] as const;
+          const variant = tagVariants[idx % tagVariants.length];
+          return (
+            <Badge variant={variant} size="sm" href={`/archives?tag=${encodeURIComponent(tag)}`}>
+              #{tag}
+            </Badge>
+          );
+        })
+      }
+    </div>
+
+    <!-- Related Articles Section (Artikel Terkait) -->
+    {
+      relatedArticles && relatedArticles.length > 0 ? (
+        <section class="mt-14 border-t border-slate-200/90 pt-10 dark:border-slate-800/90">
+          <div class="mb-6 flex items-center justify-between">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Related Articles
+              </h2>
+              <p class="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                More writings on {category} and related technologies.
+              </p>
+            </div>
+            <a
+              href="/archives"
+              class="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+            >
+              <span>All Articles</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+
+          <div class="flex flex-col gap-4 sm:gap-5">
+            {relatedArticles.map((relArticle) => (
+              <ArticleCard article={relArticle} />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <div class="mt-12 border-t border-slate-200/80 pt-8 text-center dark:border-slate-800/80">
+          <a
+            href="/archives"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors"
+          >
+            <span>&larr; View All Articles in Archives</span>
+          </a>
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<script>
+  // Medium-style Clap counter interaction
+  function setupClapButtons() {
+    const clapButtons = document.querySelectorAll<HTMLButtonElement>('.article-clap-btn');
+    if (clapButtons.length === 0) return;
+
+    clapButtons.forEach((btn) => {
+      const storageKey = btn.dataset.clapKey || 'article_claps';
+      const countEl = btn.querySelector('.clap-count');
+      const baseCount = 129; // default aesthetic starting count matching screenshot
+
+      let userClaps = parseInt(localStorage.getItem(storageKey) || '0', 10);
+      if (countEl) {
+        countEl.textContent = String(baseCount + userClaps);
+      }
+
+      if (btn.dataset.listenerAttached === 'true') return;
+      btn.dataset.listenerAttached = 'true';
+
+      btn.addEventListener('click', () => {
+        userClaps += 1;
+        localStorage.setItem(storageKey, String(userClaps));
+
+        // Sync all clap buttons on the page
+        clapButtons.forEach((b) => {
+          const c = b.querySelector('.clap-count');
+          if (c) c.textContent = String(baseCount + userClaps);
+          const icon = b.querySelector('.clap-icon');
+          if (icon) {
+            icon.classList.add('scale-125');
+            setTimeout(() => icon.classList.remove('scale-125'), 200);
+          }
+        });
+      });
+    });
+  }
+
+  // Copy Code Button functionality for article pre blocks
+  function setupCodeBlockCopy() {
+    const codeBlocks = document.querySelectorAll<HTMLPreElement>('.prose-content pre');
+    codeBlocks.forEach((pre) => {
+      if (pre.querySelector('.code-copy-btn')) return;
+
+      pre.classList.add('relative', 'group');
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className =
+        'code-copy-btn absolute top-3 right-3 hidden group-hover:inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800/90 px-2.5 py-1 text-[11px] font-sans font-medium text-slate-300 shadow-sm transition hover:bg-slate-700 hover:text-white dark:border-slate-700 dark:bg-slate-900/90 cursor-pointer';
+      btn.setAttribute('aria-label', 'Copy code to clipboard');
+      btn.innerHTML = `
+        <svg class="h-3.5 w-3.5 copy-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        <span class="copy-text">Copy</span>
+      `;
+
+      btn.addEventListener('click', async () => {
+        const code = pre.querySelector('code');
+        const text = code ? code.innerText : pre.innerText;
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.innerHTML = `
+            <svg class="h-3.5 w-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span class="text-emerald-400 font-semibold">Copied!</span>
+          `;
+          setTimeout(() => {
+            btn.innerHTML = `
+              <svg class="h-3.5 w-3.5 copy-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+              <span class="copy-text">Copy</span>
+            `;
+          }, 2000);
+        } catch {
+          // fallback
+        }
+      });
+
+      pre.appendChild(btn);
+    });
+  }
+
+  setupClapButtons();
+  setupCodeBlockCopy();
+  document.addEventListener('astro:after-swap', () => {
+    setupClapButtons();
+    setupCodeBlockCopy();
+  });
+</script>
+
+<style is:global>
+  /* Drop-Cap untuk paragraf pertama menyerupai Medium editorial */
+  .prose-content > p:first-of-type::first-letter {
+    font-size: 3.5rem;
+    line-height: 0.9;
+    float: left;
+    margin-right: 0.55rem;
+    margin-top: 0.2rem;
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    color: var(--color-slate-900, #0f172a);
+  }
+  .dark .prose-content > p:first-of-type::first-letter {
+    color: #f8fafc;
+  }
+
+  /* Clean, elegant article prose typography */
+  .prose-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-slate-900, #0f172a);
+    letter-spacing: -0.02em;
+  }
+  .dark .prose-content h2 {
+    color: #f8fafc;
+  }
+  .prose-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-slate-900, #0f172a);
+  }
+  .dark .prose-content h3 {
+    color: #f8fafc;
+  }
+  .prose-content p {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.85;
+  }
+  .prose-content ul,
+  .prose-content ol {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  .prose-content ul {
+    list-style-type: disc;
+  }
+  .prose-content ol {
+    list-style-type: decimal;
+  }
+  .prose-content li {
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+  }
+  /* Inline code styling only (excludes code blocks inside pre) */
+  .prose-content :not(pre) > code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875em;
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.375rem;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+  }
+  .dark .prose-content :not(pre) > code {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border-color: #334155;
+  }
+
+  /* Code block container */
+  .prose-content pre {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    background-color: #1e293b !important;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  /* Reset all code and spans inside pre so Shiki syntax highlighting renders cleanly */
+  .prose-content pre code,
+  .prose-content pre code span,
+  .prose-content pre .line {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .prose-content blockquote {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid #3b82f6;
+    font-style: italic;
+    color: #475569;
+  }
+  .dark .prose-content blockquote {
+    color: #94a3b8;
+    border-left-color: #60a5fa;
+  }
+  .prose-content a {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+  }
+  .dark .prose-content a {
+    color: #60a5fa;
+  }
+  .prose-content hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-color: #e2e8f0;
+  }
+  .dark .prose-content hr {
+    border-color: #1e293b;
+  }
+</style>

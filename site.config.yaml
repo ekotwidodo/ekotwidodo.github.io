@@ -1,0 +1,281 @@
+# ==============================================================================
+# MAIN SITE CONFIGURATION
+# All website identity, titles, descriptions, address, and social profiles
+# are centrally managed in this file for ease of maintenance.
+# ==============================================================================
+
+# 1. Site Identity & Metadata
+site:
+  name: "Eko Teguh Widodo"
+  short_name: "ETW"
+  logo: "/logo.png"
+  favicon: "/logo.png"
+  title: "Eko Teguh Widodo | Personal IT, AI & Software Engineering Portal"
+  tagline: "Sharing Insights & Exploring Technology"
+  version: "1.0.0"
+  subtitle: "A personal technical publication portal dedicated to Artificial Intelligence and Software Engineering."
+  description: "Personal IT portal of Eko Teguh Widodo featuring technical articles, research insights, and explorations in Artificial Intelligence."
+  url: "https://ekotwidodo.github.io"
+
+# 2. Author Profile
+author:
+  name: "Eko Teguh Widodo"
+  title: "IT Specialist & AI Engineer"
+  affiliation: "BPS - Statistics Indonesia"
+  location: "Bandar Lampung & Jakarta, Indonesia"
+  avatar: "/assets/img/ekoteguh.jpg"
+  bio: "IT Specialist at Statistics Indonesia, focusing on Data, Knowledge, and Artificial Intelligence Engineering."
+  email: "mailto:ekotwidodo@gmail.com"
+
+# 3. Social Media & Professional Profiles
+socials:
+  github: "https://github.com/ekotwidodo"
+  linkedin: "https://www.linkedin.com/in/ekoteguh"
+  medium: "https://medium.com/@ekoteguh"
+  x: "https://x.com/ekotwidodo"
+  instagram: "https://www.instagram.com/ekotwidodo"
+  googleScholar: "https://scholar.google.com/citations?hl=en&user=ut1BFicAAAAJ"
+  researchGate: "https://www.researchgate.net/profile/Eko-Teguh-Widodo"
+  email: "mailto:ekotwidodo@gmail.com"
+
+# 4. Pagination Settings
+pagination:
+  articlesPerPage: 5
+  researchPerPage: 6
+  projectsPerPage: 6
+
+# 5. Menu & Navigation Settings (Enable / Hide Menus)
+menu:
+  home: true
+  archives: true
+  about: true
+  research: false    # Set to true to show Research menu
+  projects: false    # Set to true to show Projects menu
+  contact: false     # Set to true to show Contact menu in navbar & footer
+  cv: false          # Set to true to show CV menu in navbar & footer
+
+# 6. Page Headers & Section Configuration
+pages:
+  home:
+    greeting: "Hi, I'm"
+    menu_label: "Home"
+    typewriter_strings:
+      - "Eko Teguh Widodo"
+      - "IT Specialist"
+      - "AI Engineer"
+      - "Machine Learning Engineer"
+      - "NLP Engineer"
+      - "Data & Knowledge Engineer"
+      - "Data Analyst"
+      - "Software Engineer"
+      - "QA Engineer"
+      - "GeoAI & Spatial Analyst"
+    articles_title: "Latest Tech Articles"
+    articles_subtitle: "Recent technical articles, architectural insights, and explorations in Artificial Intelligence."
+
+  archives:
+    title: "Archives"
+    subtitle: "Explore and filter all technical articles by year, category, or topic tags."
+    menu_label: "Archives"
+    meta_title: "Archives | Eko Teguh Widodo"
+    meta_description: "Comprehensive archive of technical publications on Artificial Intelligence and Software Engineering."
+
+  about:
+    title: "About"
+    subtitle: "Personal technical publication portal dedicated to Artificial Intelligence and Software Engineering."
+    menu_label: "About"
+    meta_title: "About | Eko Teguh Widodo"
+    meta_description: "About Eko Teguh Widodo's personal IT portal, focus areas in Artificial Intelligence, publishing commitment, and professional background."
+    hero:
+      badges:
+        - text: "Personal IT Portal"
+          variant: "primary"
+        - text: "Daily Tech Commitment"
+          variant: "teal"
+        - text: "AI & Engineering"
+          variant: "indigo"
+      heading: "Information & Technology Exploration Portal"
+      description: "Welcome to the personal web portal of {name}. This platform serves as an independent space to share insights, in-depth analyses, and practical engineering solutions centered around Artificial Intelligence and modern Software Systems."
+      commitment:
+        enabled: true
+        title: "Daily Publishing Commitment"
+        description: "Articles on this portal are dedicated to frequent publication to provide up-to-date reading material relevant to industry needs and academic research, establishing a helpful knowledge base for developers, researchers, and technology enthusiasts."
+    domains_section:
+      title: "Core Focus & Technology Domains"
+      subtitle: "Structured hierarchically from engineering foundations to advanced specializations (GNN & GeoAI)."
+      hierarchy_note: "Hierarchy: General → Specialized"
+      topics_label: "Key Topics:"
+      items:
+        - id: "software-engineering"
+          title: "Software & Requirement Engineering"
+          badge: "Foundation"
+          variant: "purple"
+          level: "General • Foundation"
+          description: "Designing clean and modular software architectures (Clean Architecture), applying software design patterns, formal requirement elicitation and specification (Requirement Engineering), and managing the software engineering lifecycle (SDLC)."
+          topics:
+            - "Clean Architecture"
+            - "Software Design Patterns"
+            - "Requirement Elicitation & Specs"
+            - "Modular Systems"
+            - "Clean Code Principles"
+        - id: "quality-assurance"
+          title: "Quality Assurance & Automated Testing"
+          badge: "QA & Testing"
+          variant: "amber"
+          level: "General • Verification"
+          description: "Comprehensive software quality assurance strategies covering automated API testing (RestAssured), UI test automation, continuous testing in CI/CD pipelines, regression testing, and production-grade reliability validation."
+          topics:
+            - "API Automation Testing"
+            - "UI / End-to-End Testing"
+            - "Continuous Testing in CI/CD"
+            - "Regression & Performance Testing"
+            - "Test Frameworks"
+        - id: "data-engineering"
+          title: "Data Engineering & Data Analysis"
+          badge: "Data Stack"
+          variant: "emerald"
+          level: "Intermediate • Data"
+          description: "Designing distributed large-scale data pipelines (ETL / ELT), data warehousing, dimensional data modeling, data governance, and exploratory statistical data analysis to support data-driven decision-making."
+          topics:
+            - "ETL / ELT Data Pipelines"
+            - "Data Modeling & Warehousing"
+            - "Data Governance"
+            - "Exploratory Data Analysis (EDA)"
+            - "Statistical Analytics"
+        - id: "ai-ml"
+          title: "Artificial Intelligence & Machine Learning"
+          badge: "AI & ML"
+          variant: "primary"
+          level: "Advanced • Core AI"
+          description: "Developing Machine Learning models, Deep Learning, Large Language Models (LLM), transformer architectures, and AI Engineering for predictive, analytical, and generative intelligent systems."
+          topics:
+            - "Deep Learning"
+            - "LLMs & Foundation Models"
+            - "Neural Networks"
+            - "MLOps"
+            - "Supervised & Unsupervised Learning"
+        - id: "nlp"
+          title: "Natural Language Processing (NLP) & Text Analytics"
+          badge: "NLP"
+          variant: "rose"
+          level: "Specialized • Language Domain"
+          description: "Advanced natural language processing and understanding, Named Entity Recognition (NER), text classification, semantic modeling, and textual corpus engineering for intelligent inference."
+          topics:
+            - "Named Entity Recognition (NER)"
+            - "Text Embeddings"
+            - "Sentiment Analysis"
+            - "Information Extraction"
+            - "Corpus Engineering"
+        - id: "knowledge-graphs"
+          title: "Knowledge Graphs & Semantic Web"
+          badge: "Semantics"
+          variant: "indigo"
+          level: "Specialized • Semantic Graphs"
+          description: "Formal structured knowledge representation, domain ontology modeling, W3C Semantic Web standards (RDF, RDFS, OWL, SPARQL), Virtual Knowledge Graphs (Ontop OBDA), and knowledge graph synergy with LLMs (GraphRAG)."
+          topics:
+            - "Ontology Engineering"
+            - "Linked Open Data (LOD)"
+            - "SPARQL"
+            - "Ontop OBDA"
+            - "GraphRAG"
+        - id: "gnn"
+          title: "Graph Representation Learning & GNN (Graph Neural Networks)"
+          badge: "GNN & Graph ML"
+          variant: "purple"
+          level: "Specialized • Graph Learning"
+          description: "Representation learning on non-Euclidean graph structures, Graph Neural Network architectures (GCN, GAT, GraphSAGE), node and edge embeddings, link prediction, and deep graph inference."
+          topics:
+            - "Graph Neural Networks (GNN)"
+            - "Node & Edge Embeddings"
+            - "Graph Convolutional Networks (GCN)"
+            - "Graph Attention Networks (GAT)"
+            - "GraphSAGE"
+            - "Link Prediction"
+        - id: "geo-ai"
+          title: "GeoAI (Geospatial Artificial Intelligence)"
+          badge: "GeoAI"
+          variant: "teal"
+          level: "Specialized • Geospatial & GIS"
+          description: "Convergence of Artificial Intelligence with Geographic Information Systems (GIS), Remote Sensing, satellite imagery analysis, and Spatial Knowledge Graphs for spatial object detection and geospatial intelligence."
+          topics:
+            - "Spatial Deep Learning"
+            - "Satellite Imagery Analysis"
+            - "Remote Sensing"
+            - "GIS & Spatial Analytics"
+            - "Spatial Knowledge Graphs"
+    tech_stack_section:
+      title: "Architecture & System Tech Stack"
+      subtitle: "Modern technology foundations powering this web portal."
+      items:
+        - name: "Astro 5"
+          category: "SSG Framework"
+          iconType: "astro"
+          bgColor: "bg-orange-50 dark:bg-orange-950/60"
+          iconColor: "text-orange-600 dark:text-orange-400"
+        - name: "Tailwind CSS"
+          category: "Styling v4"
+          iconType: "tailwind"
+          bgColor: "bg-sky-50 dark:bg-sky-950/60"
+          iconColor: "text-sky-600 dark:text-sky-400"
+        - name: "TypeScript"
+          category: "Type Safety"
+          iconType: "typescript"
+          bgColor: "bg-blue-50 dark:bg-blue-950/60"
+          iconColor: "text-blue-600 dark:text-blue-400"
+        - name: "Markdown / MDX"
+          category: "Shiki Syntax"
+          iconType: "markdown"
+          bgColor: "bg-emerald-50 dark:bg-emerald-950/60"
+          iconColor: "text-emerald-600 dark:text-emerald-400"
+        - name: "GitHub Pages"
+          category: "CI/CD Hosting"
+          iconType: "github"
+          bgColor: "bg-slate-100 dark:bg-slate-800"
+          iconColor: "text-slate-800 dark:text-slate-200"
+        - name: "RSS & Sitemap"
+          category: "Syndication"
+          iconType: "rss"
+          bgColor: "bg-amber-50 dark:bg-amber-950/60"
+          iconColor: "text-amber-600 dark:text-amber-400"
+    connect_section:
+      title: "Connect & Contact"
+      description: "Interested in discussing AI, GNN, Knowledge Graphs, GeoAI, Data Engineering, or QA Software Engineering? Connect directly through the verified social links below:"
+
+  research:
+    title: ""
+    subtitle: ""
+    menu_label: "Research"
+    meta_title: ""
+    meta_description: ""
+
+  projects:
+    title: ""
+    subtitle: ""
+    menu_label: "Projects"
+    meta_title: ""
+    meta_description: ""
+
+  contact:
+    title: ""
+    subtitle: ""
+    menu_label: "Contact"
+    meta_title: ""
+    meta_description: ""
+
+  cv:
+    title: ""
+    subtitle: ""
+    menu_label: "CV"
+    meta_title: ""
+    meta_description: ""
+
+# 7. Pengaturan Kontak
+contact:
+  email: ""
+  location: ""
+  timezone: ""
+  coordinates: ""
+  map:
+    enabled: false
+    title: ""
+    embed_url: ""

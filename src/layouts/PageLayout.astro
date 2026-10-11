@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/common/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '@/types/navigation';
+
+/**
+ * PageLayout Component (Standard Pakem)
+ * Standard container layout for pages with breadcrumbs, section header,
+ * and consistent responsive typography and padding.
+ * 
+ * Breadcrumb placement is positioned directly on top of the title (stacked vertically),
+ * matching the exact clean layout format of the Article detail page.
+ */
+interface Props {
+  title?: string;
+  description?: string;
+  pageTitle?: string;
+  pageSubtitle?: string;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const {
+  title,
+  description,
+  pageTitle,
+  pageSubtitle,
+  breadcrumbs
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  {
+    (pageTitle || (breadcrumbs && breadcrumbs.length > 0)) && (
+      <section class="border-b border-slate-200/90 bg-slate-50 text-slate-800 py-6 sm:py-8 dark:border-slate-800/90 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <!-- Breadcrumb Navigation Trail: Format seragam di atas judul seperti halaman detail artikel -->
+          {breadcrumbs && breadcrumbs.length > 0 && (
+            <div class="mb-4 sm:mb-5">
+              <Breadcrumbs items={breadcrumbs} isDark={false} />
+            </div>
+          )}
+
+          {pageTitle && (
+            <h1 class="heading-page text-slate-900 dark:text-white">
+              {pageTitle}
+            </h1>
+          )}
+
+          {pageSubtitle && (
+            <p class="subtitle-page text-slate-600 dark:text-slate-400 mt-2 max-w-3xl">
+              {pageSubtitle}
+            </p>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Page Content Area -->
+  <div class="mx-auto max-w-6xl px-4 pt-6 pb-6 sm:px-6 sm:pt-8 sm:pb-8 lg:px-8">
+    <slot />
+  </div>
+</BaseLayout>

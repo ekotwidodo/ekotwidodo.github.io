@@ -1,0 +1,91 @@
+---
+import Header from '@/components/common/Header.astro';
+import Footer from '@/components/common/Footer.astro';
+import { siteConfig } from '@/config/site';
+import '@/styles/global.css';
+
+/**
+ * BaseLayout Component
+ * Master HTML document wrapper containing head metadata, theme initialization, and main layout structure.
+ */
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = siteConfig.author.avatar,
+  canonicalUrl = Astro.url.href
+} = Astro.props;
+
+const siteUrl = siteConfig.url;
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href={siteConfig.favicon || "/logo.png"} />
+    <link rel="shortcut icon" type="image/png" href={siteConfig.favicon || "/logo.png"} />
+    <link rel="apple-touch-icon" href={siteConfig.logo || "/logo.png"} />
+
+    <!-- Canonical & SEO Meta -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author.name} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteConfig.name} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Feeds & Sitemap -->
+    <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} - RSS Feed`} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Anti-FOUC Theme Switcher Initialization -->
+    <script is:inline>
+      (function () {
+        const storedTheme = localStorage.getItem('theme');
+        // Default to Light Mode as per PRD specifications
+        const theme = storedTheme || 'light';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-100">
+    <!-- Header Navigation -->
+    <Header />
+
+    <!-- Main Content Slot -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+  </body>
+</html>

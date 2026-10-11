@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import ArticleCard from '@/components/article/ArticleCard.astro';
+import Pagination from '@/components/common/Pagination.astro';
+import { siteConfig } from '@/config/site';
+import { getAllArticles, type ArticleEntry } from '@/utils/content';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const articles = await getAllArticles();
+  return paginate(articles, {
+    pageSize: siteConfig.pagination.articlesPerPage
+  });
+};
+
+interface Props {
+  page: Page<ArticleEntry>;
+}
+
+const { page } = Astro.props;
+const breadcrumbs = [
+  { name: `Articles Page ${page.currentPage}` }
+];
+---
+
+<PageLayout
+  title={`Articles - Page ${page.currentPage} | ${siteConfig.name}`}
+  pageTitle={`Articles — Page ${page.currentPage}`}
+  pageSubtitle={`Showing articles ${page.start + 1} to ${page.end + 1} of ${page.total}`}
+  breadcrumbs={breadcrumbs}
+>
+  <div class="space-y-6">
+    <div class="grid grid-cols-1 gap-6">
+      {
+        page.data.map((article) => (
+          <ArticleCard article={article} />
+        ))
+      }
+    </div>
+
+    <Pagination
+      currentPage={page.currentPage}
+      totalPages={page.lastPage}
+      baseUrl=""
+    />
+  </div>
+</PageLayout>
