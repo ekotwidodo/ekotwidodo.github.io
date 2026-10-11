@@ -623,9 +623,10 @@ const breadcrumbs = [
 
   /* Responsive Code Block Container */
   .prose-content pre {
+    position: relative;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-    padding: 0.875rem 1rem;
+    padding: 2.25rem 1rem 0.875rem 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -638,8 +639,6 @@ const breadcrumbs = [
   }
   @media (min-width: 640px) {
     .prose-content pre {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
       padding: 1.25rem 1.5rem;
       border-radius: 0.75rem;
       font-size: 0.875rem;

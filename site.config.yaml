@@ -12,7 +12,7 @@ site:
   favicon: "/logo.png"
   title: "Eko Teguh Widodo | Personal IT, AI & Software Engineering Portal"
   tagline: "Sharing Insights & Exploring Technology"
-  version: "1.0.0"
+  version: "1.1.0"
   subtitle: "A personal technical publication portal dedicated to Artificial Intelligence and Software Engineering."
   description: "Personal IT portal of Eko Teguh Widodo featuring technical articles, research insights, and explorations in Artificial Intelligence."
   url: "https://ekotwidodo.github.io"
