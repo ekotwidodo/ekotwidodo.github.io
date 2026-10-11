@@ -1,6 +1,6 @@
 ---
 title: "Understanding pyproject.toml, uv.lock, and .venv: How uv Manages Python Projects"
-date: 2026-10-11
+date: 2026-10-11T20:55:00+07:00
 summary: "Demystifying the foundational triad that makes modern Python projects structured, reproducible, and portable across machines. Learn how configuration, lockfiles, and virtual environments work together under the hood."
 category: "Software Engineering"
 image: "/assets/img/articles/uv-project-internals.jpg"

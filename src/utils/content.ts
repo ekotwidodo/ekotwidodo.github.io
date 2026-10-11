@@ -23,7 +23,7 @@ function isTemplate(id: string): boolean {
 }
 
 /**
- * Fetch all published articles sorted by date (newest first)
+ * Fetch all published articles sorted by datetime descending (newest first)
  */
 export async function getAllArticles(): Promise<ArticleEntry[]> {
   const articles = await getCollection('articles', ({ id, data }) => {
@@ -31,13 +31,20 @@ export async function getAllArticles(): Promise<ArticleEntry[]> {
     return !data.draft;
   });
 
-  return articles.sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-  );
+  return articles.sort((a, b) => {
+    const timeA = new Date(a.data.date).getTime();
+    const timeB = new Date(b.data.date).getTime();
+    if (timeB !== timeA) {
+      return timeB - timeA;
+    }
+    // Fallback tie-breaker if timestamps are identical:
+    // Sort reverse-alphabetically by id/filename so latest files appear first
+    return b.id.localeCompare(a.id);
+  });
 }
 
 /**
- * Fetch all research entries sorted by date/year descending
+ * Fetch all research entries sorted by year and datetime descending
  */
 export async function getAllResearch(): Promise<ResearchEntry[]> {
   const research = await getCollection('research', ({ id, data }) => {
@@ -48,21 +55,25 @@ export async function getAllResearch(): Promise<ResearchEntry[]> {
     if (b.data.year !== a.data.year) {
       return b.data.year - a.data.year;
     }
-    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    const diff = new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    if (diff !== 0) return diff;
+    return b.id.localeCompare(a.id);
   });
 }
 
 /**
- * Fetch all projects sorted by date descending
+ * Fetch all projects sorted by datetime descending
  */
 export async function getAllProjects(): Promise<ProjectEntry[]> {
   const projects = await getCollection('projects', ({ id, data }) => {
     if (isTemplate(id)) return false;
     return !data.draft;
   });
-  return projects.sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-  );
+  return projects.sort((a, b) => {
+    const diff = new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+    if (diff !== 0) return diff;
+    return b.id.localeCompare(a.id);
+  });
 }
 
 /**

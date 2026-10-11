@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with uv: A Practical Guide to Python Environments from Scratch"
-date: 2026-10-11
+date: 2026-10-11T20:30:00+07:00
 summary: "Say goodbye to wrestling with Python versions, virtual environments, and slow dependency resolvers. Here is a step-by-step walkthrough for configuring uv, structuring projects, and running Python code seamlessly."
 category: "Software Engineering"
 image: "/assets/img/articles/uv-python-guide.jpg"
