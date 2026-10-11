@@ -291,7 +291,15 @@ belajar-uv v0.1.0
     └── urllib3 v2.2.3
 ```
 
-Notice how `uv tree` shows you the complete hierarchy of packages supporting `requests`.
+Notice how `uv tree` shows you the complete hierarchy of packages supporting `requests`:
+
+| Package | Nature | Resolved Version | Functional Purpose |
+| :--- | :--- | :--- | :--- |
+| **`requests`** | Direct | `2.32.3` | User-declared HTTP client library |
+| **`certifi`** | Transitive | `2024.8.30` | Curated Mozilla CA bundle for SSL verification |
+| **`charset-normalizer`** | Transitive | `3.4.0` | Character encoding detector for HTTP responses |
+| **`idna`** | Transitive | `3.10` | Internationalized Domain Names in Applications (RFC 5891) |
+| **`urllib3`** | Transitive | `2.2.3` | Low-level HTTP connection pooling and thread safety |
 
 ### Step 5: Execute the Code
 Now execute your script:

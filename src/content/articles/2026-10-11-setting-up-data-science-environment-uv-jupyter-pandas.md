@@ -232,7 +232,17 @@ date,region,product,units,unit_price
 2026-01-31,West,Monitor,2,180
 ```
 
-This dataset contains 12 transactions across four geographical regions (`North`, `South`, `East`, `West`) and three product categories (`Laptop`, `Monitor`, `Keyboard`).
+### Dataset Schema & Column Definitions
+
+The dataset contains 12 transactions across four geographical regions and three hardware product categories:
+
+| Column | Data Type | Description | Sample Values |
+| :--- | :--- | :--- | :--- |
+| **`date`** | Date (`YYYY-MM-DD`) | Transaction execution timestamp | `2026-01-05`, `2026-01-31` |
+| **`region`** | Text (Categorical) | Sales territory identifier | `North`, `South`, `East`, `West` |
+| **`product`** | Text (Categorical) | Hardware item sold | `Laptop`, `Monitor`, `Keyboard` |
+| **`units`** | Integer (Discrete) | Quantity of items purchased | `1`, `2`, `5`, `10` |
+| **`unit_price`** | Integer (Monetary) | Price per single unit in USD | `35`, `180`, `850` |
 
 ---
 
@@ -463,7 +473,21 @@ plt.tight_layout()
 plt.show()
 ```
 
-This single figure immediately conveys both product and territory performance side by side.
+#### Rendered Matplotlib Visualization:
+
+<figure class="my-8">
+  <img
+    src="/assets/img/articles/sales-analysis-charts.svg"
+    alt="Total Revenue by Product and Region"
+    class="h-auto w-full rounded-xl border border-slate-200/80 dark:border-slate-800 shadow-xs"
+    loading="lazy"
+  />
+  <figcaption>
+    <strong>Figure 1:</strong> Dual-panel comparative bar chart showing total revenue breakdown by product line (left) and geographical sales territory (right).
+  </figcaption>
+</figure>
+
+This single figure immediately conveys both product and territory performance side by side without needing to mentally cross-reference tabular numbers.
 
 ---
 

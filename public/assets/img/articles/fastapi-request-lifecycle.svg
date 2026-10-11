@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 590" width="100%" height="100%" style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Cohesive Self-Contained Canvas Background -->
+    <linearGradient id="bgCanvas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="100%" stop-color="#060911" />
+    </linearGradient>
+
+    <!-- Card Backgrounds -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141e30" />
+      <stop offset="100%" stop-color="#0d1522" />
+    </linearGradient>
+    <linearGradient id="errGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#340e1a" />
+      <stop offset="100%" stop-color="#1c060d" />
+    </linearGradient>
+    <linearGradient id="warnGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#331908" />
+      <stop offset="100%" stop-color="#1c0c03" />
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="shadow" x="-6%" y="-6%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#818cf8" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34d399" />
+    </marker>
+    <marker id="arrowYellow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fb923c" />
+    </marker>
+  </defs>
+
+  <!-- ========================================================================= -->
+  <!-- COHESIVE DARK CANVAS CONTAINER (PREVENTS PAGE BACKGROUND FROM SHOWING THROUGH) -->
+  <!-- ========================================================================= -->
+  <rect x="0" y="0" width="1160" height="590" rx="16" fill="url(#bgCanvas)" stroke="#1e293b" stroke-width="1.5" />
+
+  <!-- Title & Subtitle Header -->
+  <g>
+    <text x="580" y="44" text-anchor="middle" fill="#f8fafc" font-size="21" font-weight="800" letter-spacing="-0.02em">FastAPI Request-Response &amp; Validation Lifecycle</text>
+    <text x="580" y="70" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="400">Step-by-step pipeline from HTTP payload ingress to Pydantic validation, handler execution, and serialized response</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN FLOW PIPELINE (5 STEPS ACROSS) -->
+  <!-- ========================================================================= -->
+
+  <!-- STEP 1: HTTP Client Request -->
+  <g filter="url(#shadow)">
+    <rect x="35" y="105" width="185" height="225" rx="12" fill="url(#cardBg)" stroke="#38bdf8" stroke-width="1.6" />
+    <rect x="47" y="117" width="68" height="22" rx="11" fill="#0284c7" />
+    <text x="81" y="132" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">CLIENT</text>
+    
+    <text x="47" y="162" fill="#f8fafc" font-size="14.5" font-weight="700">1. HTTP Ingress</text>
+    <text x="47" y="184" fill="#94a3b8" font-size="11">Method &amp; Resource:</text>
+    <rect x="47" y="194" width="161" height="28" rx="6" fill="#060a12" stroke="#1e293b" />
+    <text x="57" y="212" fill="#38bdf8" font-size="11" font-family="monospace" font-weight="700">POST /tasks</text>
+    
+    <text x="47" y="244" fill="#94a3b8" font-size="11">Incoming JSON Body:</text>
+    <text x="47" y="262" fill="#cbd5e1" font-size="10.5" font-family="monospace">{"title": "Learn uv",</text>
+    <text x="47" y="278" fill="#cbd5e1" font-size="10.5" font-family="monospace"> "completed": false}</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="220" y1="217" x2="252" y2="217" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+
+  <!-- STEP 2: Pydantic Validation Engine -->
+  <g filter="url(#shadow)">
+    <rect x="255" y="105" width="200" height="225" rx="12" fill="url(#cardBg)" stroke="#818cf8" stroke-width="1.6" />
+    <rect x="267" y="117" width="84" height="22" rx="11" fill="#4338ca" />
+    <text x="309" y="132" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">VALIDATOR</text>
+    
+    <text x="267" y="162" fill="#f8fafc" font-size="14.5" font-weight="700">2. Pydantic Engine</text>
+    <text x="267" y="184" fill="#94a3b8" font-size="11">Schema Ingestion:</text>
+    <rect x="267" y="194" width="176" height="28" rx="6" fill="#060a12" stroke="#1e293b" />
+    <text x="277" y="212" fill="#a5b4fc" font-size="11" font-family="monospace" font-weight="700">TaskInput(BaseModel)</text>
+    
+    <text x="267" y="244" fill="#cbd5e1" font-size="11">• Evaluates field types</text>
+    <text x="267" y="264" fill="#cbd5e1" font-size="11">• Length constraints (1-100)</text>
+    <text x="267" y="284" fill="#cbd5e1" font-size="11">• Injects schema defaults</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="455" y1="217" x2="487" y2="217" stroke="#818cf8" stroke-width="2.5" marker-end="url(#arrowPurple)" />
+  <text x="471" y="208" text-anchor="middle" fill="#a5b4fc" font-size="9" font-weight="700">VALID</text>
+
+  <!-- STEP 3: Route Handler (Business Logic) -->
+  <g filter="url(#shadow)">
+    <rect x="490" y="105" width="205" height="225" rx="12" fill="url(#cardBg)" stroke="#34d399" stroke-width="1.6" />
+    <rect x="502" y="117" width="94" height="22" rx="11" fill="#065f46" />
+    <text x="549" y="132" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">FASTAPI APP</text>
+    
+    <text x="502" y="162" fill="#f8fafc" font-size="14.5" font-weight="700">3. Route Handler</text>
+    <text x="502" y="184" fill="#94a3b8" font-size="11">Target Function:</text>
+    <rect x="502" y="194" width="181" height="28" rx="6" fill="#060a12" stroke="#1e293b" />
+    <text x="512" y="212" fill="#34d399" font-size="11" font-family="monospace" font-weight="700">create_task(input)</text>
+    
+    <!-- In-Memory Storage Subcard embedded cleanly inside Step 3 -->
+    <rect x="502" y="224" width="181" height="52" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+    <text x="512" y="242" fill="#a7f3d0" font-size="10" font-weight="700">In-Memory Storage</text>
+    <text x="512" y="260" fill="#6ee7b7" font-size="9.5" font-family="monospace">tasks: dict[int, Task]</text>
+
+    <text x="502" y="296" fill="#cbd5e1" font-size="10.5">• Unpack model_dump() &amp; set ID</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="695" y1="217" x2="727" y2="217" stroke="#34d399" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+
+  <!-- STEP 4: Response Serialization -->
+  <g filter="url(#shadow)">
+    <rect x="730" y="105" width="200" height="225" rx="12" fill="url(#cardBg)" stroke="#fbbf24" stroke-width="1.6" />
+    <rect x="742" y="117" width="94" height="22" rx="11" fill="#854d0e" />
+    <text x="789" y="132" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">SERIALIZER</text>
+    
+    <text x="742" y="162" fill="#f8fafc" font-size="14.5" font-weight="700">4. Serialization</text>
+    <text x="742" y="184" fill="#94a3b8" font-size="11">Output Contract:</text>
+    <rect x="742" y="194" width="176" height="28" rx="6" fill="#060a12" stroke="#1e293b" />
+    <text x="752" y="212" fill="#fcd34d" font-size="11" font-family="monospace" font-weight="700">response_model=Task</text>
+    
+    <text x="742" y="244" fill="#cbd5e1" font-size="11">• Filters unauthorized fields</text>
+    <text x="742" y="264" fill="#cbd5e1" font-size="11">• Encodes types to JSON</text>
+    <text x="742" y="284" fill="#cbd5e1" font-size="11">• Validates return shape</text>
+  </g>
+
+  <!-- Arrow 4 -> 5 -->
+  <line x1="930" y1="217" x2="957" y2="217" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrowYellow)" />
+
+  <!-- STEP 5: Dispatched HTTP Response -->
+  <g filter="url(#shadow)">
+    <rect x="960" y="105" width="165" height="225" rx="12" fill="url(#cardBg)" stroke="#22c55e" stroke-width="1.6" />
+    <rect x="972" y="117" width="76" height="22" rx="11" fill="#15803d" />
+    <text x="1010" y="132" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="700">RESPONSE</text>
+    
+    <text x="972" y="162" fill="#f8fafc" font-size="14.5" font-weight="700">5. HTTP Exit</text>
+    <rect x="972" y="170" width="141" height="34" rx="6" fill="#052e16" stroke="#16a34a" />
+    <text x="1042" y="191" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="800">201 CREATED</text>
+    
+    <text x="972" y="228" fill="#94a3b8" font-size="10">Delivered JSON:</text>
+    <text x="972" y="246" fill="#86efac" font-size="10.5" font-family="monospace">{"id": 3, "title":</text>
+    <text x="972" y="262" fill="#86efac" font-size="10.5" font-family="monospace"> "Learn uv", ...}</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- EXCEPTION BRANCHES (BOTTOM CARDS) -->
+  <!-- ========================================================================= -->
+
+  <!-- ERROR BRANCH 1: Pydantic Validation Error (HTTP 422) -->
+  <g filter="url(#shadow)">
+    <!-- Branch line from Step 2 down -->
+    <path d="M 355 320 L 355 375" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowRed)" />
+    
+    <rect x="255" y="380" width="200" height="165" rx="12" fill="url(#errGlow)" stroke="#f43f5e" stroke-width="1.6" />
+    <rect x="267" y="392" width="108" height="22" rx="11" fill="#9f1239" />
+    <text x="321" y="407" text-anchor="middle" fill="#ffe4e6" font-size="9" font-weight="700">SHORT-CIRCUIT</text>
+    
+    <text x="267" y="435" fill="#fda4af" font-size="14" font-weight="700">Validation Failure</text>
+    <text x="267" y="455" fill="#fecdd3" font-size="10.5">Stops request immediately:</text>
+    <rect x="267" y="465" width="176" height="28" rx="6" fill="#20060e" stroke="#be123c" />
+    <text x="355" y="483" text-anchor="middle" fill="#fb7185" font-size="10.5" font-weight="800">422 UNPROCESSABLE</text>
+    <text x="267" y="514" fill="#f43f5e" font-size="10.5">Handler is never executed!</text>
+  </g>
+
+  <!-- ERROR BRANCH 2: HTTPException (HTTP 404) -->
+  <g filter="url(#shadow)">
+    <!-- Branch line from Step 3 down -->
+    <path d="M 592 320 L 592 375" stroke="#fb923c" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrowOrange)" />
+    
+    <rect x="490" y="380" width="205" height="165" rx="12" fill="url(#warnGlow)" stroke="#fb923c" stroke-width="1.6" />
+    <rect x="502" y="392" width="90" height="22" rx="11" fill="#9a3412" />
+    <text x="547" y="407" text-anchor="middle" fill="#ffedd5" font-size="9" font-weight="700">EXCEPTION</text>
+    
+    <text x="502" y="435" fill="#fdba74" font-size="14" font-weight="700">Entity Missing?</text>
+    <text x="502" y="465" fill="#fed7aa" font-size="10.5">Route raises exception:</text>
+    <rect x="502" y="475" width="181" height="28" rx="6" fill="#1c0b02" stroke="#ea580c" />
+    <text x="592" y="493" text-anchor="middle" fill="#fdba74" font-size="10.5" font-weight="800">HTTP 404 NOT FOUND</text>
+    <text x="502" y="514" fill="#fb923c" font-size="10.5" font-family="monospace">{"detail": "Task not found."}</text>
+  </g>
+
+  <!-- SUMMARY PRINCIPLES BOX (BOTTOM RIGHT) -->
+  <g filter="url(#shadow)">
+    <rect x="730" y="380" width="395" height="165" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="752" y="412" fill="#0f172a" font-size="14" font-weight="800">Core Architecture Guarantees</text>
+    
+    <text x="752" y="440" fill="#334155" font-size="11.5">• <tspan fill="#0284c7" font-weight="700">Type Safety:</tspan> Path &amp; query parameters auto-coerced</text>
+    <text x="752" y="466" fill="#334155" font-size="11.5">• <tspan fill="#4f46e5" font-weight="700">Fail-Fast Guard:</tspan> Pydantic protects business domain</text>
+    <text x="752" y="492" fill="#334155" font-size="11.5">• <tspan fill="#059669" font-weight="700">Model Segregation:</tspan> TaskInput (write) vs Task (read)</text>
+    <text x="752" y="518" fill="#334155" font-size="11.5">• <tspan fill="#2563eb" font-weight="700">RFC Status Codes:</tspan> 201 Created, 204 Deleted, 404 &amp; 422</text>
+  </g>
+</svg>

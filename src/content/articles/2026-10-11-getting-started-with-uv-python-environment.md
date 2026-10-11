@@ -170,13 +170,17 @@ belajar-uv/
         └── __init__.py
 ```
 
-Here is a breakdown of what these files do:
+Here is a breakdown of what each generated file and directory does:
 
-- **`pyproject.toml`:** The standard modern configuration file for Python packages. It stores project metadata, required Python runtime versions, and declared dependencies.
-- **`.python-version`:** Pins the specific Python release intended for this workspace. uv reads this file automatically whenever commands are executed here.
-- **`src/belajar_uv/`:** Houses the application code using the recommended `src` layout.
-- **`.venv/`:** The isolated virtual environment directory. *(uv creates or updates this directory automatically on demand).*
-- **`uv.lock`:** A strict lockfile tracking exact package versions and hashes across your dependency graph.
+| File or Directory | Role / Layer | Functional Purpose |
+| :--- | :--- | :--- |
+| **`pyproject.toml`** | Project Manifest | Stores project metadata, required Python runtime constraints, and declared dependencies. |
+| **`.python-version`** | Version Pin | Pins the default Python release intended for this workspace. |
+| **`src/belajar_uv/`** | Application Package | Houses the importable application source code using the modern `src` layout. |
+| **`.venv/`** | Environment Sandbox | The isolated virtual environment containing the Python interpreter and installed packages. |
+| **`uv.lock`** | Deterministic Lockfile | Tracks exact package versions and cryptographic hashes across your entire dependency graph. |
+| **`README.md`** | Documentation | Provides human-readable overview and operational instructions for the project. |
+| **`.gitignore`** | Version Control | Ensures machine-specific state (like `.venv/` and caches) remains excluded from Git. |
 
 ---
 

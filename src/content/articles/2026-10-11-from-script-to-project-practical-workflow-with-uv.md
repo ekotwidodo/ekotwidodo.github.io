@@ -65,6 +65,19 @@ text-inspector/
 └── README.md                  # Operational documentation
 ```
 
+### Component Responsibility Breakdown
+
+| Component | Nature | Primary Responsibility |
+| :--- | :--- | :--- |
+| **`analysis.py`** | Logic Module | Pure computational engine (regex parsing, vocabulary metrics, frequency ranking). |
+| **`cli.py`** | Interface Module | Handles argument parsing, filesystem I/O, error formatting, and console output. |
+| **`__init__.py`** | Package Marker | Defines the package boundary and exports top-level package metadata. |
+| **`tests/`** | Test Suite | Houses automated unit tests executed via `pytest`. |
+| **`pyproject.toml`** | Manifest | Declares project metadata, dependencies, build backends, and CLI commands. |
+| **`uv.lock`** | Lockfile | Cryptographically pinned dependency graph ensuring consistent installation. |
+| **`README.md`** | Documentation | Operational instructions on installing, executing, and testing the project. |
+| **`.venv/`** | Environment | Local Python interpreter and isolated third-party package binaries. |
+
 ### Why the `src` Layout?
 
 Notice that our application code is placed inside `src/text_inspector/` rather than loose files in the project root. 
@@ -336,6 +349,16 @@ Top 5 Most Common Words:
   • practical    : 1
 ================================
 ```
+
+### Analysis Metric Breakdown
+
+| Metric | Measured Value | Analytical Significance |
+| :--- | :---: | :--- |
+| **Characters** | `40` (or `41`) | Total string length including spaces and punctuation (41 with trailing newline). |
+| **Words** | `6` | Total token occurrences extracted by `WORD_PATTERN`. |
+| **Unique Words** | `4` | Distinct vocabulary count (`python`, `is`, `powerful`, `practical`). |
+| **Sentences** | `2` | Sentence boundaries separated by punctuation delimiters (`.`, `!`). |
+| **Top Frequency** | `python: 2, is: 2` | Most common words identified in $O(N)$ time by `Counter.most_common(5)`. |
 
 *(Note: Depending on your text editor, saving `sample.txt` with a trailing newline will yield 41 characters. Both are expected).*
 
