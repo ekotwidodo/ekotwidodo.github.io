@@ -76,69 +76,75 @@ const breadcrumbs = [
     />
   </div>
 
-  <article class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <article class="mx-auto max-w-4xl lg:max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
     <!-- Breadcrumb Navigation Trail (Standard Pakem) -->
-    <div class="mb-6">
+    <div class="mb-4 sm:mb-6">
       <Breadcrumbs items={breadcrumbs} />
     </div>
 
     <!-- Header: Judul Besar & Subtitle/Summary (Gaya Editorial Medium) -->
-    <header class="mb-6">
-      <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white leading-[1.15]">
+    <header class="mb-5 sm:mb-7">
+      <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white leading-[1.2] sm:leading-[1.18]">
         {title}
       </h1>
 
       {
         summary && (
-          <p class="mt-4 text-lg sm:text-xl font-normal leading-relaxed text-slate-600 dark:text-slate-300">
+          <p class="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed text-slate-600 dark:text-slate-300">
             {summary}
           </p>
         )
       }
 
-      <!-- Author Byline Row -->
-      <div class="mt-6 flex items-center gap-3.5">
+      <!-- Author Byline Row (Terstruktur & Rapi di Mobile Maupun Desktop) -->
+      <div class="mt-5 sm:mt-6 flex items-start sm:items-center gap-3 sm:gap-3.5 border-y border-slate-200/70 sm:border-y-0 py-3 sm:py-0 dark:border-slate-800/70">
         <a href="/about" class="shrink-0 group">
           <img
             src={siteConfig.author.avatar}
             alt={siteConfig.author.name}
-            class="h-11 w-11 rounded-full object-cover object-top ring-1 ring-slate-300 dark:ring-slate-700 shadow-2xs transition group-hover:ring-blue-500"
+            class="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover object-top ring-1 ring-slate-300 dark:ring-slate-700 shadow-2xs transition group-hover:ring-blue-500"
             width="44"
             height="44"
           />
         </a>
 
-        <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-sm">
-          <a
-            href="/about"
-            class="font-semibold text-slate-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-colors"
-          >
-            {siteConfig.author.name}
-          </a>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 text-xs sm:text-sm">
+          <!-- Author Name & Follow Action -->
+          <div class="flex items-center gap-2">
+            <a
+              href="/about"
+              class="font-semibold text-slate-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-colors"
+            >
+              {siteConfig.author.name}
+            </a>
 
-          <!-- Follow Button -->
-          <a
-            href="/about"
-            class="inline-flex items-center rounded-full border border-slate-300 bg-white px-2.5 py-0.5 text-xs font-medium text-slate-700 shadow-2xs hover:border-slate-800 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white transition-colors"
-          >
-            Follow
-          </a>
+            <!-- Follow Button -->
+            <a
+              href="/about"
+              class="inline-flex items-center rounded-full border border-slate-300 bg-white px-2 py-0.5 text-[11px] font-medium text-slate-700 shadow-2xs hover:border-slate-800 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white transition-colors"
+            >
+              Follow
+            </a>
+          </div>
 
-          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+          <span class="hidden sm:inline text-slate-300 dark:text-slate-700">&bull;</span>
 
-          <span class="text-slate-500 dark:text-slate-400 font-sans">{readingTime}</span>
+          <!-- Reading Time, Date, and Category Badge -->
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-slate-500 dark:text-slate-400 font-sans">
+            <span>{readingTime}</span>
 
-          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+            <span class="text-slate-300 dark:text-slate-700">&bull;</span>
 
-          <time datetime={date.toISOString()} class="text-slate-500 dark:text-slate-400 font-sans">
-            {formatDate(date)}
-          </time>
+            <time datetime={date.toISOString()}>
+              {formatDate(date)}
+            </time>
 
-          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+            <span class="text-slate-300 dark:text-slate-700">&bull;</span>
 
-          <Badge variant={categoryVariant} size="sm">
-            {category}
-          </Badge>
+            <Badge variant={categoryVariant} size="sm">
+              {category}
+            </Badge>
+          </div>
         </div>
       </div>
     </header>
@@ -146,11 +152,11 @@ const breadcrumbs = [
     <!-- Featured Cover Image Banner -->
     {
       image && (
-        <div class="my-7 overflow-hidden rounded-xl border border-slate-200/90 bg-slate-100 shadow-2xs dark:border-slate-800 dark:bg-slate-900">
+        <div class="my-5 sm:my-7 overflow-hidden rounded-lg sm:rounded-xl border border-slate-200/90 bg-slate-100 shadow-2xs dark:border-slate-800 dark:bg-slate-900">
           <img
             src={image}
             alt={title}
-            class="h-auto w-full max-h-[520px] object-cover"
+            class="h-auto w-full max-h-[300px] sm:max-h-[420px] md:max-h-[520px] object-cover"
             loading="eager"
           />
         </div>
@@ -158,7 +164,7 @@ const breadcrumbs = [
     }
 
     <!-- Markdown Content Body dengan Tipografi Editorial & Drop-Cap -->
-    <div class="prose-content py-4 text-base leading-relaxed text-slate-700 dark:text-slate-200">
+    <div class="prose-content py-2 sm:py-4 text-base leading-relaxed text-slate-700 dark:text-slate-200">
       <slot />
     </div>
 
@@ -287,7 +293,7 @@ const breadcrumbs = [
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className =
-        'code-copy-btn absolute top-3 right-3 hidden group-hover:inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800/90 px-2.5 py-1 text-[11px] font-sans font-medium text-slate-300 shadow-sm transition hover:bg-slate-700 hover:text-white dark:border-slate-700 dark:bg-slate-900/90 cursor-pointer';
+        'code-copy-btn absolute top-2.5 right-2.5 sm:top-3 sm:right-3 inline-flex sm:hidden sm:group-hover:inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800/90 px-2 sm:px-2.5 py-1 text-[11px] font-sans font-medium text-slate-300 shadow-sm transition hover:bg-slate-700 hover:text-white dark:border-slate-700 dark:bg-slate-900/90 cursor-pointer';
       btn.setAttribute('aria-label', 'Copy code to clipboard');
       btn.innerHTML = `
         <svg class="h-3.5 w-3.5 copy-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -330,7 +336,7 @@ const breadcrumbs = [
     tables.forEach((table) => {
       if (table.parentElement && !table.parentElement.classList.contains('table-container')) {
         const wrapper = document.createElement('div');
-        wrapper.className = 'table-container overflow-x-auto my-6 rounded-xl border border-slate-200/90 bg-white shadow-2xs dark:border-slate-800 dark:bg-slate-900/60';
+        wrapper.className = 'table-container overflow-x-auto my-4 sm:my-6 rounded-lg sm:rounded-xl border border-slate-200/90 bg-white shadow-2xs dark:border-slate-800 dark:bg-slate-900/60';
         table.parentNode?.insertBefore(wrapper, table);
         wrapper.appendChild(table);
       }
@@ -378,16 +384,24 @@ const breadcrumbs = [
 </script>
 
 <style is:global>
-  /* Spacious, modern markdown table styling */
+  /* Responsive Table Styling */
   .prose-content .table-container {
     width: 100%;
     overflow-x: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.5rem;
     border: 1px solid #e2e8f0;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  }
+  @media (min-width: 640px) {
+    .prose-content .table-container {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 0.75rem;
+    }
   }
   .dark .prose-content .table-container {
     border-color: #334155;
@@ -395,26 +409,41 @@ const breadcrumbs = [
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.2);
   }
 
-  /* Self-contained styling for tables even without wrapper */
+  /* Self-contained styling for tables */
   .prose-content table {
     width: 100%;
-    min-width: 640px;
+    min-width: 480px;
     border-collapse: separate;
     border-spacing: 0;
     text-align: left;
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+  @media (min-width: 640px) {
+    .prose-content table {
+      min-width: 640px;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
   }
 
   .prose-content > table {
     display: block;
     overflow-x: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.5rem;
     border: 1px solid #e2e8f0;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  }
+  @media (min-width: 640px) {
+    .prose-content > table {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 0.75rem;
+    }
   }
   .dark .prose-content > table {
     border-color: #334155;
@@ -423,9 +452,9 @@ const breadcrumbs = [
   }
 
   .prose-content th {
-    padding: 1rem 1.75rem !important; /* Generous horizontal padding prevents cramped columns */
+    padding: 0.65rem 0.85rem !important;
     font-weight: 700;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #0f172a;
@@ -433,6 +462,12 @@ const breadcrumbs = [
     border-bottom: 2px solid #cbd5e1;
     border-right: 1px solid #e2e8f0;
     white-space: nowrap;
+  }
+  @media (min-width: 640px) {
+    .prose-content th {
+      padding: 1rem 1.5rem !important;
+      font-size: 0.8125rem;
+    }
   }
   .prose-content th:last-child {
     border-right: none;
@@ -448,11 +483,16 @@ const breadcrumbs = [
   }
 
   .prose-content td {
-    padding: 1rem 1.75rem !important; /* Spacious column breathing room */
+    padding: 0.65rem 0.85rem !important;
     color: #334155;
     border-bottom: 1px solid #f1f5f9;
     border-right: 1px solid #f1f5f9;
     vertical-align: top;
+  }
+  @media (min-width: 640px) {
+    .prose-content td {
+      padding: 0.875rem 1.5rem !important;
+    }
   }
   .prose-content td:last-child {
     border-right: none;
@@ -484,38 +524,73 @@ const breadcrumbs = [
     background-color: rgba(30, 41, 59, 0.75);
   }
 
-  /* Clean, elegant article prose typography */
+  /* Clean, responsive article prose typography */
   .prose-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.65rem;
     color: var(--color-slate-900, #0f172a);
     letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  @media (min-width: 640px) {
+    .prose-content h2 {
+      font-size: 1.65rem;
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+    }
   }
   .dark .prose-content h2 {
     color: #f8fafc;
   }
+
   .prose-content h3 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    margin-top: 1.5rem;
+    margin-top: 1.35rem;
     margin-bottom: 0.5rem;
     color: var(--color-slate-900, #0f172a);
+    line-height: 1.35;
+  }
+  @media (min-width: 640px) {
+    .prose-content h3 {
+      font-size: 1.3rem;
+      margin-top: 1.65rem;
+    }
   }
   .dark .prose-content h3 {
     color: #f8fafc;
   }
+
   .prose-content p {
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
-    line-height: 1.85;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+    line-height: 1.78;
+    font-size: 0.96875rem;
   }
+  @media (min-width: 640px) {
+    .prose-content p {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.85;
+      font-size: 1rem;
+    }
+  }
+
   .prose-content ul,
   .prose-content ol {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
+    margin-top: 0.85rem;
+    margin-bottom: 0.85rem;
+    padding-left: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .prose-content ul,
+    .prose-content ol {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
   }
   .prose-content ul {
     list-style-type: disc;
@@ -526,16 +601,19 @@ const breadcrumbs = [
   .prose-content li {
     margin-top: 0.35rem;
     margin-bottom: 0.35rem;
+    line-height: 1.65;
   }
-  /* Inline code styling only (excludes code blocks inside pre) */
+
+  /* Inline code styling */
   .prose-content :not(pre) > code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.875em;
-    padding: 0.15rem 0.35rem;
+    font-size: 0.85em;
+    padding: 0.12rem 0.35rem;
     border-radius: 0.375rem;
     background-color: #f1f5f9;
     color: #0f172a;
     border: 1px solid #e2e8f0;
+    word-break: break-word;
   }
   .dark .prose-content :not(pre) > code {
     background-color: #1e293b;
@@ -543,19 +621,30 @@ const breadcrumbs = [
     border-color: #334155;
   }
 
-  /* Code block container */
+  /* Responsive Code Block Container */
   .prose-content pre {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding: 1.25rem 1.5rem;
-    border-radius: 0.75rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
     overflow-x: auto;
-    font-size: 0.875rem;
-    line-height: 1.7;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.8125rem;
+    line-height: 1.65;
     background-color: #1e293b !important;
     color: #e2e8f0;
     border: 1px solid #334155;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+  @media (min-width: 640px) {
+    .prose-content pre {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
   }
 
   /* Reset all code and spans inside pre so Shiki syntax highlighting renders cleanly */
@@ -571,12 +660,19 @@ const breadcrumbs = [
     line-height: inherit;
   }
   .prose-content blockquote {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-left: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding-left: 0.875rem;
     border-left: 3px solid #3b82f6;
     font-style: italic;
     color: #475569;
+  }
+  @media (min-width: 640px) {
+    .prose-content blockquote {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
   }
   .dark .prose-content blockquote {
     color: #94a3b8;
@@ -592,38 +688,49 @@ const breadcrumbs = [
     color: #60a5fa;
   }
   .prose-content hr {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
     border-color: #e2e8f0;
+  }
+  @media (min-width: 640px) {
+    .prose-content hr {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
   }
   .dark .prose-content hr {
     border-color: #1e293b;
   }
 
-  /* Inline Article Images / Visualization Plots */
+  /* Responsive Inline Article Images & Visualization Plots */
   .prose-content img {
     display: block;
-    max-width: min(100%, 700px);
+    max-width: 100%;
     width: auto;
     height: auto;
-    margin: 2rem auto;
-    border-radius: 0.625rem;
+    margin: 1.25rem auto;
+    border-radius: 0.5rem;
     border: 1px solid #e2e8f0;
     background-color: #ffffff;
     box-shadow: 0 4px 10px -2px rgb(0 0 0 / 0.06);
     transition: transform 0.2s ease-in-out;
   }
-  .prose-content img:hover {
-    transform: scale(1.01);
+  @media (min-width: 640px) {
+    .prose-content img {
+      max-width: min(100%, 700px);
+      margin: 2rem auto;
+      border-radius: 0.625rem;
+    }
+    .prose-content img:hover {
+      transform: scale(1.01);
+    }
+    .prose-content img[src*="multiplot"] {
+      max-width: min(100%, 860px);
+    }
   }
   .dark .prose-content img {
     border-color: #334155;
     background-color: #0f172a;
     box-shadow: 0 4px 12px -2px rgb(0 0 0 / 0.35);
-  }
-
-  /* Multi-plot dashboard / 2x2 grid graphics can be wider for optimal legibility */
-  .prose-content img[src*="multiplot"] {
-    max-width: min(100%, 860px);
   }
 </style>
