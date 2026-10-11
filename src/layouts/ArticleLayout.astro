@@ -599,4 +599,31 @@ const breadcrumbs = [
   .dark .prose-content hr {
     border-color: #1e293b;
   }
+
+  /* Inline Article Images / Visualization Plots */
+  .prose-content img {
+    display: block;
+    max-width: min(100%, 700px);
+    width: auto;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 0.625rem;
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px -2px rgb(0 0 0 / 0.06);
+    transition: transform 0.2s ease-in-out;
+  }
+  .prose-content img:hover {
+    transform: scale(1.01);
+  }
+  .dark .prose-content img {
+    border-color: #334155;
+    background-color: #0f172a;
+    box-shadow: 0 4px 12px -2px rgb(0 0 0 / 0.35);
+  }
+
+  /* Multi-plot dashboard / 2x2 grid graphics can be wider for optimal legibility */
+  .prose-content img[src*="multiplot"] {
+    max-width: min(100%, 860px);
+  }
 </style>
