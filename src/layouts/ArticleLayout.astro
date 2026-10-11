@@ -155,12 +155,12 @@ const breadcrumbs = [
         type="button"
         class="article-clap-btn inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-mono text-slate-600 hover:bg-slate-100 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-rose-400 transition cursor-pointer"
         data-clap-key={`clap_${title.replace(/\s+/g, '_').toLowerCase()}`}
-        title="Beri apresiasi (Clap)"
+        title="Applaud this article (Clap)"
       >
         <svg class="clap-icon h-4 w-4 text-rose-500 transition-transform active:scale-125" viewBox="0 0 24 24" fill="currentColor">
           <path d="M19 10.5V6a2 2 0 0 0-2-2c-.34 0-.66.08-.94.23A1.99 1.99 0 0 0 14.5 3c-.47 0-.91.16-1.26.44A2 2 0 0 0 11.5 3c-.76 0-1.42.42-1.76 1.05A1.99 1.99 0 0 0 8.5 4a2 2 0 0 0-2 2v8.5a7.5 7.5 0 1 0 15 0v-4h-2.5zm.5 4a5.5 5.5 0 1 1-11 0V6a.5.5 0 0 1 1 0v5.5h1.5V5a.5.5 0 0 1 1 0v6.5h1.5V4.5a.5.5 0 0 1 1 0v7h1.5V5.5a.5.5 0 0 1 1 0v6h1.5v-1a.5.5 0 0 1 1 0v4z"/>
         </svg>
-        <span class="clap-count font-bold">129</span>
+        <span class="clap-count font-bold">0</span>
       </button>
 
       <!-- Icon-only Share Buttons -->
@@ -234,7 +234,7 @@ const breadcrumbs = [
     clapButtons.forEach((btn) => {
       const storageKey = btn.dataset.clapKey || 'article_claps';
       const countEl = btn.querySelector('.clap-count');
-      const baseCount = 129; // default aesthetic starting count matching screenshot
+      const baseCount = 0; // default starting clap count
 
       let userClaps = parseInt(localStorage.getItem(storageKey) || '0', 10);
       if (countEl) {
