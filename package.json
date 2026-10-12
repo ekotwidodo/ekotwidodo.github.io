@@ -1,7 +1,7 @@
 {
   "name": "ekotwidodo.github.io",
   "type": "module",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Personal Website and Academic Portfolio of Eko Teguh Widodo",
   "scripts": {
     "dev": "astro dev",

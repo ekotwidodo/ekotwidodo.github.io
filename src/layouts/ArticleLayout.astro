@@ -712,35 +712,151 @@ const breadcrumbs = [
     border-color: #1e293b;
   }
 
-  /* Responsive Inline Article Images & Visualization Plots */
+  /* Responsive Inline Article Images & Visualization Plots (Full-Width, Borderless, Shadow-Free) */
   .prose-content img {
     display: block;
-    max-width: 100%;
-    width: auto;
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto;
-    margin: 1.25rem auto;
-    border-radius: 0.5rem;
-    border: 1px solid #e2e8f0;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px -2px rgb(0 0 0 / 0.06);
-    transition: transform 0.2s ease-in-out;
+    margin: 1.5rem auto;
+    border-radius: 0.625rem;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    transition: none;
   }
   @media (min-width: 640px) {
     .prose-content img {
-      max-width: min(100%, 700px);
+      width: 100% !important;
+      max-width: 100% !important;
       margin: 2rem auto;
-      border-radius: 0.625rem;
-    }
-    .prose-content img:hover {
-      transform: scale(1.01);
-    }
-    .prose-content img[src*="multiplot"] {
-      max-width: min(100%, 860px);
+      border-radius: 0.75rem;
+      border: none !important;
     }
   }
   .dark .prose-content img {
-    border-color: #334155;
-    background-color: #0f172a;
-    box-shadow: 0 4px 12px -2px rgb(0 0 0 / 0.35);
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Specific handling for SVG diagrams and figures: Always full-width, borderless, without drop-shadow */
+  .prose-content figure {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 1.75rem 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  @media (min-width: 640px) {
+    .prose-content figure {
+      margin: 2.25rem 0 !important;
+    }
+  }
+  .prose-content figure img,
+  .prose-content img[src$=".svg"],
+  .prose-content img[src*=".svg"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ==============================================================================
+   * KA-TEX MATHEMATICAL FORMULA STYLING (EDITORIAL & MODERN)
+   * Distinct, centered, card-styled container with generous padding
+   * ============================================================================== */
+
+  /* Display and Standalone Formula Container */
+  .prose-content .katex-display,
+  .prose-content p:has(> .katex:only-child) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    margin: 2rem 0 !important;
+    padding: 1.5rem 2rem !important;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border-radius: 0.875rem !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    box-sizing: border-box !important;
+    color: #0f172a !important;
+  }
+
+  /* Center the inner math and KaTeX elements */
+  .prose-content .katex-display > .katex,
+  .prose-content p:has(> .katex:only-child) > .katex {
+    display: inline-block !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    font-size: 1.15em !important;
+    line-height: 1.5 !important;
+    color: inherit !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .prose-content .katex-display .katex-html,
+  .prose-content p:has(> .katex:only-child) .katex-html {
+    text-align: center !important;
+    display: inline-block !important;
+  }
+
+  /* Dark mode styling for formulas */
+  .dark .prose-content .katex-display,
+  .dark .prose-content p:has(> .katex:only-child) {
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%) !important;
+    border: none !important;
+    color: #f8fafc !important;
+  }
+
+  /* Paragraph wrapper reset when containing .katex-display */
+  .prose-content p:has(> .katex-display) {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    background: transparent !important;
+  }
+
+  /* Horizontal scrollbar styling for wide formulas */
+  .prose-content .katex-display::-webkit-scrollbar,
+  .prose-content p:has(> .katex:only-child)::-webkit-scrollbar {
+    height: 5px;
+  }
+  .prose-content .katex-display::-webkit-scrollbar-track,
+  .prose-content p:has(> .katex:only-child)::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .prose-content .katex-display::-webkit-scrollbar-thumb,
+  .prose-content p:has(> .katex:only-child)::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 9999px;
+  }
+  .dark .prose-content .katex-display::-webkit-scrollbar-thumb,
+  .dark .prose-content p:has(> .katex:only-child)::-webkit-scrollbar-thumb {
+    background-color: #475569;
+  }
+
+  /* Inline formula badge styling (only when inside sentences) */
+  .prose-content :not(.katex-display):not(p:has(> .katex:only-child)) > .katex {
+    font-size: 0.95em;
+    padding: 0.15rem 0.35rem;
+    margin: 0 0.15rem;
+    border-radius: 0.375rem;
+    background-color: #f1f5f9;
+    color: #0f172a;
+    vertical-align: baseline;
+    border: none !important;
+  }
+  .dark .prose-content :not(.katex-display):not(p:has(> .katex:only-child)) > .katex {
+    background-color: rgba(30, 41, 59, 0.7);
+    color: #f8fafc;
+    border: none !important;
   }
 </style>

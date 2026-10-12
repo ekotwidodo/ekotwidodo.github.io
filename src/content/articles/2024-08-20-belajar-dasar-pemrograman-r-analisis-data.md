@@ -457,7 +457,9 @@ kali_sepuluh(7)
 ### 2. Fungsi Rekursif (*Recursion*)
 Rekursi adalah teknik di mana suatu fungsi memanggil dirinya sendiri secara bertingkat hingga mencapai kondisi penghenti (*base case*). Contoh klasik yang sangat anggun di R adalah perhitungan faktorial matematika:
 
-$$\text{faktorial}(n) = n \times \text{faktorial}(n - 1), \quad \text{dengan } \text{faktorial}(0) = 1$$
+$$
+\text{faktorial}(n) = n \times \text{faktorial}(n - 1), \quad \text{dengan } \text{faktorial}(0) = 1
+$$
 
 ```r
 faktorial <- function(n) {

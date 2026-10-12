@@ -220,10 +220,22 @@ html.dark .prose-content tbody tr:hover {
   background-color: rgba(30, 41, 59, 0.75);
 }
 
-/* Ensure all images and figures in prose-content render with transparent background */
+/* Ensure all images and figures in prose-content render full-width, transparent background, borderless, and without drop-shadows */
 .prose-content img,
-.prose-content figure {
+.prose-content figure,
+.prose-content figure img {
   background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.prose-content img[src$=".svg"],
+.prose-content img[src*=".svg"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Standardized editorial figure captions */
@@ -272,5 +284,104 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
   background: #334155;
 }
 
+/* ==============================================================================
+ * KA-TEX MATHEMATICAL FORMULA STYLING (EDITORIAL & MODERN)
+ * Distinct, centered, card-styled container with generous padding
+ * ============================================================================== */
 
+/* Display and Standalone Formula Container */
+.prose-content .katex-display,
+.prose-content p:has(> .katex:only-child) {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+  margin: 2rem 0 !important;
+  padding: 1.5rem 2rem !important;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-radius: 0.875rem !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  box-sizing: border-box !important;
+  color: #0f172a !important;
+}
 
+/* Center the inner math and KaTeX elements */
+.prose-content .katex-display > .katex,
+.prose-content p:has(> .katex:only-child) > .katex {
+  display: inline-block !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  font-size: 1.15em !important;
+  line-height: 1.5 !important;
+  color: inherit !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.prose-content .katex-display .katex-html,
+.prose-content p:has(> .katex:only-child) .katex-html {
+  text-align: center !important;
+  display: inline-block !important;
+}
+
+/* Dark mode styling for formulas */
+html.dark .prose-content .katex-display,
+.dark .prose-content .katex-display,
+html.dark .prose-content p:has(> .katex:only-child),
+.dark .prose-content p:has(> .katex:only-child) {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%) !important;
+  border: none !important;
+  color: #f8fafc !important;
+}
+
+/* Paragraph wrapper reset when containing .katex-display */
+.prose-content p:has(> .katex-display) {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  background: transparent !important;
+}
+
+/* Horizontal scrollbar styling for wide formulas */
+.prose-content .katex-display::-webkit-scrollbar,
+.prose-content p:has(> .katex:only-child)::-webkit-scrollbar {
+  height: 5px;
+}
+.prose-content .katex-display::-webkit-scrollbar-track,
+.prose-content p:has(> .katex:only-child)::-webkit-scrollbar-track {
+  background: transparent;
+}
+.prose-content .katex-display::-webkit-scrollbar-thumb,
+.prose-content p:has(> .katex:only-child)::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+}
+html.dark .prose-content .katex-display::-webkit-scrollbar-thumb,
+.dark .prose-content .katex-display::-webkit-scrollbar-thumb,
+html.dark .prose-content p:has(> .katex:only-child)::-webkit-scrollbar-thumb,
+.dark .prose-content p:has(> .katex:only-child)::-webkit-scrollbar-thumb {
+  background-color: #475569;
+}
+
+/* Inline formula badge styling (only when inside sentences) */
+.prose-content :not(.katex-display):not(p:has(> .katex:only-child)) > .katex {
+  font-size: 0.95em;
+  padding: 0.15rem 0.35rem;
+  margin: 0 0.15rem;
+  border-radius: 0.375rem;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  vertical-align: baseline;
+  border: none !important;
+}
+html.dark .prose-content :not(.katex-display):not(p:has(> .katex:only-child)) > .katex,
+.dark .prose-content :not(.katex-display):not(p:has(> .katex:only-child)) > .katex {
+  background-color: rgba(30, 41, 59, 0.7);
+  color: #f8fafc;
+  border: none !important;
+}

@@ -93,7 +93,7 @@ RDF approaches data modeling from a fundamentally different perspective. Instead
   <img
     src="/assets/img/articles/rdf-resource-relationship-model.svg"
     alt="RDF Resource Relationship Model: Book, Author, and Publisher"
-    class="h-auto w-full rounded-xl shadow-xs"
+    class="h-auto w-full rounded-xl"
     loading="lazy"
   />
   <figcaption>
@@ -224,7 +224,7 @@ When combined, these statements assemble into the graph visualized in Figure 2:
   <img
     src="/assets/img/articles/rdf-triples-to-graph-conceptual.svg"
     alt="Connecting Triples into an RDF Graph"
-    class="h-auto w-full rounded-xl shadow-xs"
+    class="h-auto w-full rounded-xl"
     loading="lazy"
   />
   <figcaption>
@@ -556,7 +556,7 @@ Figure 3 illustrates how this anonymous structure attaches to the parent organiz
   <img
     src="/assets/img/articles/rdf-blank-node-address-structure.svg"
     alt="Representing Anonymous Structured Data with RDF Blank Nodes"
-    class="h-auto w-full rounded-xl shadow-xs"
+    class="h-auto w-full rounded-xl"
     loading="lazy"
   />
   <figcaption>

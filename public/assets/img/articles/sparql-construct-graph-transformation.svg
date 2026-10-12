@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 370" width="100%" height="100%">
+  <defs>
+    <!-- Soft Drop Shadow -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="370" rx="16" fill="#f8fafc"/>
+
+  <!-- Header Banner -->
+  <g transform="translate(40, 28)">
+    <text x="0" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0f172a">Graph Transformation with SPARQL CONSTRUCT</text>
+    <text x="0" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">Transforming source RDF graph schemas into new custom target triples without mutating the source dataset</text>
+  </g>
+
+  <!-- ==================== LEFT: SOURCE GRAPH ==================== -->
+  <g transform="translate(40, 90)">
+    <rect width="255" height="245" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="227" height="30" rx="6" fill="#eff6ff"/>
+    <text x="127" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1e40af" text-anchor="middle">Source RDF Graph</text>
+
+    <!-- Node Book -->
+    <g transform="translate(24, 65)">
+      <rect width="207" height="38" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+      <text x="103" y="24" font-family="monospace" font-size="12" font-weight="700" fill="#1e40af" text-anchor="middle">ex:book1</text>
+    </g>
+
+    <!-- Directed Edge: schema:author -->
+    <line x1="127" y1="103" x2="127" y2="152" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+    <rect x="72" y="118" width="110" height="20" rx="4" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2"/>
+    <text x="127" y="132" font-family="monospace" font-size="9.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">schema:author</text>
+
+    <!-- Node Person -->
+    <g transform="translate(24, 160)">
+      <rect width="207" height="38" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="103" y="24" font-family="monospace" font-size="12" font-weight="700" fill="#166534" text-anchor="middle">ex:person1</text>
+    </g>
+
+    <text x="127" y="222" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Pattern: Book ──author──► Person</text>
+  </g>
+
+  <!-- ==================== CENTER: CONSTRUCT QUERY ==================== -->
+  <g transform="translate(315, 90)">
+    <rect width="290" height="245" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="262" height="30" rx="6" fill="#f3e8ff"/>
+    <text x="145" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#7e22ce" text-anchor="middle">CONSTRUCT Query Pattern</text>
+
+    <!-- Code Block -->
+    <g transform="translate(14, 55)">
+      <rect width="262" height="135" rx="8" fill="#ffffff" stroke="#d8b4fe"/>
+      
+      <text x="12" y="22" font-family="monospace" font-size="10.5" font-weight="700" fill="#7c3aed">CONSTRUCT {</text>
+      <text x="24" y="42" font-family="monospace" font-size="10.5" font-weight="700" fill="#b45309">  ?author <tspan fill="#7c3aed">ex:wrote</tspan> ?book .</text>
+      <text x="12" y="62" font-family="monospace" font-size="10.5" font-weight="700" fill="#7c3aed">}</text>
+      
+      <text x="12" y="86" font-family="monospace" font-size="10.5" font-weight="700" fill="#1d4ed8">WHERE {</text>
+      <text x="24" y="106" font-family="monospace" font-size="10.5" fill="#334155">  ?book <tspan fill="#1d4ed8">schema:author</tspan> ?author .</text>
+      <text x="12" y="126" font-family="monospace" font-size="10.5" font-weight="700" fill="#1d4ed8">}</text>
+    </g>
+
+    <!-- Footer info -->
+    <text x="145" y="214" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#6b21a8" text-anchor="middle">Inverts edge direction &amp; switches</text>
+    <text x="145" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#6b21a8" text-anchor="middle">vocabulary from Schema.org to ex:wrote</text>
+  </g>
+
+  <!-- ==================== RIGHT: CONSTRUCTED GRAPH ==================== -->
+  <g transform="translate(625, 90)">
+    <rect width="255" height="245" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="227" height="30" rx="6" fill="#fdf4ff"/>
+    <text x="127" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#a21caf" text-anchor="middle">Newly Constructed RDF Graph</text>
+
+    <!-- Node Person -->
+    <g transform="translate(24, 65)">
+      <rect width="207" height="38" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="103" y="24" font-family="monospace" font-size="12" font-weight="700" fill="#166534" text-anchor="middle">ex:person1</text>
+    </g>
+
+    <!-- Directed Edge: ex:wrote -->
+    <line x1="127" y1="103" x2="127" y2="152" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+    <rect x="77" y="118" width="100" height="20" rx="4" fill="#ffffff" stroke="#d8b4fe" stroke-width="1.2"/>
+    <text x="127" y="132" font-family="monospace" font-size="9.5" font-weight="700" fill="#7c3aed" text-anchor="middle">ex:wrote</text>
+
+    <!-- Node Book -->
+    <g transform="translate(24, 160)">
+      <rect width="207" height="38" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+      <text x="103" y="24" font-family="monospace" font-size="12" font-weight="700" fill="#1e40af" text-anchor="middle">ex:book1</text>
+    </g>
+
+    <text x="127" y="222" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Transformed: Person ──wrote──► Book</text>
+  </g>
+</svg>

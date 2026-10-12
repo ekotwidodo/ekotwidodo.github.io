@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" width="100%" height="100%">
+  <defs>
+    <!-- Soft Drop Shadow -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+
+    <marker id="flow-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="440" rx="16" fill="#f8fafc"/>
+
+  <!-- Header Banner -->
+  <g transform="translate(40, 28)">
+    <text x="0" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0f172a">JSON-LD Expansion &amp; RDF Triple Generation</text>
+    <text x="0" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">How compact term keys are resolved through @context into explicit, unambiguous semantic triples</text>
+  </g>
+
+  <!-- ==================== LEFT: COMPACT JSON-LD ==================== -->
+  <g transform="translate(40, 90)">
+    <rect width="265" height="320" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="237" height="30" rx="6" fill="#eff6ff"/>
+    <text x="132" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1e40af" text-anchor="middle">Compact JSON-LD Document</text>
+
+    <!-- Code Block -->
+    <g transform="translate(14, 56)">
+      <rect width="237" height="240" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="12" y="22" font-family="monospace" font-size="10.5" fill="#0f172a">{</text>
+      <text x="20" y="42" font-family="monospace" font-size="10" fill="#64748b">"@context": { ... },</text>
+      <text x="20" y="66" font-family="monospace" font-size="10" fill="#64748b">"@id": <tspan fill="#1e40af" font-weight="700">"ex:book1"</tspan>,</text>
+      <text x="20" y="90" font-family="monospace" font-size="10" fill="#64748b">"@type": <tspan fill="#2563eb" font-weight="700">"schema:Book"</tspan>,</text>
+      <text x="20" y="114" font-family="monospace" font-size="10" fill="#64748b">"title": <tspan fill="#059669">"Understanding..."</tspan>,</text>
+      <text x="20" y="138" font-family="monospace" font-size="10" fill="#64748b">"author": <tspan fill="#d97706" font-weight="700">"ex:person1"</tspan></text>
+      <text x="12" y="160" font-family="monospace" font-size="10.5" fill="#0f172a">}</text>
+
+      <!-- Note pill inside card -->
+      <rect x="12" y="180" width="213" height="48" rx="6" fill="#f0f9ff" stroke="#bae6fd"/>
+      <text x="118" y="198" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#0369a1" text-anchor="middle">Familiar developer syntax:</text>
+      <text x="118" y="214" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#0284c7" text-anchor="middle">short property keys &amp; readable values</text>
+    </g>
+  </g>
+
+  <!-- ==================== CENTER: EXPANSION ENGINE ==================== -->
+  <g transform="translate(325, 90)">
+    <rect width="250" height="320" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="222" height="30" rx="6" fill="#f3e8ff"/>
+    <text x="125" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#7e22ce" text-anchor="middle">Context Resolution Rules</text>
+
+    <!-- Rule Cards -->
+    <g transform="translate(14, 56)">
+      <!-- Rule 1: IRI Prefix -->
+      <rect width="222" height="52" rx="6" fill="#ffffff" stroke="#d8b4fe"/>
+      <text x="10" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#6b21a8">1. Prefix Expansion</text>
+      <text x="10" y="34" font-family="monospace" font-size="9" fill="#334155">schema: → https://schema.org/</text>
+      <text x="10" y="46" font-family="monospace" font-size="9" fill="#334155">ex: → https://example.org/</text>
+
+      <!-- Rule 2: Title to schema:name -->
+      <rect y="60" width="222" height="56" rx="6" fill="#ffffff" stroke="#d8b4fe"/>
+      <text x="10" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#1d4ed8">2. Term &amp; Language Mapping</text>
+      <text x="10" y="94" font-family="monospace" font-size="9" fill="#334155">"title" → schema:name</text>
+      <text x="10" y="108" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#2563eb">Appends "@en" language tag</text>
+
+      <!-- Rule 3: Author IRI Reference -->
+      <rect y="124" width="222" height="56" rx="6" fill="#ffffff" stroke="#d8b4fe"/>
+      <text x="10" y="142" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#b45309">3. Node Reference (@id)</text>
+      <text x="10" y="158" font-family="monospace" font-size="9" fill="#334155">"author" → @type: "@id"</text>
+      <text x="10" y="172" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#92400e">Treats string as object node IRI</text>
+
+      <!-- Engine Summary -->
+      <rect y="188" width="222" height="52" rx="6" fill="#fdf4ff" stroke="#f0abfc"/>
+      <text x="111" y="208" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#a21caf" text-anchor="middle">Deterministic RDF Mapping</text>
+      <text x="111" y="226" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#701a75" text-anchor="middle">Eliminates ambiguity across systems</text>
+    </g>
+  </g>
+
+  <!-- ==================== RIGHT: RDF TRIPLES ==================== -->
+  <g transform="translate(595, 90)">
+    <rect width="285" height="320" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="257" height="30" rx="6" fill="#f0fdf4"/>
+    <text x="142" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#15803d" text-anchor="middle">Resulting RDF Triples (N-Triples)</text>
+
+    <!-- Triples Container -->
+    <g transform="translate(14, 56)">
+      <!-- Triple 1 -->
+      <rect width="257" height="72" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="10" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#2563eb">Triple 1: Type Assertion</text>
+      <text x="10" y="34" font-family="monospace" font-size="8" fill="#1e40af">&lt;https://example.org/book1&gt;</text>
+      <text x="10" y="48" font-family="monospace" font-size="8" fill="#475569">  a (rdf:type)</text>
+      <text x="10" y="62" font-family="monospace" font-size="8" fill="#047857">  &lt;https://schema.org/Book&gt; .</text>
+
+      <!-- Triple 2 -->
+      <rect y="78" width="257" height="72" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="10" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#2563eb">Triple 2: Literal Property</text>
+      <text x="10" y="112" font-family="monospace" font-size="8" fill="#1e40af">&lt;https://example.org/book1&gt;</text>
+      <text x="10" y="126" font-family="monospace" font-size="8" fill="#475569">  &lt;https://schema.org/name&gt;</text>
+      <text x="10" y="140" font-family="monospace" font-size="8" fill="#047857">  "Understanding..."@en .</text>
+
+      <!-- Triple 3 -->
+      <rect y="156" width="257" height="74" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+      <text x="10" y="174" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#2563eb">Triple 3: Entity Relationship</text>
+      <text x="10" y="190" font-family="monospace" font-size="8" fill="#1e40af">&lt;https://example.org/book1&gt;</text>
+      <text x="10" y="204" font-family="monospace" font-size="8" fill="#475569">  &lt;https://schema.org/author&gt;</text>
+      <text x="10" y="218" font-family="monospace" font-size="8" fill="#047857">  &lt;https://example.org/person1&gt; .</text>
+    </g>
+  </g>
+</svg>

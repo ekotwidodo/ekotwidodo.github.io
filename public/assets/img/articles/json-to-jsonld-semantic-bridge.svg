@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" width="100%" height="100%">
+  <defs>
+    <!-- Soft Drop Shadow -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#7c3aed"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="480" rx="16" fill="#f8fafc"/>
+
+  <!-- Header Banner -->
+  <g transform="translate(40, 28)">
+    <text x="0" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0f172a">From JSON to JSON-LD: The Semantic Interoperability Bridge</text>
+    <text x="0" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">How @context and identifiers transform isolated tree objects into global knowledge graph triples</text>
+  </g>
+
+  <!-- ==================== LEFT: ORDINARY JSON ==================== -->
+  <g transform="translate(40, 90)">
+    <rect width="250" height="360" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="222" height="30" rx="6" fill="#f1f5f9"/>
+    <text x="125" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">1. Ordinary JSON (Isolated Tree)</text>
+
+    <!-- Code Block Container -->
+    <g transform="translate(14, 56)">
+      <rect width="222" height="185" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="12" y="22" font-family="monospace" font-size="11" fill="#0f172a">{</text>
+      <text x="22" y="44" font-family="monospace" font-size="10.5" fill="#64748b">"id": <tspan fill="#0f172a">"book-1"</tspan>,</text>
+      <text x="22" y="66" font-family="monospace" font-size="10.5" fill="#64748b">"title": <tspan fill="#2563eb">"Understanding..."</tspan>,</text>
+      <text x="22" y="88" font-family="monospace" font-size="10.5" fill="#64748b">"author": <tspan fill="#d97706">"Alya Pratama"</tspan>,</text>
+      <text x="22" y="110" font-family="monospace" font-size="10.5" fill="#64748b">"publisher": <tspan fill="#16a34a">"Example Press"</tspan></text>
+      <text x="12" y="132" font-family="monospace" font-size="11" fill="#0f172a">}</text>
+
+      <!-- Badge annotations inside code box -->
+      <rect x="12" y="146" width="198" height="26" rx="4" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="111" y="163" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#991b1b" text-anchor="middle">Flat strings, no global IRIs</text>
+    </g>
+
+    <!-- Limitations Box -->
+    <g transform="translate(14, 252)">
+      <rect width="222" height="88" rx="8" fill="#fff1f2" stroke="#fecdd3"/>
+      <text x="12" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#9f1239">Semantic Ambiguity:</text>
+      <text x="12" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#881337">• Is "title" equivalent to "book_name"?</text>
+      <text x="12" y="54" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#881337">• Is "author" a person or just text?</text>
+      <text x="12" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#881337">• Local IDs collide across repositories.</text>
+    </g>
+  </g>
+
+  <!-- ==================== CENTER: THE @context BRIDGE ==================== -->
+  <g transform="translate(310, 90)">
+    <rect width="300" height="360" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="272" height="30" rx="6" fill="#f3e8ff"/>
+    <text x="150" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#7e22ce" text-anchor="middle">2. The @context Mapping Layer</text>
+
+    <!-- Mapping Table Box -->
+    <g transform="translate(14, 56)">
+      <rect width="272" height="205" rx="8" fill="#ffffff" stroke="#d8b4fe"/>
+      
+      <text x="12" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6b21a8">TERM MAPPING SPECIFICATION:</text>
+      
+      <!-- Mapping 1: Namespace -->
+      <rect x="10" y="30" width="252" height="34" rx="4" fill="#fdf4ff" stroke="#f5d0fe"/>
+      <text x="18" y="46" font-family="monospace" font-size="10" font-weight="700" fill="#a21caf">"schema"</text>
+      <text x="80" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">→</text>
+      <text x="96" y="46" font-family="monospace" font-size="9" fill="#334155">https://schema.org/</text>
+      <text x="18" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#701a75">Namespace prefix for terms</text>
+
+      <!-- Mapping 2: Title to schema:name -->
+      <rect x="10" y="70" width="252" height="34" rx="4" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="18" y="86" font-family="monospace" font-size="10" font-weight="700" fill="#1d4ed8">"title"</text>
+      <text x="80" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">→</text>
+      <text x="96" y="86" font-family="monospace" font-size="9" fill="#1e40af">schema:name (@lang: en)</text>
+      <text x="18" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#1e40af">Maps property to shared name vocabulary</text>
+
+      <!-- Mapping 3: Author as resource reference -->
+      <rect x="10" y="110" width="252" height="42" rx="4" fill="#fef3c7" stroke="#fde68a"/>
+      <text x="18" y="126" font-family="monospace" font-size="10" font-weight="700" fill="#b45309">"author"</text>
+      <text x="80" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">→</text>
+      <text x="96" y="126" font-family="monospace" font-size="9" font-weight="700" fill="#92400e">schema:author</text>
+      <text x="18" y="142" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#92400e">@type: "@id" (interprets value as node IRI)</text>
+
+      <!-- Mapping 4: Date Published -->
+      <rect x="10" y="158" width="252" height="38" rx="4" fill="#ecfdf5" stroke="#a7f3d0"/>
+      <text x="18" y="174" font-family="monospace" font-size="10" font-weight="700" fill="#047857">"date"</text>
+      <text x="80" y="174" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">→</text>
+      <text x="96" y="174" font-family="monospace" font-size="9" fill="#065f46">schema:datePublished</text>
+      <text x="18" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#065f46">@type: "xsd:date" (typed temporal literal)</text>
+    </g>
+
+    <!-- Arrow Indicators to Right Panel -->
+    <g transform="translate(14, 272)">
+      <rect width="272" height="68" rx="8" fill="#f5f3ff" stroke="#ddd6fe"/>
+      <text x="136" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#5b21b6" text-anchor="middle">Standardized Interpretation</text>
+      <text x="136" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#6d28d9" text-anchor="middle">Transforms JSON keys into global IRIs &amp;</text>
+      <text x="136" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#6d28d9" text-anchor="middle">converts string IDs into directed edges</text>
+    </g>
+  </g>
+
+  <!-- ==================== RIGHT: LINKED DATA GRAPH ==================== -->
+  <g transform="translate(630, 90)">
+    <rect width="250" height="360" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="14" y="14" width="222" height="30" rx="6" fill="#f0fdf4"/>
+    <text x="125" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#15803d" text-anchor="middle">3. Linked Data (RDF Graph)</text>
+
+    <!-- Node 1: ex:book1 -->
+    <g transform="translate(24, 60)">
+      <rect width="202" height="48" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="101" y="20" font-family="monospace" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">ex:book1</text>
+      <rect x="46" y="26" width="110" height="16" rx="4" fill="#ffffff" stroke="#93c5fd"/>
+      <text x="101" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#1d4ed8" text-anchor="middle">type: schema:Book</text>
+    </g>
+
+    <!-- Vertical Directed Edge: schema:author -->
+    <line x1="125" y1="108" x2="125" y2="132" stroke="#2563eb" stroke-width="2.5"/>
+    <rect x="75" y="132" width="100" height="20" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+    <text x="125" y="146" font-family="monospace" font-size="8.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">schema:author</text>
+    <line x1="125" y1="152" x2="125" y2="174" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+
+    <!-- Node 2: ex:person1 -->
+    <g transform="translate(24, 180)">
+      <rect width="202" height="48" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="101" y="20" font-family="monospace" font-size="11.5" font-weight="700" fill="#166534" text-anchor="middle">ex:person1</text>
+      <rect x="46" y="26" width="110" height="16" rx="4" fill="#ffffff" stroke="#86efac"/>
+      <text x="101" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#15803d" text-anchor="middle">type: schema:Person</text>
+    </g>
+
+    <!-- Horizontal Edge: schema:name to Literal -->
+    <line x1="125" y1="228" x2="125" y2="250" stroke="#16a34a" stroke-width="2.5"/>
+    <rect x="75" y="250" width="100" height="20" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+    <text x="125" y="264" font-family="monospace" font-size="8.5" font-weight="700" fill="#166534" text-anchor="middle">schema:name</text>
+    <line x1="125" y1="270" x2="125" y2="288" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+
+    <!-- Literal Card: "Alya Pratama" -->
+    <g transform="translate(24, 294)">
+      <rect width="202" height="46" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="101" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" font-weight="600" fill="#64748b" text-anchor="middle">Literal Value</text>
+      <text x="101" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#0f172a" text-anchor="middle">"Alya Pratama"</text>
+    </g>
+  </g>
+</svg>

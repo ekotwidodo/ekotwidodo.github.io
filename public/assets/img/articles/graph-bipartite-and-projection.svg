@@ -8,7 +8,6 @@
 
   <!-- Background -->
   <rect width="920" height="490" rx="16" fill="#f8fafc"/>
-  <rect x="1" y="1" width="918" height="488" rx="15" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
 
   <!-- Header Banner -->
   <g transform="translate(40, 32)">

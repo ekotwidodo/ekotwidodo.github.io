@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="100%" height="100%">
+  <defs>
+    <!-- Linear Gradients for Node Cards -->
+    <linearGradient id="book-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="person-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="pub-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Container Canvas with rounded corners (Borderless, Shadow-Free) -->
+  <rect width="960" height="500" rx="16" fill="#ffffff"/>
+
+  <!-- Diagram Header: Semantic Domain Model header removed per request -->
+  <g transform="translate(40, 24)">
+    <text y="16" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#0f172a">Independent Resource Nodes &amp; Directed Relationships</text>
+    <text y="36" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">Entities are modeled as discrete graph nodes with unique IRIs rather than embedded strings.</text>
+  </g>
+
+  <!-- ================= TOP NODE: ex:book1 ================= -->
+  <g transform="translate(260, 75)">
+    <!-- Node Box -->
+    <rect width="440" height="108" rx="12" fill="url(#book-grad)" stroke="#3b82f6" stroke-width="2"/>
+    
+    <!-- Header Tag -->
+    <rect x="16" y="12" width="105" height="22" rx="6" fill="#2563eb"/>
+    <text x="68" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">BOOK ENTITY</text>
+
+    <!-- Ontological Type Badge: Generous width to prevent any overflow -->
+    <rect x="131" y="12" width="175" height="22" rx="6" fill="#dbeafe" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="218" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">rdf:type schema:Book</text>
+
+    <!-- Node IRI Identifier -->
+    <text x="16" y="58" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="700" fill="#1e293b">ex:book1</text>
+    <text x="100" y="58" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">(&lt;https://example.org/book1&gt;)</text>
+
+    <!-- Node Properties / Attributes Box -->
+    <rect x="16" y="72" width="408" height="24" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="26" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#475569">schema:name:</text>
+    <text x="125" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0f172a">"Understanding Knowledge Graphs"</text>
+  </g>
+
+  <!-- ================= CONNECTOR LINES & PREDICATE BADGES ================= -->
+  <!-- Stem from top node bottom center: (480, 183) to (480, 210) -->
+  <line x1="480" y1="183" x2="480" y2="210" stroke="#475569" stroke-width="2.5"/>
+
+  <!-- Horizontal crossbar: from x=230 to x=730 at y=210 -->
+  <line x1="230" y1="210" x2="730" y2="210" stroke="#475569" stroke-width="2.5"/>
+
+  <!-- Left branch down to author pill: (230, 210) to (230, 226) -->
+  <line x1="230" y1="210" x2="230" y2="226" stroke="#475569" stroke-width="2.5"/>
+
+  <!-- Predicate Pill 1: schema:author -->
+  <g transform="translate(150, 226)">
+    <rect width="160" height="32" rx="16" fill="#ffffff" stroke="#6366f1" stroke-width="2"/>
+    <circle cx="18" cy="16" r="4.5" fill="#6366f1"/>
+    <text x="88" y="21" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" fill="#4338ca" text-anchor="middle">schema:author</text>
+  </g>
+
+  <!-- Left arrow line & explicit downward arrowhead polygon -->
+  <line x1="230" y1="258" x2="230" y2="284" stroke="#475569" stroke-width="2.5"/>
+  <polygon points="230,296 223,283 237,283" fill="#475569"/>
+
+  <!-- Right branch down to publisher pill: (730, 210) to (730, 226) -->
+  <line x1="730" y1="210" x2="730" y2="226" stroke="#475569" stroke-width="2.5"/>
+
+  <!-- Predicate Pill 2: schema:publisher -->
+  <g transform="translate(640, 226)">
+    <rect width="180" height="32" rx="16" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+    <circle cx="18" cy="16" r="4.5" fill="#d97706"/>
+    <text x="98" y="21" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">schema:publisher</text>
+  </g>
+
+  <!-- Right arrow line & explicit downward arrowhead polygon -->
+  <line x1="730" y1="258" x2="730" y2="284" stroke="#475569" stroke-width="2.5"/>
+  <polygon points="730,296 723,283 737,283" fill="#475569"/>
+
+  <!-- ================= BOTTOM LEFT NODE: ex:person1 ================= -->
+  <g transform="translate(40, 296)">
+    <!-- Node Box -->
+    <rect width="380" height="126" rx="12" fill="url(#person-grad)" stroke="#10b981" stroke-width="2"/>
+    
+    <!-- Header Tag -->
+    <rect x="16" y="12" width="115" height="22" rx="6" fill="#059669"/>
+    <text x="73" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">PERSON ENTITY</text>
+
+    <!-- Ontological Type Badge: Generous width to prevent text overflow -->
+    <rect x="141" y="12" width="185" height="22" rx="6" fill="#d1fae5" stroke="#a7f3d0" stroke-width="1"/>
+    <text x="233" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#065f46" text-anchor="middle">rdf:type schema:Person</text>
+
+    <!-- Node IRI Identifier -->
+    <text x="16" y="56" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="700" fill="#064e3b">ex:person1</text>
+    <text x="108" y="56" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">(&lt;https://example.org/person1&gt;)</text>
+
+    <!-- Node Properties / Attributes Box -->
+    <rect x="16" y="70" width="348" height="24" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="26" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#475569">schema:name:</text>
+    <text x="122" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">"Alya Pratama"</text>
+
+    <!-- Micro-note inside container bounds -->
+    <text x="16" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#059669">✓ Autonomous node: author of books across datasets</text>
+  </g>
+
+  <!-- ================= BOTTOM RIGHT NODE: ex:publisher1 ================= -->
+  <g transform="translate(540, 296)">
+    <!-- Node Box -->
+    <rect width="380" height="126" rx="12" fill="url(#pub-grad)" stroke="#f59e0b" stroke-width="2"/>
+    
+    <!-- Header Tag -->
+    <rect x="16" y="12" width="145" height="22" rx="6" fill="#d97706"/>
+    <text x="88" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.04em">ORGANIZATION ENTITY</text>
+
+    <!-- Ontological Type Badge: Generous width (195px) so "rdf:type schema:Organization" never overflows -->
+    <rect x="171" y="12" width="195" height="22" rx="6" fill="#fef3c7" stroke="#fde68a" stroke-width="1"/>
+    <text x="268" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" font-weight="600" fill="#92400e" text-anchor="middle">rdf:type schema:Organization</text>
+
+    <!-- Node IRI Identifier -->
+    <text x="16" y="56" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="700" fill="#78350f">ex:publisher1</text>
+    <text x="126" y="56" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">(&lt;https://example.org/publisher1&gt;)</text>
+
+    <!-- Node Properties / Attributes Box -->
+    <rect x="16" y="70" width="348" height="24" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="26" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="600" fill="#475569">schema:name:</text>
+    <text x="122" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">"Example Press"</text>
+
+    <!-- Micro-note inside container bounds -->
+    <text x="16" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#d97706">✓ Autonomous node: publisher of works across authors</text>
+  </g>
+
+  <!-- ================= BOTTOM KEY INSIGHT FOOTER ================= -->
+  <!-- Wide container (880px) ensuring complete text fitting without any overflow -->
+  <g transform="translate(40, 438)">
+    <rect width="880" height="42" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <circle cx="20" cy="21" r="7.5" fill="#3b82f6"/>
+    <text x="18" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="900" fill="#ffffff">i</text>
+    <text x="38" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a">Semantic Triples Created:</text>
+    <text x="210" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11.5" fill="#334155">(ex:book1, schema:author, ex:person1)  ·  (ex:book1, schema:publisher, ex:publisher1)</text>
+  </g>
+</svg>

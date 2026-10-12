@@ -137,7 +137,7 @@ A human reader understands that relationship immediately. A semantic representat
   <img
     src="/assets/img/articles/semantic-triple-simple.svg"
     alt="RDF Semantic Triple Representation: Subject, Predicate, and Object"
-    class="h-auto w-full rounded-xl shadow-xs"
+    class="h-auto w-full rounded-xl"
     loading="lazy"
   />
   <figcaption>
@@ -252,7 +252,7 @@ An RDF graph is formed naturally from a collection of triples. For our catalog e
   <img
     src="/assets/img/articles/semantic-rdf-graph-structure.svg"
     alt="Composing an RDF Graph from Triples: Resource Nodes and Literal Values"
-    class="h-auto w-full rounded-xl shadow-xs"
+    class="h-auto w-full rounded-xl"
     loading="lazy"
   />
   <figcaption>
@@ -532,7 +532,7 @@ When datasets interconnect through shared identifiers and consistent vocabularie
   <img
     src="/assets/img/articles/semantic-knowledge-graph-federation.svg"
     alt="Connecting Disparate Datasets into an Interlinked Knowledge Graph"
-    class="h-auto w-full rounded-xl shadow-xs"
+    class="h-auto w-full rounded-xl"
     loading="lazy"
   />
   <figcaption>

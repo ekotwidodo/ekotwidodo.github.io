@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%">
+  <defs>
+    <!-- Soft Drop Shadow -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+
+    <marker id="arrow-flow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#4f46e5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="460" rx="16" fill="#f8fafc"/>
+
+  <!-- Header Banner -->
+  <g transform="translate(40, 32)">
+    <text x="0" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0f172a">Anatomy of a SPARQL Query &amp; Solution Mapping</text>
+    <text x="0" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">How query clauses bind graph triple patterns into structured tabular solution sequences</text>
+  </g>
+
+  <!-- ==================== LEFT CARD: QUERY ANATOMY ==================== -->
+  <g transform="translate(40, 95)">
+    <rect width="450" height="325" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="18" y="16" width="414" height="32" rx="6" fill="#eff6ff"/>
+    <text x="225" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#1e40af" text-anchor="middle">SPARQL Query Structure</text>
+
+    <!-- Block 1: PREFIX -->
+    <g transform="translate(18, 60)">
+      <rect width="414" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="10" y="8" width="65" height="26" rx="4" fill="#ede9fe" stroke="#c4b5fd"/>
+      <text x="42" y="25" font-family="monospace" font-size="10.5" font-weight="700" fill="#6b21a8" text-anchor="middle">PREFIX</text>
+      <text x="88" y="25" font-family="monospace" font-size="11" fill="#0f172a">schema: &lt;https://schema.org/&gt;</text>
+      <text x="390" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#64748b" text-anchor="end">Namespace IRIs</text>
+    </g>
+
+    <!-- Block 2: SELECT -->
+    <g transform="translate(18, 110)">
+      <rect width="414" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="10" y="8" width="65" height="26" rx="4" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="42" y="25" font-family="monospace" font-size="10.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">SELECT</text>
+      <text x="88" y="25" font-family="monospace" font-size="11" font-weight="700" fill="#2563eb">?title ?authorName</text>
+      <text x="390" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#64748b" text-anchor="end">Projected Variables</text>
+    </g>
+
+    <!-- Block 3: WHERE -->
+    <g transform="translate(18, 160)">
+      <rect width="414" height="96" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="10" y="8" width="65" height="26" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="42" y="25" font-family="monospace" font-size="10.5" font-weight="700" fill="#15803d" text-anchor="middle">WHERE</text>
+      <text x="88" y="25" font-family="monospace" font-size="10" fill="#0f172a">{ ?book a schema:Book ;</text>
+      
+      <!-- Pattern lines -->
+      <text x="100" y="47" font-family="monospace" font-size="10" fill="#0f172a">schema:name <tspan fill="#2563eb" font-weight="700">?title</tspan> ;</text>
+      <text x="100" y="67" font-family="monospace" font-size="10" fill="#0f172a">schema:author <tspan fill="#d97706" font-weight="700">?author</tspan> .</text>
+      <text x="100" y="87" font-family="monospace" font-size="10" fill="#0f172a"><tspan fill="#d97706" font-weight="700">?author</tspan> schema:name <tspan fill="#2563eb" font-weight="700">?authorName</tspan> . }</text>
+
+      <text x="390" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#64748b" text-anchor="end">Graph Patterns</text>
+    </g>
+
+    <!-- Block 4: MODIFIERS -->
+    <g transform="translate(18, 264)">
+      <rect width="414" height="42" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="10" y="8" width="75" height="26" rx="4" fill="#fef3c7" stroke="#fde68a"/>
+      <text x="47" y="25" font-family="monospace" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">ORDER BY</text>
+      <text x="96" y="25" font-family="monospace" font-size="11" fill="#0f172a">?title LIMIT 10</text>
+      <text x="390" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#64748b" text-anchor="end">Solution Modifiers</text>
+    </g>
+  </g>
+
+  <!-- ==================== RIGHT CARD: EVALUATION & RESULT TABLE ==================== -->
+  <g transform="translate(515, 95)">
+    <rect width="365" height="325" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Title -->
+    <rect x="18" y="16" width="329" height="32" rx="6" fill="#faf5ff"/>
+    <text x="182" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#7e22ce" text-anchor="middle">Evaluated Solution Sequence (Table)</text>
+
+    <!-- Variable Mapping Explanation -->
+    <g transform="translate(18, 60)">
+      <rect width="329" height="64" rx="6" fill="#fdf4ff" stroke="#f0abfc"/>
+      <text x="12" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#86198f">Solution Mapping μ : V → T</text>
+      <text x="12" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#701a75">Each matching subgraph binds variables to RDF terms:</text>
+      <text x="12" y="55" font-family="monospace" font-size="9.5" fill="#a21caf">?title → "...", ?authorName → "..."</text>
+    </g>
+
+    <!-- Table of Results -->
+    <g transform="translate(18, 136)">
+      <rect width="329" height="120" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+      <rect width="329" height="26" rx="6" fill="#f1f5f9"/>
+      <rect y="20" width="329" height="6" fill="#f1f5f9"/>
+      <line x1="0" y1="26" x2="329" y2="26" stroke="#cbd5e1"/>
+
+      <!-- Table headers -->
+      <line x1="195" y1="0" x2="195" y2="120" stroke="#f1f5f9"/>
+      <text x="12" y="18" font-family="monospace" font-size="10.5" font-weight="700" fill="#2563eb">?title</text>
+      <text x="205" y="18" font-family="monospace" font-size="10.5" font-weight="700" fill="#2563eb">?authorName</text>
+
+      <!-- Row 1 -->
+      <text x="12" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#334155">Introduction to Ontologies</text>
+      <text x="205" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#334155">Mira Chen</text>
+      <line x1="0" y1="56" x2="329" y2="56" stroke="#f1f5f9"/>
+
+      <!-- Row 2 -->
+      <text x="12" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#334155">Linked Data in Practice</text>
+      <text x="205" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#334155">Alya Pratama</text>
+      <line x1="0" y1="84" x2="329" y2="84" stroke="#f1f5f9"/>
+
+      <!-- Row 3 -->
+      <text x="12" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#334155">Practical SPARQL Queries</text>
+      <text x="205" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#334155">Daniel Hart</text>
+    </g>
+
+    <!-- Footer Note -->
+    <rect x="18" y="270" width="329" height="38" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="164" y="287" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">Non-projected variable (?author, ?book) discarded,</text>
+    <text x="164" y="301" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">leaving clean relational solution sequence</text>
+  </g>
+</svg>

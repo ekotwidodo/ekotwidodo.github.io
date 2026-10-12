@@ -78,7 +78,7 @@ Struktur sederhana ini sudah membuktikan bahwa graph bukan sekadar tumpukan data
 Setelah memahami node dan edge, kita akan menjumpai fakta bahwa sifat hubungan di dunia nyata tidak selalu simetris. Salah satu pembeda paling fundamental adalah **apakah hubungan tersebut memiliki arah atau tidak**.
 
 <figure class="my-8">
-  <img src="/assets/img/articles/graph-types-characteristics-comparison.svg" alt="Ilustrasi Taksonomi Karakteristik Graph: Undirected vs Directed, Unweighted vs Weighted, dan Connected vs Disconnected" class="w-full rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+  <img src="/assets/img/articles/graph-types-characteristics-comparison.svg" alt="Ilustrasi Taksonomi Karakteristik Graph: Undirected vs Directed, Unweighted vs Weighted, dan Connected vs Disconnected" class="w-full rounded-xl border border-slate-200 dark:border-slate-800" />
   <figcaption class="mt-3 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">
     Tiga dimensi klasifikasi graph: arah aliran relasi (kiri), bobot kuantitatif (tengah), dan keterhubungan komponen jaringan (kanan).
   </figcaption>
@@ -202,7 +202,7 @@ Semua contoh yang kita diskusikan sebelumnya menempatkan node pada jenis entitas
 Struktur semacam ini disebut **Bipartite Graph**.
 
 <figure class="my-8">
-  <img src="/assets/img/articles/graph-bipartite-and-projection.svg" alt="Diagram Bipartite Graph Mahasiswa dan Mata Kuliah beserta Projected Graph" class="w-full rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm" />
+  <img src="/assets/img/articles/graph-bipartite-and-projection.svg" alt="Diagram Bipartite Graph Mahasiswa dan Mata Kuliah beserta Projected Graph" class="w-full rounded-xl border border-slate-200 dark:border-slate-800" />
   <figcaption class="mt-3 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">
     Panel A: Bipartite Graph yang memisahkan entitas Mahasiswa dan Mata Kuliah. Panel B: Projected Graph yang menautkan sesama mahasiswa berdasarkan kesamaan mata kuliah yang diambil.
   </figcaption>
