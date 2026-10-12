@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 520" width="100%" height="100%" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Background Canvas Light Gradient -->
+    <linearGradient id="bgCanvasLight2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <!-- Resource Node Light Gradient -->
+    <linearGradient id="resNodeLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <!-- Literal Node Light Gradient -->
+    <linearGradient id="litNodeLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4" />
+      <stop offset="100%" stop-color="#dcfce7" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow Filter -->
+    <filter id="softShadow2" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowBlueLight" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrowPurpleLight" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed" />
+    </marker>
+    <marker id="arrowGreenLight" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <!-- Canvas Container -->
+  <rect x="0" y="0" width="1060" height="520" rx="16" fill="url(#bgCanvasLight2)" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Diagram Title -->
+  <g>
+    <text x="530" y="38" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="700">Composing an RDF Graph from Triples</text>
+    <text x="530" y="58" text-anchor="middle" fill="#64748b" font-size="12">Demonstrating Resource-to-Resource links vs. Resource-to-Literal values</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- ROOT NODE: ex:book1 (Subject) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(40, 205)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="220" height="90" rx="12" fill="url(#resNodeLight)" stroke="#0284c7" stroke-width="1.8" />
+    <rect x="14" y="14" width="85" height="18" rx="5" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1" />
+    <text x="56" y="27" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Book</text>
+    <text x="14" y="55" fill="#0f172a" font-size="15" font-weight="700" font-family="ui-monospace, monospace">ex:book1</text>
+    <text x="14" y="73" fill="#64748b" font-size="10" font-family="ui-monospace, monospace">&lt;https://example.org/book1&gt;</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BRANCH 1 (TOP): ex:book1 -> schema:author -> ex:janeDoe -> schema:name -> "Jane Doe" -->
+  <!-- ========================================================================= -->
+  <!-- Connector 1A -->
+  <path d="M 260 230 C 330 230, 350 120, 420 120" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlueLight)" />
+  <!-- Label 1A -->
+  <g transform="translate(300, 145)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="118" height="26" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="59" y="17" text-anchor="middle" fill="#4338ca" font-size="11" font-weight="600" font-family="ui-monospace, monospace">schema:author</text>
+  </g>
+
+  <!-- Node 1: ex:janeDoe (Resource) -->
+  <g transform="translate(425, 75)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="210" height="90" rx="12" fill="url(#resNodeLight)" stroke="#0d9488" stroke-width="1.8" />
+    <rect x="14" y="14" width="95" height="18" rx="5" fill="#ccfbf1" stroke="#2dd4bf" stroke-width="1" />
+    <text x="61" y="27" text-anchor="middle" fill="#0f766e" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Person</text>
+    <text x="14" y="55" fill="#0f172a" font-size="15" font-weight="700" font-family="ui-monospace, monospace">ex:janeDoe</text>
+    <text x="14" y="73" fill="#64748b" font-size="10" font-family="ui-monospace, monospace">&lt;.../janeDoe&gt;</text>
+  </g>
+
+  <!-- Connector 1B -->
+  <line x1="635" y1="120" x2="755" y2="120" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowGreenLight)" />
+  <!-- Label 1B -->
+  <g transform="translate(650, 107)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="96" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="48" y="16" text-anchor="middle" fill="#15803d" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:name</text>
+  </g>
+
+  <!-- Literal 1: "Jane Doe" -->
+  <g transform="translate(760, 85)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="250" height="70" rx="10" fill="url(#litNodeLight)" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="16" y="26" fill="#15803d" font-size="10" font-weight="600">LITERAL VALUE (xsd:string)</text>
+    <text x="16" y="52" fill="#0f172a" font-size="15" font-weight="700" font-family="ui-monospace, monospace">"Jane Doe"</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BRANCH 2 (MIDDLE): ex:book1 -> schema:publisher -> ex:examplePress -> schema:name -> "Example Press" -->
+  <!-- ========================================================================= -->
+  <!-- Connector 2A -->
+  <line x1="260" y1="250" x2="420" y2="250" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlueLight)" />
+  <!-- Label 2A -->
+  <g transform="translate(280, 237)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="130" height="26" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="65" y="17" text-anchor="middle" fill="#4338ca" font-size="11" font-weight="600" font-family="ui-monospace, monospace">schema:publisher</text>
+  </g>
+
+  <!-- Node 2: ex:examplePress (Resource) -->
+  <g transform="translate(425, 205)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="210" height="90" rx="12" fill="url(#resNodeLight)" stroke="#7c3aed" stroke-width="1.8" />
+    <rect x="14" y="14" width="130" height="18" rx="5" fill="#f3e8ff" stroke="#c084fc" stroke-width="1" />
+    <text x="79" y="27" text-anchor="middle" fill="#7e22ce" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Organization</text>
+    <text x="14" y="55" fill="#0f172a" font-size="15" font-weight="700" font-family="ui-monospace, monospace">ex:examplePress</text>
+    <text x="14" y="73" fill="#64748b" font-size="10" font-family="ui-monospace, monospace">&lt;.../examplePress&gt;</text>
+  </g>
+
+  <!-- Connector 2B -->
+  <line x1="635" y1="250" x2="755" y2="250" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowGreenLight)" />
+  <!-- Label 2B -->
+  <g transform="translate(650, 237)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="96" height="24" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="48" y="16" text-anchor="middle" fill="#15803d" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:name</text>
+  </g>
+
+  <!-- Literal 2: "Example Press" -->
+  <g transform="translate(760, 215)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="250" height="70" rx="10" fill="url(#litNodeLight)" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="16" y="26" fill="#15803d" font-size="10" font-weight="600">LITERAL VALUE (xsd:string)</text>
+    <text x="16" y="52" fill="#0f172a" font-size="15" font-weight="700" font-family="ui-monospace, monospace">"Example Press"</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BRANCH 3 (BOTTOM): ex:book1 -> schema:name -> "Introduction to Knowledge Graphs"@en -->
+  <!-- ========================================================================= -->
+  <!-- Connector 3 -->
+  <path d="M 260 270 C 330 270, 360 380, 420 380" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowGreenLight)" />
+  <!-- Label 3 -->
+  <g transform="translate(295, 335)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="105" height="26" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="52" y="17" text-anchor="middle" fill="#15803d" font-size="11" font-weight="600" font-family="ui-monospace, monospace">schema:name</text>
+  </g>
+
+  <!-- Literal 3: Book Title -->
+  <g transform="translate(425, 345)" filter="url(#softShadow2)">
+    <rect x="0" y="0" width="450" height="70" rx="10" fill="url(#litNodeLight)" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 2" />
+    <text x="16" y="26" fill="#15803d" font-size="10" font-weight="600">LITERAL VALUE (with Language Tag @en)</text>
+    <text x="16" y="52" fill="#0f172a" font-size="14.5" font-weight="700" font-family="ui-monospace, monospace">"Introduction to Knowledge Graphs"@en</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER LEGEND -->
+  <!-- ========================================================================= -->
+  <g transform="translate(180, 465)">
+    <!-- Legend Item 1: Resource Node -->
+    <rect x="0" y="0" width="16" height="16" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="1.5" />
+    <text x="24" y="13" fill="#475569" font-size="12">Resource Node (IRI Identifier)</text>
+
+    <!-- Legend Item 2: Literal Node -->
+    <rect x="250" y="0" width="16" height="16" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3 2" />
+    <text x="274" y="13" fill="#475569" font-size="12">Literal Node (Primitive Value / Typed)</text>
+
+    <!-- Legend Item 3: Predicate Edge -->
+    <line x1="560" y1="8" x2="590" y2="8" stroke="#4338ca" stroke-width="2" marker-end="url(#arrowPurpleLight)" />
+    <text x="600" y="13" fill="#475569" font-size="12">Predicate Edge (Named Relationship)</text>
+  </g>
+</svg>

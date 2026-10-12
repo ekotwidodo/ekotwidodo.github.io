@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" width="100%" height="100%" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Background Canvas Light Gradient -->
+    <linearGradient id="bgCanvasLight3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <!-- Node Gradients (Light) -->
+    <linearGradient id="cardCatalogALight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0f9ff" />
+    </linearGradient>
+
+    <linearGradient id="cardCatalogBLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#faf5ff" />
+    </linearGradient>
+
+    <linearGradient id="cardCenterLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0fdfa" />
+    </linearGradient>
+
+    <linearGradient id="cardLiteralLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4" />
+      <stop offset="100%" stop-color="#dcfce7" />
+    </linearGradient>
+
+    <filter id="softShadow3" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowTealLight3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0d9488" />
+    </marker>
+    <marker id="arrowPurpleLight3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed" />
+    </marker>
+    <marker id="arrowEmeraldLight3" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <!-- Canvas Container -->
+  <rect x="0" y="0" width="1100" height="500" rx="16" fill="url(#bgCanvasLight3)" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Diagram Header -->
+  <g>
+    <text x="550" y="38" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="700">Connecting Disparate Datasets into an Interlinked Knowledge Graph</text>
+    <text x="550" y="58" text-anchor="middle" fill="#64748b" font-size="12">Traversing relationships across independent datasets via shared entity identity</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- SOURCE DATASET LABELS (TOP) -->
+  <!-- ========================================================================= -->
+  <!-- Dataset A Scope -->
+  <rect x="35" y="80" width="260" height="30" rx="6" fill="#e0f2fe" stroke="#bae6fd" stroke-width="1" />
+  <circle cx="50" cy="95" r="4" fill="#0284c7" />
+  <text x="62" y="99" fill="#0369a1" font-size="11" font-weight="600">DATASET A: Online Bookstore Catalog</text>
+
+  <!-- Dataset B Scope -->
+  <rect x="805" y="80" width="260" height="30" rx="6" fill="#f3e8ff" stroke="#e9d5ff" stroke-width="1" />
+  <circle cx="820" cy="95" r="4" fill="#7c3aed" />
+  <text x="832" y="99" fill="#6b21a8" font-size="11" font-weight="600">DATASET B: Academic Research Archive</text>
+
+  <!-- ========================================================================= -->
+  <!-- LEFT: DATASET A NODES -->
+  <!-- ========================================================================= -->
+  <!-- Node A1: ex:book1 -->
+  <g transform="translate(35, 130)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="260" height="84" rx="12" fill="url(#cardCatalogALight)" stroke="#0284c7" stroke-width="1.5" />
+    <rect x="14" y="14" width="90" height="18" rx="5" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1" />
+    <text x="59" y="27" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Book</text>
+    <text x="14" y="52" fill="#0f172a" font-size="14" font-weight="700">ex:book1</text>
+    <text x="14" y="70" fill="#64748b" font-size="11">"Intro to Knowledge Graphs"</text>
+  </g>
+
+  <!-- Node A2: ex:examplePress (Downward) -->
+  <g transform="translate(35, 275)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="260" height="74" rx="12" fill="url(#cardCatalogALight)" stroke="#94a3b8" stroke-width="1" />
+    <rect x="14" y="14" width="136" height="18" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" />
+    <text x="82" y="27" text-anchor="middle" fill="#334155" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Organization</text>
+    <text x="14" y="54" fill="#0f172a" font-size="13" font-weight="700">ex:examplePress</text>
+  </g>
+
+  <!-- Edge A1 -> A2 (Publisher) -->
+  <line x1="165" y1="214" x2="165" y2="275" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrowTealLight3)" />
+  <g transform="translate(95, 233)">
+    <rect x="0" y="0" width="140" height="20" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="70" y="14" text-anchor="middle" fill="#64748b" font-size="9.5" font-family="ui-monospace, monospace">schema:publisher</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- CENTER: UNIFIED IDENTITY / SHARED PERSON RESOURCE -->
+  <!-- ========================================================================= -->
+  <!-- Edge A1 -> Center (schema:author) -->
+  <line x1="295" y1="172" x2="442" y2="172" stroke="#0d9488" stroke-width="2.5" marker-end="url(#arrowTealLight3)" />
+  <g transform="translate(319, 145)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="108" height="24" rx="6" fill="#ffffff" stroke="#2dd4bf" stroke-width="1" />
+    <text x="54" y="16" text-anchor="middle" fill="#0f766e" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:author</text>
+  </g>
+
+  <!-- Center Node: Unified Entity (Jane Doe) -->
+  <g transform="translate(450, 120)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="200" height="105" rx="14" fill="url(#cardCenterLight)" stroke="#0d9488" stroke-width="2" />
+    <!-- Identity Badge -->
+    <rect x="14" y="14" width="95" height="20" rx="5" fill="#ccfbf1" stroke="#2dd4bf" stroke-width="1" />
+    <text x="61" y="28" text-anchor="middle" fill="#0f766e" font-size="10.5" font-weight="700" font-family="ui-monospace, monospace">schema:Person</text>
+    <text x="14" y="56" fill="#0f172a" font-size="16" font-weight="800">Jane Doe</text>
+    <!-- Identifiers -->
+    <text x="14" y="76" fill="#0d9488" font-size="10" font-family="ui-monospace, monospace">ex:janeDoe</text>
+    <text x="14" y="92" fill="#7c3aed" font-size="10" font-family="ui-monospace, monospace">research:person742</text>
+  </g>
+
+  <!-- Center Downward Literal: Name -->
+  <line x1="550" y1="225" x2="550" y2="285" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowEmeraldLight3)" />
+  <g transform="translate(500, 243)">
+    <rect x="0" y="0" width="100" height="20" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="50" y="14" text-anchor="middle" fill="#15803d" font-size="9.5" font-family="ui-monospace, monospace">schema:name</text>
+  </g>
+
+  <g transform="translate(450, 285)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="200" height="60" rx="10" fill="url(#cardLiteralLight)" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3 2" />
+    <text x="100" y="25" text-anchor="middle" fill="#15803d" font-size="10" font-weight="600">LITERAL VALUE</text>
+    <text x="100" y="46" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700" font-family="ui-monospace, monospace">"Jane Doe"</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- RIGHT: DATASET B NODES -->
+  <!-- ========================================================================= -->
+  <!-- Edge B1 -> Center (schema:author) -->
+  <line x1="805" y1="172" x2="658" y2="172" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrowPurpleLight3)" />
+  <g transform="translate(674, 145)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="108" height="24" rx="6" fill="#ffffff" stroke="#c084fc" stroke-width="1" />
+    <text x="54" y="16" text-anchor="middle" fill="#6b21a8" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:author</text>
+  </g>
+
+  <!-- Node B1: research:publication42 -->
+  <g transform="translate(805, 130)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="260" height="84" rx="12" fill="url(#cardCatalogBLight)" stroke="#7c3aed" stroke-width="1.5" />
+    <rect x="14" y="14" width="156" height="18" rx="5" fill="#f3e8ff" stroke="#c084fc" stroke-width="1" />
+    <text x="92" y="27" text-anchor="middle" fill="#6b21a8" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:ScholarlyArticle</text>
+    <text x="14" y="52" fill="#0f172a" font-size="14" font-weight="700">research:publication42</text>
+    <text x="14" y="70" fill="#64748b" font-size="11">"Knowledge Representation..."</text>
+  </g>
+
+  <!-- Node B2: Research Topic (Downward) -->
+  <g transform="translate(805, 275)" filter="url(#softShadow3)">
+    <rect x="0" y="0" width="260" height="74" rx="12" fill="url(#cardCatalogBLight)" stroke="#94a3b8" stroke-width="1" />
+    <rect x="14" y="14" width="115" height="18" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" />
+    <text x="71" y="27" text-anchor="middle" fill="#334155" font-size="10" font-weight="600" font-family="ui-monospace, monospace">skos:Concept</text>
+    <text x="14" y="54" fill="#0f172a" font-size="13" font-weight="700">"Topic: Artificial Intelligence"</text>
+  </g>
+
+  <!-- Edge B1 -> B2 (about / topic) -->
+  <line x1="935" y1="214" x2="935" y2="275" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrowPurpleLight3)" />
+  <g transform="translate(865, 233)">
+    <rect x="0" y="0" width="140" height="20" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+    <text x="70" y="14" text-anchor="middle" fill="#64748b" font-size="9.5" font-family="ui-monospace, monospace">schema:about</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM IDENTITY RESOLUTION NOTE -->
+  <!-- ========================================================================= -->
+  <g transform="translate(90, 420)">
+    <rect x="0" y="0" width="920" height="44" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <circle cx="28" cy="22" r="5" fill="#0d9488" />
+    <text x="48" y="27" fill="#334155" font-size="12">
+      <tspan font-weight="700" fill="#0f172a">Federation Link:</tspan>
+      <tspan fill="#0284c7" font-family="ui-monospace, monospace"> &lt;ex:janeDoe&gt; </tspan>
+      <tspan fill="#7c3aed" font-weight="600">owl:sameAs</tspan>
+      <tspan fill="#6b21a8" font-family="ui-monospace, monospace"> &lt;research:person742&gt; </tspan>
+      <tspan fill="#475569">— enables seamless cross-source query execution.</tspan>
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 360" width="100%" height="100%" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Light Canvas Background -->
+    <linearGradient id="bgLight1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <!-- Node Card Gradients -->
+    <linearGradient id="cardBookLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0f9ff" />
+    </linearGradient>
+
+    <linearGradient id="cardPersonLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0fdfa" />
+    </linearGradient>
+
+    <linearGradient id="cardOrgLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#faf5ff" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow -->
+    <filter id="softShadow1" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrowTeal1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0d9488" />
+    </marker>
+    <marker id="arrowPurple1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#7c3aed" />
+    </marker>
+  </defs>
+
+  <!-- Canvas Container -->
+  <rect x="0" y="0" width="840" height="360" rx="16" fill="url(#bgLight1)" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g>
+    <text x="420" y="38" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="700">Modeling Entities and Named Relationships in RDF</text>
+    <text x="420" y="58" text-anchor="middle" fill="#64748b" font-size="12">Moving beyond flat isolated records to interconnected semantic resources</text>
+  </g>
+
+  <!-- 1. ROOT SUBJECT NODE: Book -->
+  <g transform="translate(45, 130)" filter="url(#softShadow1)">
+    <rect x="0" y="0" width="280" height="96" rx="12" fill="url(#cardBookLight)" stroke="#0284c7" stroke-width="1.8" />
+    <rect x="16" y="14" width="85" height="18" rx="5" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1" />
+    <text x="58" y="27" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Book</text>
+    <text x="16" y="54" fill="#0f172a" font-size="15" font-weight="700">Understanding Knowledge Graphs</text>
+    <text x="16" y="74" fill="#64748b" font-size="11" font-family="ui-monospace, monospace">Resource IRI: ex:book1</text>
+  </g>
+
+  <!-- CONNECTOR 1: Book -> Person (has author) -->
+  <path d="M 325 155 C 410 155, 430 115, 505 115" fill="none" stroke="#0d9488" stroke-width="2.5" marker-end="url(#arrowTeal1)" />
+  <!-- Predicate Pill 1 -->
+  <g transform="translate(365, 105)" filter="url(#softShadow1)">
+    <rect x="0" y="0" width="124" height="26" rx="6" fill="#ffffff" stroke="#2dd4bf" stroke-width="1.2" />
+    <text x="62" y="17" text-anchor="middle" fill="#0f766e" font-size="11" font-weight="600" font-family="ui-monospace, monospace">schema:author</text>
+  </g>
+
+  <!-- 2. TARGET OBJECT NODE 1: Person -->
+  <g transform="translate(510, 75)" filter="url(#softShadow1)">
+    <rect x="0" y="0" width="280" height="84" rx="12" fill="url(#cardPersonLight)" stroke="#0d9488" stroke-width="1.8" />
+    <rect x="16" y="14" width="95" height="18" rx="5" fill="#ccfbf1" stroke="#2dd4bf" stroke-width="1" />
+    <text x="63" y="27" text-anchor="middle" fill="#0f766e" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Person</text>
+    <text x="16" y="52" fill="#0f172a" font-size="15" font-weight="700">Alya Pratama</text>
+    <text x="16" y="70" fill="#64748b" font-size="11" font-family="ui-monospace, monospace">Resource IRI: ex:person1</text>
+  </g>
+
+  <!-- CONNECTOR 2: Book -> Organization (published by) -->
+  <path d="M 325 200 C 410 200, 430 240, 505 240" fill="none" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#arrowPurple1)" />
+  <!-- Predicate Pill 2 -->
+  <g transform="translate(355, 225)" filter="url(#softShadow1)">
+    <rect x="0" y="0" width="144" height="26" rx="6" fill="#ffffff" stroke="#c084fc" stroke-width="1.2" />
+    <text x="72" y="17" text-anchor="middle" fill="#6b21a8" font-size="11" font-weight="600" font-family="ui-monospace, monospace">schema:publisher</text>
+  </g>
+
+  <!-- 3. TARGET OBJECT NODE 2: Organization -->
+  <g transform="translate(510, 200)" filter="url(#softShadow1)">
+    <rect x="0" y="0" width="280" height="84" rx="12" fill="url(#cardOrgLight)" stroke="#7c3aed" stroke-width="1.8" />
+    <rect x="16" y="14" width="130" height="18" rx="5" fill="#f3e8ff" stroke="#c084fc" stroke-width="1" />
+    <text x="81" y="27" text-anchor="middle" fill="#7e22ce" font-size="10" font-weight="600" font-family="ui-monospace, monospace">schema:Organization</text>
+    <text x="16" y="52" fill="#0f172a" font-size="15" font-weight="700">Example Press</text>
+    <text x="16" y="70" fill="#64748b" font-size="11" font-family="ui-monospace, monospace">Resource IRI: ex:publisher1</text>
+  </g>
+
+  <!-- Bottom Annotation -->
+  <g transform="translate(180, 315)">
+    <rect x="0" y="0" width="480" height="30" rx="6" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1" />
+    <text x="240" y="19" text-anchor="middle" fill="#475569" font-size="11">
+      Each arrow represents an atomic statement: <tspan font-weight="600" font-family="ui-monospace, monospace">(Subject, Predicate, Object)</tspan>
+    </text>
+  </g>
+</svg>
