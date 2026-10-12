@@ -1,6 +1,9 @@
 name: Deploy Astro site to GitHub Pages
 
 on:
+  # Deploy otomatis setiap kali push ke branch main
+  push:
+    branches: [main]
   # Berjalan secara otomatis setiap hari pukul 00.01 WIB (17.01 UTC)
   schedule:
     - cron: '1 17 * * *'
@@ -16,6 +19,9 @@ concurrency:
   group: 'pages'
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   check-and-build:
     name: Check Commits & Build Static Site
@@ -29,13 +35,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 1. Pengecekan apakah ada push commit baru dalam 24 jam terakhir
+      # 1. Pengecekan pemicu dan komparasi commit
       - name: Check for new commits today
         id: check_commits
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event_name }}" = "push" ]; then
             echo "skip=false" >> $GITHUB_OUTPUT
-            echo "Dijalankan secara manual (workflow_dispatch). Melanjutkan proses build langsung..."
+            echo "Dijalankan oleh event '${{ github.event_name }}'. Melanjutkan proses build langsung tanpa delay..."
             exit 0
           fi
 
@@ -67,7 +73,7 @@ jobs:
         if: steps.check_commits.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       # 4. Install Dependencies
