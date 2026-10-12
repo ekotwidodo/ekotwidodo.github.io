@@ -1,8 +1,10 @@
 name: Deploy Astro site to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Berjalan secara otomatis setiap hari pukul 00.01 WIB (17.01 UTC)
+  schedule:
+    - cron: '1 17 * * *'
+  # Memungkinkan pemicuan manual kapan saja dari dashboard GitHub Actions
   workflow_dispatch:
 
 permissions:
@@ -15,26 +17,72 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Build Static Site
+  check-and-build:
+    name: Check Commits & Build Static Site
     runs-on: ubuntu-latest
+    timeout-minutes: 360
+    outputs:
+      skip: ${{ steps.check_commits.outputs.skip }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # 1. Pengecekan apakah ada push commit baru dalam 24 jam terakhir
+      - name: Check for new commits today
+        id: check_commits
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "Dijalankan secara manual (workflow_dispatch). Melanjutkan proses build langsung..."
+            exit 0
+          fi
+
+          LAST_COMMIT_TIME=$(git log -1 --format=%ct)
+          CURRENT_TIME=$(date +%s)
+          DIFF_HOURS=$(( (CURRENT_TIME - LAST_COMMIT_TIME) / 3600 ))
+          
+          echo "Commit terakhir terdeteksi $DIFF_HOURS jam yang lalu."
+          
+          if [ $DIFF_HOURS -ge 24 ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "Tidak ada push commit baru dalam 24 jam terakhir. Proses publish dibatalkan (skip)."
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "Ditemukan push commit baru! Memulai persiapan publikasi terjadwal."
+          fi
+
+      # 2. Random delay antara 00.01 - 06.00 WIB (1 menit s/d ~5 jam)
+      - name: Random delay before publishing (00.01 - 06.00 WIB)
+        if: steps.check_commits.outputs.skip != 'true' && github.event_name == 'schedule'
+        run: |
+          RANDOM_DELAY=$((RANDOM % 18000 + 60))
+          MINUTES=$((RANDOM_DELAY / 60))
+          echo "Menunggu jeda acak selama $MINUTES menit ($RANDOM_DELAY detik) sebelum publish..."
+          sleep $RANDOM_DELAY
+
+      # 3. Setup Node.js
       - name: Setup Node.js
+        if: steps.check_commits.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
+      # 4. Install Dependencies
       - name: Install dependencies
+        if: steps.check_commits.outputs.skip != 'true'
         run: npm ci
 
+      # 5. Build Astro Site
       - name: Build Astro site
+        if: steps.check_commits.outputs.skip != 'true'
         run: npm run build
 
+      # 6. Upload Pages Artifact
       - name: Upload Pages artifact
+        if: steps.check_commits.outputs.skip != 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -44,7 +92,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
+    needs: check-and-build
+    # Hanya deploy jika proses build tidak di-skip
+    if: needs.check-and-build.outputs.skip != 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages

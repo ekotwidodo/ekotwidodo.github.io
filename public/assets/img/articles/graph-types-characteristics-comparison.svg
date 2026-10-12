@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="100%" height="100%">
+  <defs>
+    <!-- Filter Drop Shadow -->
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+
+    <!-- Marker Arrow for Directed Graph -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="920" height="620" rx="16" fill="#f8fafc"/>
+  <rect x="1" y="1" width="918" height="618" rx="15" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Header Banner -->
+  <g transform="translate(40, 36)">
+    <text x="0" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0f172a">Tiga Karakteristik Utama Struktur Graph</text>
+    <text x="0" y="48" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">Dimensi klasifikasi mendasar yang menentukan bagaimana entitas dan relasi dimodelkan pada machine learning</text>
+  </g>
+
+  <!-- ==================== KOLOM 1: ARAH (DIRECTION) ==================== -->
+  <g transform="translate(40, 110)">
+    <rect width="260" height="470" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Header Card -->
+    <rect x="16" y="16" width="228" height="34" rx="8" fill="#f0f9ff"/>
+    <text x="130" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#0369a1" text-anchor="middle">1. Arah Hubungan (Direction)</text>
+
+    <!-- Sub-panel: Undirected -->
+    <g transform="translate(16, 62)">
+      <rect width="228" height="175" rx="8" fill="#f8fafc" stroke="#f1f5f9"/>
+      <text x="14" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">Undirected (Tanpa Arah)</text>
+      <text x="14" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Hubungan timbal balik simetris</text>
+
+      <!-- Garis bersih berhenti di batas lingkaran (r=22) -->
+      <line x1="87" y1="95" x2="143" y2="95" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+      
+      <!-- Node Rina -->
+      <circle cx="65" cy="95" r="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="65" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Rina</text>
+
+      <!-- Node Dodi -->
+      <circle cx="165" cy="95" r="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+      <text x="165" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Dodi</text>
+
+      <!-- Footer Info -->
+      <rect x="14" y="138" width="200" height="24" rx="4" fill="#eff6ff"/>
+      <text x="114" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#1e40af" text-anchor="middle">Contoh: Hubungan Pertemanan</text>
+    </g>
+
+    <!-- Sub-panel: Directed -->
+    <g transform="translate(16, 252)">
+      <rect width="228" height="200" rx="8" fill="#f8fafc" stroke="#f1f5f9"/>
+      <text x="14" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">Directed (Memiliki Arah)</text>
+      <text x="14" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Ada pihak pengirim &amp; penerima</text>
+
+      <!-- Kotak Label "Follows": Dekat dengan garis (gap 5px), tidak menempel erat/menindas -->
+      <rect x="86" y="80" width="56" height="20" rx="4" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2"/>
+      <text x="114" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#2563eb" text-anchor="middle">Follows</text>
+
+      <!-- Garis berpanah di y=105 -->
+      <line x1="87" y1="105" x2="137" y2="105" stroke="#2563eb" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+      
+      <!-- Node Rina -->
+      <circle cx="65" cy="105" r="22" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="65" y="109" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Rina</text>
+
+      <!-- Node Dodi -->
+      <circle cx="165" cy="105" r="22" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="165" y="109" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e40af" text-anchor="middle">Dodi</text>
+
+      <!-- Footer Info -->
+      <rect x="14" y="158" width="200" height="26" rx="4" fill="#eff6ff"/>
+      <text x="114" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#1e40af" text-anchor="middle">Contoh: Follow Akun, Transaksi Bank</text>
+    </g>
+  </g>
+
+  <!-- ==================== KOLOM 2: BOBOT (WEIGHT) ==================== -->
+  <g transform="translate(330, 110)">
+    <rect width="260" height="470" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Header Card -->
+    <rect x="16" y="16" width="228" height="34" rx="8" fill="#f0fdf4"/>
+    <text x="130" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle">2. Bobot Nilai (Weight)</text>
+
+    <!-- Sub-panel: Unweighted -->
+    <g transform="translate(16, 62)">
+      <rect width="228" height="175" rx="8" fill="#f8fafc" stroke="#f1f5f9"/>
+      <text x="14" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">Unweighted (Tanpa Bobot)</text>
+      <text x="14" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Hanya mencatat status terhubung</text>
+
+      <line x1="62" y1="95" x2="96" y2="95" stroke="#94a3b8" stroke-width="2.5"/>
+      <line x1="132" y1="95" x2="166" y2="95" stroke="#94a3b8" stroke-width="2.5"/>
+
+      <!-- Node Kota A -->
+      <circle cx="44" cy="95" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="44" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">Kota A</text>
+
+      <!-- Node Kota B -->
+      <circle cx="114" cy="95" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="114" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">Kota B</text>
+
+      <!-- Node Kota C -->
+      <circle cx="184" cy="95" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="184" y="99" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">Kota C</text>
+
+      <!-- Footer Info -->
+      <rect x="14" y="138" width="200" height="24" rx="4" fill="#f0fdf4"/>
+      <text x="114" y="154" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#15803d" text-anchor="middle">Status Biner: 1 (Ada) / 0 (Tidak)</text>
+    </g>
+
+    <!-- Sub-panel: Weighted -->
+    <g transform="translate(16, 252)">
+      <rect width="228" height="200" rx="8" fill="#f8fafc" stroke="#f1f5f9"/>
+      <text x="14" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">Weighted (Dengan Bobot)</text>
+      <text x="14" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Menyimpan nilai kuantitatif</text>
+
+      <!-- Kotak Bobot: Dekat dengan garis (y=82..100, garis di y=105, jarak 5px) -->
+      <rect x="63" y="82" width="36" height="18" rx="4" fill="#ffffff" stroke="#86efac" stroke-width="1.2"/>
+      <text x="81" y="95" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#15803d" text-anchor="middle">10km</text>
+
+      <rect x="133" y="82" width="34" height="18" rx="4" fill="#ffffff" stroke="#86efac" stroke-width="1.2"/>
+      <text x="150" y="95" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#15803d" text-anchor="middle">5km</text>
+
+      <!-- Garis antar kota di y=105 -->
+      <line x1="62" y1="105" x2="96" y2="105" stroke="#16a34a" stroke-width="3"/>
+      <line x1="132" y1="105" x2="166" y2="105" stroke="#16a34a" stroke-width="3"/>
+
+      <!-- Node Kota A -->
+      <circle cx="44" cy="105" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="44" y="109" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">Kota A</text>
+
+      <!-- Node Kota B -->
+      <circle cx="114" cy="105" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="114" y="109" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">Kota B</text>
+
+      <!-- Node Kota C -->
+      <circle cx="184" cy="105" r="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="184" y="109" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#166534" text-anchor="middle">Kota C</text>
+
+      <!-- Footer Info -->
+      <rect x="14" y="158" width="200" height="26" rx="4" fill="#f0fdf4"/>
+      <text x="114" y="175" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#15803d" text-anchor="middle">Atribut: Jarak, Biaya, Frekuensi</text>
+    </g>
+  </g>
+
+  <!-- ==================== KOLOM 3: KETERHUBUNGAN ==================== -->
+  <g transform="translate(620, 110)">
+    <rect width="260" height="470" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Header Card -->
+    <rect x="16" y="16" width="228" height="34" rx="8" fill="#faf5ff"/>
+    <text x="130" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#7e22ce" text-anchor="middle">3. Keterhubungan (Connectivity)</text>
+
+    <!-- Sub-panel: Connected -->
+    <g transform="translate(16, 62)">
+      <rect width="228" height="175" rx="8" fill="#f8fafc" stroke="#f1f5f9"/>
+      <text x="14" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">Connected Graph</text>
+      <text x="14" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Ada jalur untuk setiap pasangan node</text>
+
+      <line x1="64" y1="78" x2="100" y2="78" stroke="#a855f7" stroke-width="2.5"/>
+      <line x1="128" y1="78" x2="164" y2="78" stroke="#a855f7" stroke-width="2.5"/>
+      <line x1="114" y1="92" x2="114" y2="104" stroke="#a855f7" stroke-width="2.5"/>
+      <line x1="128" y1="118" x2="164" y2="118" stroke="#a855f7" stroke-width="2.5"/>
+
+      <!-- Nodes A, B, C, D, E -->
+      <circle cx="50" cy="78" r="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+      <text x="50" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#6b21a8" text-anchor="middle">A</text>
+
+      <circle cx="114" cy="78" r="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+      <text x="114" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#6b21a8" text-anchor="middle">B</text>
+
+      <circle cx="178" cy="78" r="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+      <text x="178" y="82" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#6b21a8" text-anchor="middle">C</text>
+
+      <circle cx="114" cy="118" r="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+      <text x="114" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#6b21a8" text-anchor="middle">D</text>
+
+      <circle cx="178" cy="118" r="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+      <text x="178" y="122" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#6b21a8" text-anchor="middle">E</text>
+
+      <!-- Footer Info -->
+      <rect x="14" y="142" width="200" height="22" rx="4" fill="#faf5ff"/>
+      <text x="114" y="157" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#7e22ce" text-anchor="middle">1 Jaringan Utuh (A dapat menjangkau E)</text>
+    </g>
+
+    <!-- Sub-panel: Disconnected -->
+    <g transform="translate(16, 252)">
+      <rect width="228" height="200" rx="8" fill="#f8fafc" stroke="#f1f5f9"/>
+      <text x="14" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155">Disconnected Graph</text>
+      <text x="14" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b">Terpisah menjadi kelompok terisolasi</text>
+
+      <!-- Komponen 1 (A-B-C) -->
+      <line x1="64" y1="76" x2="100" y2="76" stroke="#94a3b8" stroke-width="2.5"/>
+      <line x1="128" y1="76" x2="164" y2="76" stroke="#94a3b8" stroke-width="2.5"/>
+
+      <circle cx="50" cy="76" r="14" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+      <text x="50" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#334155" text-anchor="middle">A</text>
+
+      <circle cx="114" cy="76" r="14" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+      <text x="114" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#334155" text-anchor="middle">B</text>
+
+      <circle cx="178" cy="76" r="14" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+      <text x="178" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#334155" text-anchor="middle">C</text>
+
+      <!-- Garis pemisah komponen terisolasi -->
+      <line x1="28" y1="104" x2="200" y2="104" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+      <!-- Komponen 2 (D-E) -->
+      <line x1="94" y1="132" x2="134" y2="132" stroke="#f87171" stroke-width="2.5"/>
+
+      <circle cx="80" cy="132" r="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+      <text x="80" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#991b1b" text-anchor="middle">D</text>
+
+      <circle cx="148" cy="132" r="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+      <text x="148" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#991b1b" text-anchor="middle">E</text>
+
+      <!-- Footer Info -->
+      <rect x="14" y="160" width="200" height="26" rx="4" fill="#fff1f2"/>
+      <text x="114" y="177" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="middle">2 Connected Components Terpisah</text>
+    </g>
+  </g>
+</svg>

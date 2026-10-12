@@ -13,6 +13,11 @@ tags:
   - "Ontology"
   - "Knowledge Representation"
   - "Data Integration"
+featured: true
+featuredOrder: 3
+series:
+  name: "Semantic Web & Knowledge Graphs"
+  part: 1
 draft: false
 ---
 

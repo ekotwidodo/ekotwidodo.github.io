@@ -37,7 +37,9 @@ const archiveData = articles.map((a) => ({
   formattedDate: formatDate(a.data.date),
   year: new Date(a.data.date).getFullYear(),
   month: new Date(a.data.date).toLocaleDateString('en-US', { month: 'long' }),
-  readingTime: calculateReadingTime(a.body || '')
+  readingTime: calculateReadingTime(a.body || ''),
+  series: a.data.series || null,
+  featured: a.data.featured || false
 }));
 
 function getCategoryColor(category: string): 'purple' | 'indigo' | 'emerald' | 'amber' | 'teal' | 'info' | 'primary' {
@@ -178,6 +180,20 @@ function getCategoryColor(category: string): 'purple' | 'indigo' | 'emerald' | '
                     <Badge variant={categoryVar} size="sm">
                       {article.category}
                     </Badge>
+                    {
+                      article.series && (
+                        <>
+                          <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+                          <span class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800 border border-amber-200/80 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800/60">
+                            <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
+                            <span>{article.series.name} &bull; Part {article.series.part}</span>
+                          </span>
+                        </>
+                      )
+                    }
                   </div>
 
                   <h3 class="mt-2.5 text-lg font-bold text-slate-900 transition-colors group-hover:text-blue-600 sm:text-xl dark:text-white dark:group-hover:text-blue-400 leading-snug">
@@ -222,6 +238,13 @@ function getCategoryColor(category: string): 'purple' | 'indigo' | 'emerald' | '
                     height="136"
                     loading="lazy"
                   />
+                  {
+                    article.featured && (
+                      <span class="absolute top-1.5 left-1.5 inline-flex items-center gap-0.5 rounded-full bg-amber-500/90 px-1.5 py-0.5 text-[9px] font-bold text-white shadow-2xs backdrop-blur-xs">
+                        ★ Featured
+                      </span>
+                    )
+                  }
                 </div>
               </div>
             </article>

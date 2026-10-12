@@ -11,6 +11,9 @@ tags:
   - "Programming"
   - "RStudio"
   - "Data Analysis"
+series:
+  name: "Mastering R Programming & Data Visualization"
+  part: 1
 draft: false
 ---
 

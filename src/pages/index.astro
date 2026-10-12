@@ -1,25 +1,27 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleCard from '@/components/article/ArticleCard.astro';
+import FeaturedArticlesCarousel from '@/components/article/FeaturedArticlesCarousel.astro';
 import SectionHeader from '@/components/common/SectionHeader.astro';
 import Pagination from '@/components/common/Pagination.astro';
 import Button from '@/components/common/Button.astro';
 import GraphCanvas from '@/components/common/GraphCanvas.astro';
 import { siteConfig } from '@/config/site';
-import { getAllArticles } from '@/utils/content';
+import { getAllArticles, getFeaturedArticles } from '@/utils/content';
 
 /**
  * Home Page (/)
  * Front page featuring the Hero section with circular avatar and typing effect,
- * and exclusively displaying the Latest Articles with pagination.
+ * curated Featured Articles, and Latest Articles with pagination.
  */
 const articles = await getAllArticles();
+const homeConfig = siteConfig.pages.home;
+const featuredArticles = await getFeaturedArticles(homeConfig.featured_limit || 5);
 
 const itemsPerPage = siteConfig.pagination.articlesPerPage;
 const totalPages = Math.ceil(articles.length / itemsPerPage);
 const currentPage = 1;
 const paginatedArticles = articles.slice(0, itemsPerPage);
-const homeConfig = siteConfig.pages.home;
 ---
 
 <BaseLayout>
@@ -103,8 +105,20 @@ const homeConfig = siteConfig.pages.home;
     </div>
   </section>
 
-  <!-- Content Container: Exclusively Latest Articles Section -->
-  <div class="mx-auto max-w-6xl px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:px-8">
+  <!-- Content Container: Featured Articles & Latest Articles -->
+  <div class="mx-auto max-w-6xl px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:px-8 space-y-12 sm:space-y-16">
+    <!-- Featured Articles Section (Carousel Slider with left/right arrows) -->
+    {
+      featuredArticles.length > 0 && (
+        <FeaturedArticlesCarousel
+          articles={featuredArticles}
+          title={homeConfig.featured_title || 'Featured Articles'}
+          subtitle={homeConfig.featured_subtitle || 'Curated in-depth guides, practical workflows, and series highlights.'}
+        />
+      )
+    }
+
+    <!-- Latest Articles Section -->
     <section>
       <SectionHeader
         title={homeConfig.articles_title || 'Latest Articles'}

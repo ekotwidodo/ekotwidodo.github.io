@@ -11,6 +11,11 @@ tags:
   - "JupyterLab"
   - "pandas"
   - "Data Visualization"
+featured: true
+featuredOrder: 5
+series:
+  name: "Modern Python Tooling with uv"
+  part: 4
 draft: false
 ---
 

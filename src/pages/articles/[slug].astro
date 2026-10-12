@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
-import { getAllArticles, type ArticleEntry } from '@/utils/content';
+import { getAllArticles, getSeriesNavigation, type ArticleEntry } from '@/utils/content';
 import { calculateReadingTime } from '@/utils/readingTime';
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -24,6 +24,7 @@ interface Props {
 const { article } = Astro.props;
 const { Content } = await render(article);
 const readingTime = calculateReadingTime(article.body || '');
+const seriesNav = await getSeriesNavigation(article);
 
 // Compute related articles (prioritize matching category, overlapping tags, and recent date)
 const allArticles = await getAllArticles();
@@ -62,6 +63,7 @@ const relatedArticles = scoredArticles.slice(0, 2).map((s) => s.item);
   readingTime={readingTime}
   image={article.data.image}
   relatedArticles={relatedArticles}
+  seriesNav={seriesNav}
 >
   <Content />
 </ArticleLayout>

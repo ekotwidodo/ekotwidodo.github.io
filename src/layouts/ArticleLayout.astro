@@ -4,9 +4,11 @@ import Badge from '@/components/common/Badge.astro';
 import Breadcrumbs from '@/components/common/Breadcrumbs.astro';
 import ShareButtons from '@/components/common/ShareButtons.astro';
 import ArticleCard from '@/components/article/ArticleCard.astro';
+import SeriesWidget from '@/components/article/SeriesWidget.astro';
+import SeriesNavBottom from '@/components/article/SeriesNavBottom.astro';
 import { formatDate } from '@/utils/date';
 import { siteConfig } from '@/config/site';
-import type { ArticleEntry } from '@/utils/content';
+import type { ArticleEntry, SeriesNavigationInfo } from '@/utils/content';
 
 /**
  * ArticleLayout Component
@@ -15,9 +17,10 @@ import type { ArticleEntry } from '@/utils/content';
  * 2. Dynamic Reading Progress Bar along the top of the article.
  * 3. Author byline row (Circular Avatar, Name, Follow badge, Reading time · Date).
  * 4. Featured Cover image banner.
- * 5. Article prose content with uniform, readable typography.
- * 6. Tags & Bottom action bar (Icon-only share buttons).
- * 7. Related Articles ("Artikel Terkait") showcase.
+ * 5. Article Series Widget (if article belongs to a series).
+ * 6. Article prose content with uniform, readable typography.
+ * 7. Tags & Bottom action bar (Icon-only share buttons).
+ * 8. Series Next/Previous navigation and Related Articles showcase.
  */
 interface Props {
   title: string;
@@ -28,6 +31,7 @@ interface Props {
   readingTime: string;
   image?: string;
   relatedArticles?: ArticleEntry[];
+  seriesNav?: SeriesNavigationInfo;
 }
 
 const {
@@ -38,7 +42,8 @@ const {
   tags,
   readingTime,
   image,
-  relatedArticles = []
+  relatedArticles = [],
+  seriesNav
 } = Astro.props;
 
 /**
@@ -163,10 +168,16 @@ const breadcrumbs = [
       )
     }
 
+    <!-- Article Series Widget (Top Checklist) -->
+    {seriesNav && <SeriesWidget seriesNav={seriesNav} />}
+
     <!-- Markdown Content Body dengan Tipografi Editorial & Drop-Cap -->
     <div class="prose-content py-2 sm:py-4 text-base leading-relaxed text-slate-700 dark:text-slate-200">
       <slot />
     </div>
+
+    <!-- Article Series Navigation (Bottom Prev/Next) -->
+    {seriesNav && <SeriesNavBottom seriesNav={seriesNav} />}
 
     <!-- Bottom Action Divider Bar (Claps + Icon-Only Share Buttons) -->
     <div class="my-8 flex flex-wrap items-center justify-between gap-3 border-y border-slate-200/90 py-2.5 dark:border-slate-800/90">

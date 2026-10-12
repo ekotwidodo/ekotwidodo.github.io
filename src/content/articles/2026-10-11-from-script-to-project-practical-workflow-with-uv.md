@@ -10,6 +10,11 @@ tags:
   - "Software Engineering"
   - "Python Development"
   - "Test Automation"
+featured: true
+featuredOrder: 5
+series:
+  name: "Modern Python Tooling with uv"
+  part: 3
 draft: false
 ---
 

@@ -19,6 +19,9 @@ const PageHeaderSchema = z.object({
 const HomePageSchema = z.object({
   greeting: z.string().default("Hi, I'm"),
   typewriter_strings: z.array(z.string()).default([]),
+  featured_title: z.string().optional().default('Featured Articles'),
+  featured_subtitle: z.string().optional().default('Curated in-depth guides, practical workflows, and series highlights.'),
+  featured_limit: z.number().int().positive().max(5).optional().default(5),
   articles_title: z.string().default(''),
   articles_subtitle: z.string().default(''),
   menu_label: z.string().optional().default('Home')

@@ -11,6 +11,11 @@ tags:
   - "Data Wrangling"
   - "RStudio"
   - "Statistika"
+featured: true
+featuredOrder: 10
+series:
+  name: "Mastering R Programming & Data Visualization"
+  part: 2
 draft: false
 ---
 

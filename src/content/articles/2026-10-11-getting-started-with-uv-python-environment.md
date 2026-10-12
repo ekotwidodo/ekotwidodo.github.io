@@ -10,6 +10,11 @@ tags:
   - "Developer Tools"
   - "Environment Management"
   - "DevOps"
+featured: true
+featuredOrder: 7
+series:
+  name: "Modern Python Tooling with uv"
+  part: 1
 draft: false
 ---
 

@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="100%" height="100%">
+  <defs>
+    <!-- Soft Clean Drop Shadows -->
+    <filter id="card-shadow" x="-8%" y="-8%" width="116%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#0f172a" flood-opacity="0.06"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#0f172a" flood-opacity="0.04"/>
+    </filter>
+    <filter id="badge-shadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Node Color Accents -->
+    <linearGradient id="avatar-rina" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="avatar-sari" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="avatar-dodi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+    <linearGradient id="avatar-bima" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="580" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ================= 1. HEADER SECTION ================= -->
+  <g transform="translate(48, 36)">
+    <text x="0" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#0f172a">Representasi Graph: Node (Entitas) &amp; Edge (Relasi)</text>
+    <text x="0" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" fill="#64748b">Jejaring pertemanan mahasiswa dan potensi tugas analitik Machine Learning</text>
+  </g>
+
+  <!-- ================= 2. GRAPH NETWORK CONNECTIONS (EDGES) ================= -->
+
+  <!-- Edge 1: Rina (234, 240) to Sari (387, 175) -->
+  <line x1="234" y1="240" x2="387" y2="175" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Label: Rina - Sari -->
+  <g transform="translate(310, 207)">
+    <rect x="-35" y="-11" width="70" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#badge-shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#475569">berteman</text>
+  </g>
+
+  <!-- Edge 2: Rina (234, 280) to Dodi (387, 345) -->
+  <line x1="234" y1="280" x2="387" y2="345" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Label: Rina - Dodi -->
+  <g transform="translate(310, 312)">
+    <rect x="-35" y="-11" width="70" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#badge-shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#475569">berteman</text>
+  </g>
+
+  <!-- Edge 3: Dodi (573, 345) to Bima (726, 280) -->
+  <line x1="573" y1="345" x2="726" y2="280" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Label: Dodi - Bima -->
+  <g transform="translate(650, 312)">
+    <rect x="-35" y="-11" width="70" height="22" rx="11" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#badge-shadow)"/>
+    <text x="0" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#475569">berteman</text>
+  </g>
+
+  <!-- Edge 4 (Potential Link): Rina (234, 260) straight to Bima (726, 260) -->
+  <line x1="234" y1="260" x2="726" y2="260" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,6" stroke-linecap="round"/>
+  <!-- Link Prediction Badge centered in the middle opening -->
+  <g transform="translate(480, 260)">
+    <rect x="-115" y="-15" width="230" height="30" rx="15" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5" filter="url(#badge-shadow)"/>
+    <circle cx="-96" cy="0" r="4.5" fill="#f59e0b"/>
+    <text x="6" y="4" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#b45309">Prediksi Relasi? (Link Prediction)</text>
+  </g>
+
+  <!-- ================= 3. SELF-CONTAINED ENTITY CARDS (NODES) ================= -->
+
+  <!-- NODE 1: RINA (Left: x=48, y=219, w=186, h=82) -->
+  <g transform="translate(48, 219)" filter="url(#card-shadow)">
+    <rect width="186" height="82" rx="12" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <!-- Avatar Icon -->
+    <circle cx="28" cy="28" r="15" fill="url(#avatar-rina)"/>
+    <text x="28" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">R</text>
+    <!-- Name & Node Label -->
+    <text x="52" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Rina</text>
+    <rect x="52" y="29" width="42" height="15" rx="4" fill="#eff6ff"/>
+    <text x="73" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#2563eb">NODE</text>
+    <!-- Attribute Pill Inside Card -->
+    <rect x="12" y="52" width="162" height="20" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="93" y="66" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#1e40af">Informatika • Semester 4</text>
+  </g>
+
+  <!-- NODE 2: SARI (Top Center: x=387, y=119, w=186, h=82) -->
+  <g transform="translate(387, 119)" filter="url(#card-shadow)">
+    <rect width="186" height="82" rx="12" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5"/>
+    <!-- Avatar Icon -->
+    <circle cx="28" cy="28" r="15" fill="url(#avatar-sari)"/>
+    <text x="28" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">S</text>
+    <!-- Name & Node Label -->
+    <text x="52" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Sari</text>
+    <rect x="52" y="29" width="42" height="15" rx="4" fill="#ecfeff"/>
+    <text x="73" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#0891b2">NODE</text>
+    <!-- Attribute Pill Inside Card -->
+    <rect x="12" y="52" width="162" height="20" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="93" y="66" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#0e7490">Informatika • Semester 6</text>
+  </g>
+
+  <!-- NODE 3: DODI (Bottom Center: x=387, y=319, w=186, h=82) -->
+  <g transform="translate(387, 319)" filter="url(#card-shadow)">
+    <rect width="186" height="82" rx="12" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.5"/>
+    <!-- Avatar Icon -->
+    <circle cx="28" cy="28" r="15" fill="url(#avatar-dodi)"/>
+    <text x="28" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">D</text>
+    <!-- Name & Node Label -->
+    <text x="52" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Dodi</text>
+    <rect x="52" y="29" width="42" height="15" rx="4" fill="#eef2ff"/>
+    <text x="73" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#4f46e5">NODE</text>
+    <!-- Attribute Pill Inside Card -->
+    <rect x="12" y="52" width="162" height="20" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="93" y="66" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#3730a3">Statistika • Semester 4</text>
+  </g>
+
+  <!-- NODE 4: BIMA (Right: x=726, y=219, w=186, h=82) -->
+  <g transform="translate(726, 219)" filter="url(#card-shadow)">
+    <rect width="186" height="82" rx="12" fill="#ffffff" stroke="#a7f3d0" stroke-width="1.5"/>
+    <!-- Avatar Icon -->
+    <circle cx="28" cy="28" r="15" fill="url(#avatar-bima)"/>
+    <text x="28" y="33" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#ffffff">B</text>
+    <!-- Name & Node Label -->
+    <text x="52" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Bima</text>
+    <rect x="52" y="29" width="42" height="15" rx="4" fill="#ecfdf5"/>
+    <text x="73" y="40" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#059669">NODE</text>
+    <!-- Attribute Pill Inside Card -->
+    <rect x="12" y="52" width="162" height="20" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="93" y="66" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#065f46">Sistem Informasi • Semester 4</text>
+  </g>
+
+  <!-- ================= 4. THREE DISTINCT TASK CARDS (BOTTOM) ================= -->
+  
+  <!-- Task 1 Card (x=48, w=266, h=92) -->
+  <g transform="translate(48, 442)" filter="url(#card-shadow)">
+    <rect width="266" height="92" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <circle cx="26" cy="26" r="13" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="26" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#2563eb">1</text>
+    <text x="48" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0f172a">Node Classification</text>
+    <text x="48" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#2563eb">Prediksi Label Simpul</text>
+    <text x="14" y="64" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">Memprediksi atribut atau kategori simpul</text>
+    <text x="14" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">berdasarkan relasi tetangganya.</text>
+  </g>
+
+  <!-- Task 2 Card (x=347, w=266, h=92) -->
+  <g transform="translate(347, 442)" filter="url(#card-shadow)">
+    <rect width="266" height="92" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <circle cx="26" cy="26" r="13" fill="#fffbeb" stroke="#fde68a" stroke-width="1"/>
+    <text x="26" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#d97706">2</text>
+    <text x="48" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0f172a">Link Prediction</text>
+    <text x="48" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#d97706">Prediksi Relasi Baru</text>
+    <text x="14" y="64" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">Memprediksi peluang terbentuknya edge</text>
+    <text x="14" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">antara dua node (misal: Rina &amp; Bima).</text>
+  </g>
+
+  <!-- Task 3 Card (x=646, w=266, h=92) -->
+  <g transform="translate(646, 442)" filter="url(#card-shadow)">
+    <rect width="266" height="92" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2"/>
+    <circle cx="26" cy="26" r="13" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="26" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#16a34a">3</text>
+    <text x="48" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#0f172a">Community Detection</text>
+    <text x="48" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#16a34a">Deteksi Komunitas</text>
+    <text x="14" y="64" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">Menemukan sub-kelompok yang memiliki</text>
+    <text x="14" y="78" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">interaksi rapat secara otomatis.</text>
+  </g>
+</svg>

@@ -11,6 +11,11 @@ tags:
   - "Statistika"
   - "Data Analytics"
   - "RStudio"
+featured: true
+featuredOrder: 9
+series:
+  name: "Mastering R Programming & Data Visualization"
+  part: 3
 draft: false
 ---
 

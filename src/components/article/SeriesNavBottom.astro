@@ -1,0 +1,69 @@
+---
+import type { SeriesNavigationInfo } from '@/utils/content';
+
+/**
+ * SeriesNavBottom Component
+ * Clean previous/next cards at the bottom of the article to navigate through a series.
+ */
+interface Props {
+  seriesNav: SeriesNavigationInfo;
+  className?: string;
+}
+
+const { seriesNav, className = '' } = Astro.props;
+const { prevArticle, nextArticle, seriesName } = seriesNav;
+
+if (!prevArticle && !nextArticle) {
+  return;
+}
+---
+
+<div class={`my-8 border-t border-slate-200/90 pt-6 dark:border-slate-800/90 ${className}`}>
+  <div class="mb-3 flex items-center justify-between">
+    <span class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 font-mono">
+      Series Navigation &bull; {seriesName}
+    </span>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- Previous Part Card -->
+    {
+      prevArticle ? (
+        <a
+          href={`/articles/${prevArticle.id.replace(/\.(md|mdx)$/, '')}`}
+          class="group flex flex-col justify-between rounded-xl border border-slate-200/80 bg-white p-4 transition-all hover:border-blue-400 hover:shadow-xs dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-blue-500"
+        >
+          <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1">
+            <span>&larr; Previous</span>
+            <span>(Part {prevArticle.data.series?.part})</span>
+          </span>
+          <span class="mt-1 text-sm font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 line-clamp-2">
+            {prevArticle.data.title}
+          </span>
+        </a>
+      ) : (
+        <div class="hidden sm:block" />
+      )
+    }
+
+    <!-- Next Part Card -->
+    {
+      nextArticle ? (
+        <a
+          href={`/articles/${nextArticle.id.replace(/\.(md|mdx)$/, '')}`}
+          class="group flex flex-col justify-between rounded-xl border border-slate-200/80 bg-white p-4 transition-all hover:border-blue-400 hover:shadow-xs text-right dark:border-slate-800 dark:bg-slate-900/60 dark:hover:border-blue-500"
+        >
+          <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex items-center justify-end gap-1">
+            <span>(Part {nextArticle.data.series?.part})</span>
+            <span>Next &rarr;</span>
+          </span>
+          <span class="mt-1 text-sm font-bold text-slate-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 line-clamp-2">
+            {nextArticle.data.title}
+          </span>
+        </a>
+      ) : (
+        <div class="hidden sm:block" />
+      )
+    }
+  </div>
+</div>

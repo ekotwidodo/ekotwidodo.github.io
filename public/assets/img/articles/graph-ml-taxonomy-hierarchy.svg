@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 530" width="100%" height="100%">
+  <defs>
+    <!-- Soft Crisp Drop Shadows -->
+    <filter id="shadow-sm" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.05"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#0f172a" flood-opacity="0.03"/>
+    </filter>
+    <filter id="shadow-md" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.07"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.04"/>
+    </filter>
+
+    <!-- Header Linear Gradient -->
+    <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Background (Light Theme) -->
+  <rect width="960" height="530" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ================= TOP BANNER ================= -->
+  <g transform="translate(180, 26)">
+    <rect x="0" y="0" width="600" height="88" rx="14" fill="url(#header-grad)" filter="url(#shadow-md)"/>
+    
+    <!-- Header Titles -->
+    <text x="32" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff">
+      Machine Learning on Graphs
+    </text>
+    <text x="32" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="12.5" font-weight="400" fill="#cbd5e1">
+      Tiga tingkatan pendekatan untuk mengekstrak pengetahuan dari struktur jaringan
+    </text>
+
+    <!-- Network decorative icon on the right -->
+    <g transform="translate(535, 46)" opacity="0.6">
+      <circle cx="-16" cy="-12" r="5" fill="#60a5fa"/>
+      <circle cx="16" cy="-8" r="4" fill="#a78bfa"/>
+      <circle cx="0" cy="14" r="6" fill="#34d399"/>
+      <line x1="-16" y1="-12" x2="16" y2="-8" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="-16" y1="-12" x2="0" y2="14" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="16" y1="-8" x2="0" y2="14" stroke="#94a3b8" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- ================= BRANCHING CONNECTORS ================= -->
+  <!-- Center Stem down -->
+  <line x1="480" y1="116" x2="480" y2="144" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <!-- Horizontal Distribution Line -->
+  <line x1="186" y1="144" x2="774" y2="144" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Vertical Drops to 3 Columns -->
+  <line x1="186" y1="144" x2="186" y2="168" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="480" y1="144" x2="480" y2="168" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="774" y1="144" x2="774" y2="168" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- ================= PILLAR 1: METRIK TRADISIONAL ================= -->
+  <g transform="translate(48, 168)">
+    <!-- Column Card (w=276, h=296) -->
+    <rect x="0" y="0" width="276" height="296" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-sm)"/>
+    
+    <!-- Top Accent Bar -->
+    <path d="M 0 12 Q 0 0 12 0 L 264 0 Q 276 0 276 12 L 276 6 L 0 6 Z" fill="#2563eb"/>
+
+    <!-- Pillar Number & Tag -->
+    <g transform="translate(16, 20)">
+      <rect x="0" y="0" width="26" height="26" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+      <text x="13" y="18" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#2563eb">1</text>
+      <text x="36" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a">Metrik Tradisional</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="16" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#2563eb">Feature Engineering Manual</text>
+    <text x="16" y="84" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">
+      Karakteristik topologi diekstraksi
+    </text>
+    <text x="16" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">
+      manual sebagai fitur tabular.
+    </text>
+
+    <!-- Divider -->
+    <line x1="16" y1="110" x2="260" y2="110" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Key Metrics Block -->
+    <text x="16" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#334155">Contoh Metrik:</text>
+    <g transform="translate(16, 140)">
+      <circle cx="4" cy="7" r="2.5" fill="#2563eb"/>
+      <text x="14" y="11" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">Derajat Simpul (Node Degree)</text>
+
+      <circle cx="4" cy="27" r="2.5" fill="#2563eb"/>
+      <text x="14" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">PageRank &amp; Centrality Skor</text>
+
+      <circle cx="4" cy="47" r="2.5" fill="#2563eb"/>
+      <text x="14" y="51" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">Clustering Coefficient</text>
+    </g>
+
+    <!-- Target Model Pill -->
+    <g transform="translate(16, 224)">
+      <rect x="0" y="0" width="244" height="54" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="12" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#64748b">MODEL PEMBELAJARAN:</text>
+      <text x="12" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#0f172a">Random Forest, XGBoost, SVM</text>
+    </g>
+  </g>
+
+  <!-- ================= PILLAR 2: GRAPH REPRESENTATION LEARNING ================= -->
+  <g transform="translate(342, 168)">
+    <!-- Column Card (w=276, h=296) -->
+    <rect x="0" y="0" width="276" height="296" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-sm)"/>
+    
+    <!-- Top Accent Bar -->
+    <path d="M 0 12 Q 0 0 12 0 L 264 0 Q 276 0 276 12 L 276 6 L 0 6 Z" fill="#7c3aed"/>
+
+    <!-- Pillar Number & Tag -->
+    <g transform="translate(16, 20)">
+      <rect x="0" y="0" width="26" height="26" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+      <text x="13" y="18" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#7c3aed">2</text>
+      <text x="36" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a">Representation Learning</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="16" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#7c3aed">Shallow Node Embeddings</text>
+    <text x="16" y="84" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">
+      Memetakan simpul menjadi vektor
+    </text>
+    <text x="16" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">
+      numerik padat secara otomatis.
+    </text>
+
+    <!-- Divider -->
+    <line x1="16" y1="110" x2="260" y2="110" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Key Methods Block -->
+    <text x="16" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#334155">Metode Utama:</text>
+    <g transform="translate(16, 140)">
+      <circle cx="4" cy="7" r="2.5" fill="#7c3aed"/>
+      <text x="14" y="11" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">DeepWalk (Random Walk)</text>
+
+      <circle cx="4" cy="27" r="2.5" fill="#7c3aed"/>
+      <text x="14" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">Node2Vec (Biased Walk)</text>
+
+      <circle cx="4" cy="47" r="2.5" fill="#7c3aed"/>
+      <text x="14" y="51" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">LINE &amp; Matrix Factorization</text>
+    </g>
+
+    <!-- Characteristics Pill -->
+    <g transform="translate(16, 224)">
+      <rect x="0" y="0" width="244" height="54" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="12" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#64748b">KARAKTERISTIK:</text>
+      <text x="12" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#0f172a">Transductive • Vektor per-simpul</text>
+    </g>
+  </g>
+
+  <!-- ================= PILLAR 3: GRAPH NEURAL NETWORKS (GNN) ================= -->
+  <g transform="translate(636, 168)">
+    <!-- Column Card (w=276, h=296) -->
+    <rect x="0" y="0" width="276" height="296" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#shadow-sm)"/>
+    
+    <!-- Top Accent Bar -->
+    <path d="M 0 12 Q 0 0 12 0 L 264 0 Q 276 0 276 12 L 276 6 L 0 6 Z" fill="#059669"/>
+
+    <!-- Pillar Number & Tag -->
+    <g transform="translate(16, 20)">
+      <rect x="0" y="0" width="26" height="26" rx="6" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+      <text x="13" y="18" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#059669">3</text>
+      <text x="36" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="800" fill="#0f172a">Graph Neural Networks</text>
+    </g>
+
+    <!-- Subtitle -->
+    <text x="16" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#059669">Deep Representation Learning</text>
+    <text x="16" y="84" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">
+      Model end-to-end dengan agregasi
+    </text>
+    <text x="16" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="400" fill="#64748b">
+      pesan antartetangga (message passing).
+    </text>
+
+    <!-- Divider -->
+    <line x1="16" y1="110" x2="260" y2="110" stroke="#f1f5f9" stroke-width="1.5"/>
+
+    <!-- Key Architectures Block -->
+    <text x="16" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#334155">Arsitektur Utama:</text>
+    <g transform="translate(16, 140)">
+      <circle cx="4" cy="7" r="2.5" fill="#059669"/>
+      <text x="14" y="11" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">GCN (Graph Convolutional)</text>
+
+      <circle cx="4" cy="27" r="2.5" fill="#059669"/>
+      <text x="14" y="31" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">GraphSAGE (Sampling Tetangga)</text>
+
+      <circle cx="4" cy="47" r="2.5" fill="#059669"/>
+      <text x="14" y="51" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569">GAT (Graph Attention Networks)</text>
+    </g>
+
+    <!-- Characteristics Pill -->
+    <g transform="translate(16, 224)">
+      <rect x="0" y="0" width="244" height="54" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="12" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#64748b">KARAKTERISTIK:</text>
+      <text x="12" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#0f172a">Inductive • Generalisasi graf baru</text>
+    </g>
+  </g>
+
+  <!-- ================= BOTTOM PROGRESSION FOOTNOTE ================= -->
+  <g transform="translate(48, 482)">
+    <rect x="0" y="0" width="864" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="432" y="18" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#475569">
+      💡 Evolusi: Rekayasa fitur manual ➔ Representasi geometris (shallow) ➔ Deep Learning end-to-end (GNN).
+    </text>
+  </g>
+</svg>

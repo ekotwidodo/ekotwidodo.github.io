@@ -13,6 +13,11 @@ tags:
   - "Python"
   - "RDFLib"
   - "Knowledge Representation"
+featured: true
+featuredOrder: 2
+series:
+  name: "Semantic Web & Knowledge Graphs"
+  part: 2
 draft: false
 ---
 

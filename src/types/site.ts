@@ -58,6 +58,9 @@ export interface PageHeaderConfig {
 export interface HomePageConfig {
   greeting?: string;
   typewriter_strings?: string[];
+  featured_title?: string;
+  featured_subtitle?: string;
+  featured_limit?: number;
   articles_title?: string;
   articles_subtitle?: string;
   menu_label?: string;

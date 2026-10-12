@@ -12,6 +12,11 @@ tags:
   - "Backend Development"
   - "API Development"
   - "Software Engineering"
+featured: true
+featuredOrder: 4
+series:
+  name: "Modern Python Tooling with uv"
+  part: 5
 draft: false
 ---
 

@@ -10,6 +10,11 @@ tags:
   - "Project Management"
   - "Dependency Management"
   - "Software Engineering"
+featured: true
+featuredOrder: 6
+series:
+  name: "Modern Python Tooling with uv"
+  part: 2
 draft: false
 ---
 

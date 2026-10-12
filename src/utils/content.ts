@@ -44,6 +44,124 @@ export async function getAllArticles(): Promise<ArticleEntry[]> {
 }
 
 /**
+ * Fetch featured articles sorted by featuredOrder ascending (if present), then date descending
+ */
+export async function getFeaturedArticles(limit: number = 5): Promise<ArticleEntry[]> {
+  const articles = await getAllArticles();
+  const featured = articles.filter((a) => a.data.featured);
+
+  const sorted = featured.sort((a, b) => {
+    // If both have featuredOrder, sort by order ascending
+    if (a.data.featuredOrder !== undefined && b.data.featuredOrder !== undefined) {
+      if (a.data.featuredOrder !== b.data.featuredOrder) {
+        return a.data.featuredOrder - b.data.featuredOrder;
+      }
+    } else if (a.data.featuredOrder !== undefined) {
+      return -1;
+    } else if (b.data.featuredOrder !== undefined) {
+      return 1;
+    }
+
+    // Default to date descending
+    const timeA = new Date(a.data.date).getTime();
+    const timeB = new Date(b.data.date).getTime();
+    return timeB - timeA;
+  });
+
+  // Strictly enforce maximum of 5 featured articles
+  const effectiveLimit = Math.min(Math.max(1, limit), 5);
+  return sorted.slice(0, effectiveLimit);
+}
+
+/**
+ * Fetch all articles belonging to a specific series, sorted by part number ascending
+ */
+export async function getArticlesBySeries(seriesName: string): Promise<ArticleEntry[]> {
+  const articles = await getAllArticles();
+  const normalizedTarget = seriesName.trim().toLowerCase();
+
+  const seriesArticles = articles.filter(
+    (a) => a.data.series && a.data.series.name.trim().toLowerCase() === normalizedTarget
+  );
+
+  return seriesArticles.sort((a, b) => {
+    const partA = a.data.series?.part ?? 0;
+    const partB = b.data.series?.part ?? 0;
+    return partA - partB;
+  });
+}
+
+/**
+ * Interface representing series navigation context for an article
+ */
+export interface SeriesNavigationInfo {
+  seriesName: string;
+  currentPart: number;
+  totalParts: number;
+  allParts: ArticleEntry[];
+  prevArticle?: ArticleEntry;
+  nextArticle?: ArticleEntry;
+}
+
+/**
+ * Get series navigation details for a given article
+ */
+export async function getSeriesNavigation(
+  currentArticle: ArticleEntry
+): Promise<SeriesNavigationInfo | undefined> {
+  if (!currentArticle.data.series) return undefined;
+
+  const seriesName = currentArticle.data.series.name;
+  const currentPart = currentArticle.data.series.part;
+  const allParts = await getArticlesBySeries(seriesName);
+
+  if (allParts.length === 0) return undefined;
+
+  const currentIndex = allParts.findIndex((item) => item.id === currentArticle.id);
+  const prevArticle = currentIndex > 0 ? allParts[currentIndex - 1] : undefined;
+  const nextArticle =
+    currentIndex >= 0 && currentIndex < allParts.length - 1 ? allParts[currentIndex + 1] : undefined;
+
+  return {
+    seriesName,
+    currentPart,
+    totalParts: allParts.length,
+    allParts,
+    prevArticle,
+    nextArticle
+  };
+}
+
+/**
+ * Extract all distinct series names with article counts
+ */
+export async function getAllSeries(): Promise<{ name: string; count: number; articles: ArticleEntry[] }[]> {
+  const articles = await getAllArticles();
+  const seriesMap = new Map<string, ArticleEntry[]>();
+
+  for (const article of articles) {
+    if (article.data.series?.name) {
+      const name = article.data.series.name.trim();
+      const existing = seriesMap.get(name) || [];
+      existing.push(article);
+      seriesMap.set(name, existing);
+    }
+  }
+
+  const result: { name: string; count: number; articles: ArticleEntry[] }[] = [];
+  for (const [name, seriesArticles] of seriesMap.entries()) {
+    seriesArticles.sort((a, b) => (a.data.series?.part ?? 0) - (b.data.series?.part ?? 0));
+    result.push({
+      name,
+      count: seriesArticles.length,
+      articles: seriesArticles
+    });
+  }
+
+  return result.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
  * Fetch all research entries sorted by year and datetime descending
  */
 export async function getAllResearch(): Promise<ResearchEntry[]> {

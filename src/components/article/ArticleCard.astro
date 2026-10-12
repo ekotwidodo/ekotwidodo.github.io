@@ -43,7 +43,7 @@ const categoryVariant = getCategoryColor(article.data.category);
   <!-- Left: Content Meta, Title, and Summary -->
   <div class="flex flex-1 flex-col justify-between w-full">
     <div>
-      <!-- Meta Information (Date, Reading Time, Category) -->
+      <!-- Meta Information (Date, Reading Time, Category, Series) -->
       <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
         <time datetime={article.data.date.toISOString()}>
           {formattedDate}
@@ -54,6 +54,20 @@ const categoryVariant = getCategoryColor(article.data.category);
         <Badge variant={categoryVariant} size="sm">
           {article.data.category}
         </Badge>
+        {
+          article.data.series && (
+            <>
+              <span class="text-slate-300 dark:text-slate-700">&bull;</span>
+              <span class="inline-flex items-center gap-1 rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800 border border-amber-200/80 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800/60">
+                <svg class="h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                <span>{article.data.series.name} &bull; Part {article.data.series.part}</span>
+              </span>
+            </>
+          )
+        }
       </div>
 
       <!-- Title with Link -->
@@ -103,6 +117,13 @@ const categoryVariant = getCategoryColor(article.data.category);
         height="136"
         loading="lazy"
       />
+      {
+        article.data.featured && (
+          <span class="absolute top-1.5 left-1.5 inline-flex items-center gap-0.5 rounded-full bg-amber-500/90 px-1.5 py-0.5 text-[9px] font-bold text-white shadow-2xs backdrop-blur-xs">
+            ★ Featured
+          </span>
+        )
+      }
     </div>
   </div>
 </article>

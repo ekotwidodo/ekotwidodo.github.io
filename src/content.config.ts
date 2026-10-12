@@ -15,6 +15,14 @@ const articles = defineCollection({
     category: z.string().default(''),
     tags: z.array(z.string()).default([]),
     image: z.string().optional().default(''),
+    featured: z.boolean().default(false),
+    featuredOrder: z.number().optional(),
+    series: z
+      .object({
+        name: z.string(),
+        part: z.number()
+      })
+      .optional(),
     draft: z.boolean().default(false)
   })
 });
