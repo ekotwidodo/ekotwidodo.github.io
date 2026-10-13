@@ -75,6 +75,7 @@ export interface AboutHeroConfig {
   badges?: AboutHeroBadge[];
   heading?: string;
   description?: string;
+  avatar?: string;
   commitment?: {
     enabled?: boolean;
     title?: string;

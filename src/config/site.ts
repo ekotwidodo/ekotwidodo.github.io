@@ -36,12 +36,13 @@ const AboutHeroSchema = z.object({
   badges: z.array(AboutHeroBadgeSchema).optional().default([]),
   heading: z.string().optional().default(''),
   description: z.string().optional().default(''),
+  avatar: z.string().optional().default('https://avatars.githubusercontent.com/u/90574398?v=4'),
   commitment: z.object({
     enabled: z.boolean().default(true),
     title: z.string().default(''),
     description: z.string().default('')
   }).optional().default(() => ({ enabled: true, title: '', description: '' }))
-}).optional().default(() => ({ badges: [], heading: '', description: '', commitment: { enabled: true, title: '', description: '' } }));
+}).optional().default(() => ({ badges: [], heading: '', description: '', avatar: 'https://avatars.githubusercontent.com/u/90574398?v=4', commitment: { enabled: true, title: '', description: '' } }));
 
 const AboutDomainItemSchema = z.object({
   id: z.string(),

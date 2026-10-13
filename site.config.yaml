@@ -23,7 +23,7 @@ author:
   title: "IT Specialist & AI Engineer"
   affiliation: "BPS - Statistics Indonesia"
   location: "Bandar Lampung & Jakarta, Indonesia"
-  avatar: "/assets/img/ekoteguh.jpg"
+  avatar: "https://avatars.githubusercontent.com/u/90574398?v=4"
   bio: "IT Specialist at Statistics Indonesia, focusing on Data, Knowledge, and Artificial Intelligence Engineering."
   email: "mailto:ekotwidodo@gmail.com"
 
@@ -90,6 +90,7 @@ pages:
     meta_title: "About | Eko Teguh Widodo"
     meta_description: "About Eko Teguh Widodo's personal IT portal, focus areas in Artificial Intelligence, publishing commitment, and professional background."
     hero:
+      avatar: "https://avatars.githubusercontent.com/u/90574398?v=4"
       badges:
         - text: "Personal IT Portal"
           variant: "primary"

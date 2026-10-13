@@ -80,8 +80,7 @@ ekotwidodo.github.io/
 ├── public/
 │   ├── assets/
 │   │   └── img/
-│   │       ├── avatar.png          # Fallback author avatar
-│   │       └── ekoteguh.jpg        # Primary author profile photo
+│   │       └── articles/           # Article featured images & illustrations
 │   ├── favicon.svg                 # Website favicon
 │   └── robots.txt                  # SEO crawler directives
 ├── src/
@@ -202,7 +201,7 @@ author:
   title: "IT Specialist & AI Engineer"
   affiliation: "BPS - Statistics Indonesia"
   location: "Bandar Lampung & Jakarta, Indonesia"
-  avatar: "/assets/img/ekoteguh.jpg"
+  avatar: "https://avatars.githubusercontent.com/u/90574398?v=4"
   bio: "IT Specialist at Statistics Indonesia, focusing on Data, Knowledge, and Artificial Intelligence Engineering."
   email: "mailto:ekotwidodo@gmail.com"
 

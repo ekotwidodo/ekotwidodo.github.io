@@ -29,8 +29,9 @@ const {
 const displayArticles = articles.slice(0, 5);
 ---
 
-<section
+<div
   class={`relative ${className}`}
+  role="region"
   aria-roledescription="carousel"
   aria-label={title}
 >
@@ -169,7 +170,7 @@ const displayArticles = articles.slice(0, 5);
       </div>
     )
   }
-</section>
+</div>
 
 <script>
   function setupFeaturedCarousel() {

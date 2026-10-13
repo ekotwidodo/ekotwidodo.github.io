@@ -1,7 +1,7 @@
 ---
-import { mainNavItems } from '@/config/navigation';
-import ThemeToggle from '@/components/common/ThemeToggle.astro';
-import { siteConfig } from '@/config/site';
+import { mainNavItems } from "@/config/navigation";
+import ThemeToggle from "@/components/common/ThemeToggle.astro";
+import { siteConfig } from "@/config/site";
 
 /**
  * Main Header & Navigation Bar
@@ -10,8 +10,8 @@ import { siteConfig } from '@/config/site';
 const currentPath = Astro.url.pathname;
 
 function isCurrent(href: string): boolean {
-  if (href === '/') {
-    return currentPath === '/' || currentPath.startsWith('/page/');
+  if (href === "/") {
+    return currentPath === "/" || currentPath.startsWith("/page/");
   }
   return currentPath.startsWith(href);
 }
@@ -21,15 +21,19 @@ function isCurrent(href: string): boolean {
   id="main-header"
   class="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 shadow-xs backdrop-blur-md transition-all duration-300 dark:border-slate-800/80 dark:bg-slate-900/95 dark:shadow-slate-950/20"
 >
-  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+  <div
+    class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8"
+  >
     <!-- Brand / Logo -->
     <a
       href="/"
       class="group flex items-center gap-3 text-slate-900 transition-colors dark:text-white"
     >
-      <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-slate-200/90 dark:ring-slate-700/80 shadow-xs overflow-hidden transition-all group-hover:scale-105">
+      <div
+        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-slate-200/90 dark:ring-slate-700/80 shadow-xs overflow-hidden transition-all group-hover:scale-105"
+      >
         <img
-          src={siteConfig.logo || '/logo.png'}
+          src={siteConfig.logo || "/logo.png"}
           alt={siteConfig.short_name || siteConfig.name}
           class="h-full w-full object-contain p-0.5"
           width="36"
@@ -38,11 +42,15 @@ function isCurrent(href: string): boolean {
         />
       </div>
       <div class="flex flex-col">
-        <span class="header-brand-title text-base font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+        <span
+          class="header-brand-title text-base font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400"
+        >
           {siteConfig.author.name}
         </span>
-        <span class="header-brand-subtitle text-[11px] font-medium text-slate-500 transition-colors dark:text-slate-400">
-          {siteConfig.tagline || 'Sharing Insights & Exploring Technology'}
+        <span
+          class="header-brand-subtitle text-[11px] font-medium text-slate-500 transition-colors dark:text-slate-400"
+        >
+          {siteConfig.tagline || "Sharing Insights & Exploring Technology"}
         </span>
       </div>
     </a>
@@ -50,7 +58,10 @@ function isCurrent(href: string): boolean {
     <!-- Right Side: Navigation Links & Actions -->
     <div class="flex items-center gap-3 lg:gap-4">
       <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-1 lg:gap-1.5" aria-label="Main Navigation">
+      <nav
+        class="hidden md:flex items-center gap-1 lg:gap-1.5"
+        aria-label="Main Navigation"
+      >
         {
           mainNavItems.map((item) => {
             const active = isCurrent(item.href);
@@ -59,10 +70,10 @@ function isCurrent(href: string): boolean {
                 href={item.href}
                 class={`nav-link relative inline-flex items-center px-3.5 py-1.5 text-sm font-medium rounded-lg transition-all ${
                   active
-                    ? 'nav-link-active text-blue-700 bg-blue-50 font-semibold border border-blue-200/80 shadow-xs dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900/60'
-                    : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100/80 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800/70'
+                    ? "nav-link-active text-blue-700 bg-blue-50 font-semibold border border-blue-200/80 shadow-xs dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900/60"
+                    : "text-slate-600 hover:text-blue-600 hover:bg-slate-100/80 dark:text-slate-300 dark:hover:text-blue-400 dark:hover:bg-slate-800/70"
                 }`}
-                aria-current={active ? 'page' : undefined}
+                aria-current={active ? "page" : undefined}
               >
                 <span>{item.name}</span>
               </a>
@@ -71,7 +82,10 @@ function isCurrent(href: string): boolean {
         }
       </nav>
 
-      <div class="header-divider hidden md:block h-4 w-px bg-slate-200 transition-colors dark:bg-slate-800"></div>
+      <div
+        class="header-divider hidden md:block h-4 w-px bg-slate-200 transition-colors dark:bg-slate-800"
+      >
+      </div>
 
       <!-- Header Actions (Theme Toggle & Mobile Menu Button) -->
       <div class="flex items-center gap-2.5">
@@ -86,11 +100,31 @@ function isCurrent(href: string): boolean {
           aria-controls="mobile-menu"
           aria-label="Toggle navigation menu"
         >
-          <svg id="hamburger-icon" class="h-5 w-5 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            id="hamburger-icon"
+            class="h-5 w-5 block"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
-          <svg id="close-icon" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            id="close-icon"
+            class="h-5 w-5 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
@@ -111,10 +145,10 @@ function isCurrent(href: string): boolean {
               href={item.href}
               class={`mobile-nav-link flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                 active
-                  ? 'mobile-nav-link-active bg-blue-50 text-blue-700 font-semibold border border-blue-200/80 dark:bg-blue-950/70 dark:text-blue-300 dark:border-blue-900/60'
-                  : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800'
+                  ? "mobile-nav-link-active bg-blue-50 text-blue-700 font-semibold border border-blue-200/80 dark:bg-blue-950/70 dark:text-blue-300 dark:border-blue-900/60"
+                  : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
               }`}
-              aria-current={active ? 'page' : undefined}
+              aria-current={active ? "page" : undefined}
             >
               {item.name}
             </a>
@@ -127,41 +161,41 @@ function isCurrent(href: string): boolean {
 
 <script>
   function setupHeaderScroll() {
-    const header = document.getElementById('main-header');
+    const header = document.getElementById("main-header");
     if (!header) return;
 
     const onScroll = () => {
       if (window.scrollY > 20) {
-        header.classList.add('header-scrolled');
+        header.classList.add("header-scrolled");
       } else {
-        header.classList.remove('header-scrolled');
+        header.classList.remove("header-scrolled");
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
 
   function setupMobileMenu() {
-    const btn = document.getElementById('mobile-menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
+    const btn = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const hamburgerIcon = document.getElementById("hamburger-icon");
+    const closeIcon = document.getElementById("close-icon");
 
     if (!btn || !menu || !hamburgerIcon || !closeIcon) return;
 
-    btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!isExpanded));
-      menu.classList.toggle('hidden');
-      hamburgerIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
+    btn.addEventListener("click", () => {
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!isExpanded));
+      menu.classList.toggle("hidden");
+      hamburgerIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
     });
   }
 
   setupHeaderScroll();
   setupMobileMenu();
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:after-swap", () => {
     setupHeaderScroll();
     setupMobileMenu();
   });
@@ -170,20 +204,33 @@ function isCurrent(href: string): boolean {
 <style is:global>
   /* Base Header Transition */
   #main-header {
-    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Scrolled Dark Background State */
   #main-header.header-scrolled {
-    background-color: rgba(15, 23, 42, 0.95) !important; /* Slate-900 95% opacity */
+    background-color: rgba(
+      15,
+      23,
+      42,
+      0.95
+    ) !important; /* Slate-900 95% opacity */
     border-bottom-color: rgba(51, 65, 85, 0.8) !important; /* Slate-700 */
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2) !important;
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.25),
+      0 8px 10px -6px rgba(0, 0, 0, 0.2) !important;
   }
 
   .dark #main-header.header-scrolled {
-    background-color: rgba(2, 6, 23, 0.96) !important; /* Slate-950 96% opacity */
+    background-color: rgba(
+      2,
+      6,
+      23,
+      0.96
+    ) !important; /* Slate-950 96% opacity */
     border-bottom-color: rgba(30, 41, 59, 0.85) !important; /* Slate-800 */
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
   }
@@ -247,7 +294,8 @@ function isCurrent(href: string): boolean {
     color: #cbd5e1 !important;
   }
 
-  #main-header.header-scrolled .mobile-nav-link:not(.mobile-nav-link-active):hover {
+  #main-header.header-scrolled
+    .mobile-nav-link:not(.mobile-nav-link-active):hover {
     color: #ffffff !important;
     background-color: #1e293b !important;
   }

@@ -1,13 +1,13 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import ArticleCard from '@/components/article/ArticleCard.astro';
-import FeaturedArticlesCarousel from '@/components/article/FeaturedArticlesCarousel.astro';
-import SectionHeader from '@/components/common/SectionHeader.astro';
-import Pagination from '@/components/common/Pagination.astro';
-import Button from '@/components/common/Button.astro';
-import GraphCanvas from '@/components/common/GraphCanvas.astro';
-import { siteConfig } from '@/config/site';
-import { getAllArticles, getFeaturedArticles } from '@/utils/content';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ArticleCard from "@/components/article/ArticleCard.astro";
+import FeaturedArticlesCarousel from "@/components/article/FeaturedArticlesCarousel.astro";
+import SectionHeader from "@/components/common/SectionHeader.astro";
+import Pagination from "@/components/common/Pagination.astro";
+import Button from "@/components/common/Button.astro";
+import GraphCanvas from "@/components/common/GraphCanvas.astro";
+import { siteConfig } from "@/config/site";
+import { getAllArticles, getFeaturedArticles } from "@/utils/content";
 
 /**
  * Home Page (/)
@@ -16,7 +16,9 @@ import { getAllArticles, getFeaturedArticles } from '@/utils/content';
  */
 const articles = await getAllArticles();
 const homeConfig = siteConfig.pages.home;
-const featuredArticles = await getFeaturedArticles(homeConfig.featured_limit || 5);
+const featuredArticles = await getFeaturedArticles(
+  homeConfig.featured_limit || 5,
+);
 
 const itemsPerPage = siteConfig.pagination.articlesPerPage;
 const totalPages = Math.ceil(articles.length / itemsPerPage);
@@ -26,103 +28,99 @@ const paginatedArticles = articles.slice(0, itemsPerPage);
 
 <BaseLayout>
   <!-- Hero Section: Dark Navy saat light mode, Cerah/Light saat dark mode -->
-  <section class="relative overflow-hidden border-b border-slate-800/90 bg-slate-900 text-white py-12 sm:py-16 lg:py-20 dark:border-slate-300/80 dark:bg-slate-100 dark:text-slate-900 transition-colors">
+  <section
+    class="relative overflow-hidden border-b border-slate-800/90 bg-slate-900 text-white py-12 sm:py-16 lg:py-20 dark:border-slate-300/80 dark:bg-slate-100 dark:text-slate-900 transition-colors"
+  >
     <!-- Interactive Knowledge Graph background canvas (mouse hover responsive & lightweight) -->
     <GraphCanvas />
 
     <!-- Ambient subtle glow behind hero -->
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600/15 via-slate-900/60 to-slate-900 dark:from-blue-100/40 dark:via-slate-100/70 dark:to-slate-100"></div>
+    <div
+      class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600/15 via-slate-900/60 to-slate-900 dark:from-blue-100/40 dark:via-slate-100/70 dark:to-slate-100"
+    >
+    </div>
     <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col-reverse items-center gap-10 md:flex-row md:items-center md:justify-between">
-        <!-- Hero Information -->
-        <div class="flex-1 text-center md:text-left">
-          <!-- Dynamic Typing Title with clean contrast -->
-          <h1 class="text-3xl font-extrabold tracking-tight text-white dark:text-slate-900 sm:text-4xl lg:text-5xl min-h-[1.25em]">
-            <span>{homeConfig.greeting || "Hi, I'm"} </span>
-            <span
-              id="typewriter-text"
-              class="text-blue-400 dark:text-blue-600"
-              data-words={JSON.stringify(homeConfig.typewriter_strings || [siteConfig.author.name])}
-            >{siteConfig.author.name}</span><span id="typewriter-cursor" class="text-blue-400 dark:text-blue-600 font-light animate-pulse ml-0.5">|</span>
-          </h1>
+      <div class="max-w-3xl text-center md:text-left">
+        <!-- Dynamic Typing Title with clean contrast -->
+        <h1
+          class="text-3xl font-extrabold tracking-tight text-white dark:text-slate-900 sm:text-4xl lg:text-5xl min-h-[1.25em]"
+        >
+          <span>{homeConfig.greeting || "Hi, I'm"} </span>
+          <span
+            id="typewriter-text"
+            class="text-blue-400 dark:text-blue-600"
+            data-words={JSON.stringify(
+              homeConfig.typewriter_strings || [siteConfig.author.name],
+            )}>{siteConfig.author.name}</span
+          ><span
+            id="typewriter-cursor"
+            class="text-blue-400 dark:text-blue-600 font-light animate-pulse ml-0.5"
+            >|</span
+          >
+        </h1>
 
-          <p class="mt-3 text-lg font-medium text-slate-200 dark:text-slate-800">
-            {siteConfig.author.title}
-          </p>
+        <p class="mt-3 text-lg font-medium text-slate-200 dark:text-slate-800">
+          {siteConfig.author.title}
+        </p>
 
-          <p class="mt-1.5 text-xs font-mono text-slate-400 dark:text-slate-500">
-            {siteConfig.author.affiliation} &bull; {siteConfig.author.location}
-          </p>
+        <p class="mt-1.5 text-xs font-mono text-slate-400 dark:text-slate-500">
+          {siteConfig.author.affiliation} &bull; {siteConfig.author.location}
+        </p>
 
-          <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 dark:text-slate-600">
-            {siteConfig.author.bio}
-          </p>
+        <p
+          class="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 dark:text-slate-600"
+        >
+          {siteConfig.author.bio}
+        </p>
 
-          <!-- Quick Navigation Actions (Standard Button Pakem) -->
-          <div class="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start">
-            {
-              siteConfig.menu.archives && (
-                <Button
-                  variant="primary"
-                  size="md"
-                  href="/archives"
-                >
-                  <span>Browse Articles</span>
-                  <span class="opacity-80">&rarr;</span>
-                </Button>
-              )
-            }
-            {
-              siteConfig.menu.about && (
-                <Button
-                  variant="outline"
-                  size="md"
-                  href="/about"
-                >
-                  <span>About This Portal</span>
-                </Button>
-              )
-            }
-          </div>
-        </div>
-
-        <!-- Circular Profile Image (Bulat) with elegant clean frame -->
-        <div class="relative shrink-0">
-          <div class="h-44 w-44 sm:h-52 sm:w-52 rounded-full border-2 border-slate-700/90 p-1 shadow-lg bg-slate-800 ring-4 ring-blue-500/10 dark:border-slate-300 dark:bg-white dark:ring-blue-500/20">
-            <div class="h-full w-full overflow-hidden rounded-full bg-slate-900 dark:bg-slate-100">
-              <img
-                src={siteConfig.author.avatar}
-                alt={siteConfig.author.name}
-                class="h-full w-full object-cover object-top"
-                width="208"
-                height="208"
-                loading="eager"
-              />
-            </div>
-          </div>
+        <!-- Quick Navigation Actions (Standard Button Pakem) -->
+        <div
+          class="mt-7 flex flex-wrap items-center justify-center gap-3 md:justify-start"
+        >
+          {
+            siteConfig.menu.archives && (
+              <Button variant="primary" size="md" href="/archives">
+                <span>Browse Articles</span>
+                <span class="opacity-80">&rarr;</span>
+              </Button>
+            )
+          }
+          {
+            siteConfig.menu.about && (
+              <Button variant="outline" size="md" href="/about">
+                <span>About</span>
+              </Button>
+            )
+          }
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Content Container: Featured Articles & Latest Articles -->
-  <div class="mx-auto max-w-6xl px-4 pt-8 pb-4 sm:px-6 sm:pt-10 sm:pb-6 lg:px-8 space-y-12 sm:space-y-16">
-    <!-- Featured Articles Section (Carousel Slider with left/right arrows) -->
-    {
-      featuredArticles.length > 0 && (
-        <FeaturedArticlesCarousel
-          articles={featuredArticles}
-          title={homeConfig.featured_title || 'Featured Articles'}
-          subtitle={homeConfig.featured_subtitle || 'Curated in-depth guides, practical workflows, and series highlights.'}
-        />
-      )
-    }
+  <!-- 1. Featured Articles Section (Distinct Spotlight Band) -->
+  {
+    featuredArticles.length > 0 && (
+      <section class="border-b border-slate-200/90 bg-slate-100 py-10 sm:py-14 dark:border-slate-800/90 dark:bg-slate-900 transition-colors">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <FeaturedArticlesCarousel
+            articles={featuredArticles}
+            title={homeConfig.featured_title || "Featured Articles"}
+            subtitle={
+              homeConfig.featured_subtitle ||
+              "Curated in-depth guides, practical workflows, and series highlights."
+            }
+          />
+        </div>
+      </section>
+    )
+  }
 
-    <!-- Latest Articles Section -->
-    <section>
+  <!-- 2. Latest Articles Section (Crisp Editorial Background) -->
+  <section class="bg-white py-12 sm:py-16 dark:bg-slate-950 transition-colors">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <SectionHeader
-        title={homeConfig.articles_title || 'Latest Articles'}
-        subtitle={homeConfig.articles_subtitle || ''}
+        title={homeConfig.articles_title || "Latest Articles"}
+        subtitle={homeConfig.articles_subtitle || ""}
         actionText="View All Archives"
         actionHref="/archives"
       />
@@ -135,11 +133,25 @@ const paginatedArticles = articles.slice(0, itemsPerPage);
             ))
           ) : (
             <div class="rounded-2xl border border-dashed border-slate-200 bg-white/50 p-12 text-center dark:border-slate-800 dark:bg-slate-900/30">
-              <svg class="mx-auto h-10 w-10 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              <svg
+                class="mx-auto h-10 w-10 text-slate-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                />
               </svg>
-              <h3 class="mt-3 text-sm font-semibold text-slate-800 dark:text-slate-200">No articles published yet</h3>
-              <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Newly published articles will appear here.</p>
+              <h3 class="mt-3 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                No articles published yet
+              </h3>
+              <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                Newly published articles will appear here.
+              </p>
             </div>
           )
         }
@@ -151,8 +163,8 @@ const paginatedArticles = articles.slice(0, itemsPerPage);
         totalPages={totalPages}
         baseUrl=""
       />
-    </section>
-  </div>
+    </div>
+  </section>
 </BaseLayout>
 
 <script>
@@ -161,17 +173,17 @@ const paginatedArticles = articles.slice(0, itemsPerPage);
    * Rotates through author name, role, and expertise naturally.
    */
   function setupTypewriter() {
-    const el = document.getElementById('typewriter-text');
+    const el = document.getElementById("typewriter-text");
     if (!el) return;
 
     // Respect user's motion preferences
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
     let words: string[] = [];
     try {
-      const dataWords = el.getAttribute('data-words');
+      const dataWords = el.getAttribute("data-words");
       if (dataWords) {
         words = JSON.parse(dataWords);
       }
@@ -180,7 +192,7 @@ const paginatedArticles = articles.slice(0, itemsPerPage);
     }
 
     if (!words || words.length === 0) {
-      words = [el.textContent || ''];
+      words = [el.textContent || ""];
     }
 
     let wordIndex = 0;
@@ -224,5 +236,5 @@ const paginatedArticles = articles.slice(0, itemsPerPage);
   }
 
   setupTypewriter();
-  document.addEventListener('astro:after-swap', setupTypewriter);
+  document.addEventListener("astro:after-swap", setupTypewriter);
 </script>

@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Badge from '@/components/common/Badge.astro';
-import Breadcrumbs from '@/components/common/Breadcrumbs.astro';
-import ShareButtons from '@/components/common/ShareButtons.astro';
-import ArticleCard from '@/components/article/ArticleCard.astro';
-import SeriesWidget from '@/components/article/SeriesWidget.astro';
-import SeriesNavBottom from '@/components/article/SeriesNavBottom.astro';
-import { formatDate } from '@/utils/date';
-import { siteConfig } from '@/config/site';
-import type { ArticleEntry, SeriesNavigationInfo } from '@/utils/content';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Badge from "@/components/common/Badge.astro";
+import Breadcrumbs from "@/components/common/Breadcrumbs.astro";
+import ShareButtons from "@/components/common/ShareButtons.astro";
+import ArticleCard from "@/components/article/ArticleCard.astro";
+import SeriesWidget from "@/components/article/SeriesWidget.astro";
+import SeriesNavBottom from "@/components/article/SeriesNavBottom.astro";
+import { formatDate } from "@/utils/date";
+import { siteConfig } from "@/config/site";
+import type { ArticleEntry, SeriesNavigationInfo } from "@/utils/content";
 
 /**
  * ArticleLayout Component
@@ -43,31 +43,40 @@ const {
   readingTime,
   image,
   relatedArticles = [],
-  seriesNav
+  seriesNav,
 } = Astro.props;
 
 /**
  * Maps categories to rich distinct color palettes
  */
-function getCategoryColor(category: string): 'purple' | 'indigo' | 'emerald' | 'amber' | 'teal' | 'info' | 'primary' {
+function getCategoryColor(
+  category: string,
+): "purple" | "indigo" | "emerald" | "amber" | "teal" | "info" | "primary" {
   const cat = category.toLowerCase();
-  if (cat.includes('artificial') || cat.includes('ai')) return 'purple';
-  if (cat.includes('knowledge')) return 'indigo';
-  if (cat.includes('data')) return 'emerald';
-  if (cat.includes('software') || cat.includes('testing')) return 'amber';
-  if (cat.includes('semantic')) return 'teal';
-  if (cat.includes('web')) return 'info';
-  return 'primary';
+  if (cat.includes("artificial") || cat.includes("ai")) return "purple";
+  if (cat.includes("knowledge")) return "indigo";
+  if (cat.includes("data")) return "emerald";
+  if (cat.includes("software") || cat.includes("testing")) return "amber";
+  if (cat.includes("semantic")) return "teal";
+  if (cat.includes("web")) return "info";
+  return "primary";
 }
 
 const categoryVariant = getCategoryColor(category);
 const breadcrumbs = [
-  { name: 'Archives', href: '/archives' },
-  { name: category, href: `/archives?category=${encodeURIComponent(category)}` }
+  { name: "Archives", href: "/archives" },
+  {
+    name: category,
+    href: `/archives?category=${encodeURIComponent(category)}`,
+  },
 ];
 ---
 
-<BaseLayout title={`${title} | ${siteConfig.name}`} description={summary} image={image}>
+<BaseLayout
+  title={`${title} | ${siteConfig.name}`}
+  description={summary}
+  image={image}
+>
   <!-- Sticky Reading Progress Bar (Fixed directly beneath top navbar) -->
   <div
     id="reading-progress-container"
@@ -78,18 +87,24 @@ const breadcrumbs = [
       id="reading-progress-bar"
       class="h-full w-0 bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 transition-all duration-75 ease-out shadow-xs shadow-blue-500/50"
       style="width: 0%;"
-    />
+    >
+    </div>
   </div>
 
-  <article class="mx-auto max-w-4xl lg:max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <!-- Breadcrumb Navigation Trail (Standard Pakem) -->
-    <div class="mb-4 sm:mb-6">
-      <Breadcrumbs items={breadcrumbs} />
-    </div>
+  <!-- 1. Full-Width Article Header Banner (Consistent with PageLayout, distinct from menu) -->
+  <header
+    class="border-b border-slate-200/90 bg-white py-8 sm:py-10 shadow-2xs dark:border-slate-800/90 dark:bg-slate-900 transition-colors"
+  >
+    <div class="mx-auto max-w-4xl lg:max-w-5xl px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb Navigation Trail (Standard Pakem) -->
+      <div class="mb-4 sm:mb-5">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
-    <!-- Header: Judul Besar & Subtitle/Summary (Gaya Editorial Medium) -->
-    <header class="mb-5 sm:mb-7">
-      <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white leading-[1.2] sm:leading-[1.18]">
+      <!-- Header: Judul Besar & Subtitle/Summary (Gaya Editorial Medium) -->
+      <h1
+        class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-5xl dark:text-white leading-[1.2] sm:leading-[1.18]"
+      >
         {title}
       </h1>
 
@@ -102,7 +117,9 @@ const breadcrumbs = [
       }
 
       <!-- Author Byline Row (Terstruktur & Rapi di Mobile Maupun Desktop) -->
-      <div class="mt-5 sm:mt-6 flex items-start sm:items-center gap-3 sm:gap-3.5 border-y border-slate-200/70 sm:border-y-0 py-3 sm:py-0 dark:border-slate-800/70">
+      <div
+        class="mt-6 flex items-start sm:items-center gap-3 sm:gap-3.5 border-t border-slate-100 pt-5 sm:border-t-0 sm:pt-0 dark:border-slate-800/80"
+      >
         <a href="/about" class="shrink-0 group">
           <img
             src={siteConfig.author.avatar}
@@ -113,7 +130,9 @@ const breadcrumbs = [
           />
         </a>
 
-        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 text-xs sm:text-sm">
+        <div
+          class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5 text-xs sm:text-sm"
+        >
           <!-- Author Name & Follow Action -->
           <div class="flex items-center gap-2">
             <a
@@ -132,10 +151,14 @@ const breadcrumbs = [
             </a>
           </div>
 
-          <span class="hidden sm:inline text-slate-300 dark:text-slate-700">&bull;</span>
+          <span class="hidden sm:inline text-slate-300 dark:text-slate-700"
+            >&bull;</span
+          >
 
           <!-- Reading Time, Date, and Category Badge -->
-          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-slate-500 dark:text-slate-400 font-sans">
+          <div
+            class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-slate-500 dark:text-slate-400 font-sans"
+          >
             <span>{readingTime}</span>
 
             <span class="text-slate-300 dark:text-slate-700">&bull;</span>
@@ -152,7 +175,13 @@ const breadcrumbs = [
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
+
+  <!-- 2. Main Article Content Container (Area Baca di bawahnya) -->
+  <article
+    class="mx-auto max-w-4xl lg:max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8"
+  >
 
     <!-- Featured Cover Image Banner -->
     {
@@ -172,7 +201,9 @@ const breadcrumbs = [
     {seriesNav && <SeriesWidget seriesNav={seriesNav} />}
 
     <!-- Markdown Content Body dengan Tipografi Editorial & Drop-Cap -->
-    <div class="prose-content py-2 sm:py-4 text-base leading-relaxed text-slate-700 dark:text-slate-200">
+    <div
+      class="prose-content py-2 sm:py-4 text-base leading-relaxed text-slate-700 dark:text-slate-200"
+    >
       <slot />
     </div>
 
@@ -180,16 +211,24 @@ const breadcrumbs = [
     {seriesNav && <SeriesNavBottom seriesNav={seriesNav} />}
 
     <!-- Bottom Action Divider Bar (Claps + Icon-Only Share Buttons) -->
-    <div class="my-8 flex flex-wrap items-center justify-between gap-3 border-y border-slate-200/90 py-2.5 dark:border-slate-800/90">
+    <div
+      class="my-8 flex flex-wrap items-center justify-between gap-3 border-y border-slate-200/90 py-2.5 dark:border-slate-800/90"
+    >
       <!-- Claps -->
       <button
         type="button"
         class="article-clap-btn inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-mono text-slate-600 hover:bg-slate-100 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-rose-400 transition cursor-pointer"
-        data-clap-key={`clap_${title.replace(/\s+/g, '_').toLowerCase()}`}
+        data-clap-key={`clap_${title.replace(/\s+/g, "_").toLowerCase()}`}
         title="Applaud this article (Clap)"
       >
-        <svg class="clap-icon h-4 w-4 text-rose-500 transition-transform active:scale-125" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 10.5V6a2 2 0 0 0-2-2c-.34 0-.66.08-.94.23A1.99 1.99 0 0 0 14.5 3c-.47 0-.91.16-1.26.44A2 2 0 0 0 11.5 3c-.76 0-1.42.42-1.76 1.05A1.99 1.99 0 0 0 8.5 4a2 2 0 0 0-2 2v8.5a7.5 7.5 0 1 0 15 0v-4h-2.5zm.5 4a5.5 5.5 0 1 1-11 0V6a.5.5 0 0 1 1 0v5.5h1.5V5a.5.5 0 0 1 1 0v6.5h1.5V4.5a.5.5 0 0 1 1 0v7h1.5V5.5a.5.5 0 0 1 1 0v6h1.5v-1a.5.5 0 0 1 1 0v4z"/>
+        <svg
+          class="clap-icon h-4 w-4 text-rose-500 transition-transform active:scale-125"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M19 10.5V6a2 2 0 0 0-2-2c-.34 0-.66.08-.94.23A1.99 1.99 0 0 0 14.5 3c-.47 0-.91.16-1.26.44A2 2 0 0 0 11.5 3c-.76 0-1.42.42-1.76 1.05A1.99 1.99 0 0 0 8.5 4a2 2 0 0 0-2 2v8.5a7.5 7.5 0 1 0 15 0v-4h-2.5zm.5 4a5.5 5.5 0 1 1-11 0V6a.5.5 0 0 1 1 0v5.5h1.5V5a.5.5 0 0 1 1 0v6.5h1.5V4.5a.5.5 0 0 1 1 0v7h1.5V5.5a.5.5 0 0 1 1 0v6h1.5v-1a.5.5 0 0 1 1 0v4z"
+          ></path>
         </svg>
         <span class="clap-count font-bold">0</span>
       </button>
@@ -203,10 +242,20 @@ const breadcrumbs = [
       <span class="mr-1 text-slate-500 dark:text-slate-400">Tags:</span>
       {
         tags.map((tag, idx) => {
-          const tagVariants = ['neutral', 'teal', 'rose', 'indigo', 'amber'] as const;
+          const tagVariants = [
+            "neutral",
+            "teal",
+            "rose",
+            "indigo",
+            "amber",
+          ] as const;
           const variant = tagVariants[idx % tagVariants.length];
           return (
-            <Badge variant={variant} size="sm" href={`/archives?tag=${encodeURIComponent(tag)}`}>
+            <Badge
+              variant={variant}
+              size="sm"
+              href={`/archives?tag=${encodeURIComponent(tag)}`}
+            >
               #{tag}
             </Badge>
           );
@@ -259,34 +308,35 @@ const breadcrumbs = [
 <script>
   // Medium-style Clap counter interaction
   function setupClapButtons() {
-    const clapButtons = document.querySelectorAll<HTMLButtonElement>('.article-clap-btn');
+    const clapButtons =
+      document.querySelectorAll<HTMLButtonElement>(".article-clap-btn");
     if (clapButtons.length === 0) return;
 
     clapButtons.forEach((btn) => {
-      const storageKey = btn.dataset.clapKey || 'article_claps';
-      const countEl = btn.querySelector('.clap-count');
+      const storageKey = btn.dataset.clapKey || "article_claps";
+      const countEl = btn.querySelector(".clap-count");
       const baseCount = 0; // default starting clap count
 
-      let userClaps = parseInt(localStorage.getItem(storageKey) || '0', 10);
+      let userClaps = parseInt(localStorage.getItem(storageKey) || "0", 10);
       if (countEl) {
         countEl.textContent = String(baseCount + userClaps);
       }
 
-      if (btn.dataset.listenerAttached === 'true') return;
-      btn.dataset.listenerAttached = 'true';
+      if (btn.dataset.listenerAttached === "true") return;
+      btn.dataset.listenerAttached = "true";
 
-      btn.addEventListener('click', () => {
+      btn.addEventListener("click", () => {
         userClaps += 1;
         localStorage.setItem(storageKey, String(userClaps));
 
         // Sync all clap buttons on the page
         clapButtons.forEach((b) => {
-          const c = b.querySelector('.clap-count');
+          const c = b.querySelector(".clap-count");
           if (c) c.textContent = String(baseCount + userClaps);
-          const icon = b.querySelector('.clap-icon');
+          const icon = b.querySelector(".clap-icon");
           if (icon) {
-            icon.classList.add('scale-125');
-            setTimeout(() => icon.classList.remove('scale-125'), 200);
+            icon.classList.add("scale-125");
+            setTimeout(() => icon.classList.remove("scale-125"), 200);
           }
         });
       });
@@ -295,17 +345,18 @@ const breadcrumbs = [
 
   // Copy Code Button functionality for article pre blocks
   function setupCodeBlockCopy() {
-    const codeBlocks = document.querySelectorAll<HTMLPreElement>('.prose-content pre');
+    const codeBlocks =
+      document.querySelectorAll<HTMLPreElement>(".prose-content pre");
     codeBlocks.forEach((pre) => {
-      if (pre.querySelector('.code-copy-btn')) return;
+      if (pre.querySelector(".code-copy-btn")) return;
 
-      pre.classList.add('relative', 'group');
+      pre.classList.add("relative", "group");
 
-      const btn = document.createElement('button');
-      btn.type = 'button';
+      const btn = document.createElement("button");
+      btn.type = "button";
       btn.className =
-        'code-copy-btn absolute top-2.5 right-2.5 sm:top-3 sm:right-3 inline-flex sm:hidden sm:group-hover:inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800/90 px-2 sm:px-2.5 py-1 text-[11px] font-sans font-medium text-slate-300 shadow-sm transition hover:bg-slate-700 hover:text-white dark:border-slate-700 dark:bg-slate-900/90 cursor-pointer';
-      btn.setAttribute('aria-label', 'Copy code to clipboard');
+        "code-copy-btn absolute top-2.5 right-2.5 sm:top-3 sm:right-3 inline-flex sm:hidden sm:group-hover:inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800/90 px-2 sm:px-2.5 py-1 text-[11px] font-sans font-medium text-slate-300 shadow-sm transition hover:bg-slate-700 hover:text-white dark:border-slate-700 dark:bg-slate-900/90 cursor-pointer";
+      btn.setAttribute("aria-label", "Copy code to clipboard");
       btn.innerHTML = `
         <svg class="h-3.5 w-3.5 copy-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
@@ -313,8 +364,8 @@ const breadcrumbs = [
         <span class="copy-text">Copy</span>
       `;
 
-      btn.addEventListener('click', async () => {
-        const code = pre.querySelector('code');
+      btn.addEventListener("click", async () => {
+        const code = pre.querySelector("code");
         const text = code ? code.innerText : pre.innerText;
         try {
           await navigator.clipboard.writeText(text);
@@ -343,11 +394,17 @@ const breadcrumbs = [
 
   // Wrap all markdown tables in a responsive scrolling container
   function setupResponsiveTables() {
-    const tables = document.querySelectorAll<HTMLTableElement>('.prose-content table');
+    const tables = document.querySelectorAll<HTMLTableElement>(
+      ".prose-content table",
+    );
     tables.forEach((table) => {
-      if (table.parentElement && !table.parentElement.classList.contains('table-container')) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'table-container overflow-x-auto my-4 sm:my-6 rounded-lg sm:rounded-xl border border-slate-200/90 bg-white shadow-2xs dark:border-slate-800 dark:bg-slate-900/60';
+      if (
+        table.parentElement &&
+        !table.parentElement.classList.contains("table-container")
+      ) {
+        const wrapper = document.createElement("div");
+        wrapper.className =
+          "table-container overflow-x-auto my-4 sm:my-6 rounded-lg sm:rounded-xl border border-slate-200/90 bg-white shadow-2xs dark:border-slate-800 dark:bg-slate-900/60";
         table.parentNode?.insertBefore(wrapper, table);
         wrapper.appendChild(table);
       }
@@ -356,8 +413,8 @@ const breadcrumbs = [
 
   // Reading Progress Bar: Smoothly fills from 0% to 100% as the reader scrolls down the article
   function setupReadingProgressBar() {
-    const bar = document.getElementById('reading-progress-bar');
-    const article = document.querySelector<HTMLElement>('article');
+    const bar = document.getElementById("reading-progress-bar");
+    const article = document.querySelector<HTMLElement>("article");
     if (!bar || !article) return;
 
     const updateProgress = () => {
@@ -369,16 +426,19 @@ const breadcrumbs = [
 
       const scrollableDistance = articleHeight - windowHeight;
       if (scrollableDistance <= 0) {
-        bar.style.width = '100%';
+        bar.style.width = "100%";
         return;
       }
 
       const scrolled = currentScroll - articleTop;
-      const percentage = Math.min(100, Math.max(0, Math.round((scrolled / scrollableDistance) * 100)));
+      const percentage = Math.min(
+        100,
+        Math.max(0, Math.round((scrolled / scrollableDistance) * 100)),
+      );
       bar.style.width = `${percentage}%`;
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener("scroll", updateProgress, { passive: true });
     updateProgress();
   }
 
@@ -386,7 +446,7 @@ const breadcrumbs = [
   setupCodeBlockCopy();
   setupResponsiveTables();
   setupReadingProgressBar();
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:after-swap", () => {
     setupClapButtons();
     setupCodeBlockCopy();
     setupResponsiveTables();
@@ -617,7 +677,8 @@ const breadcrumbs = [
 
   /* Inline code styling */
   .prose-content :not(pre) > code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.85em;
     padding: 0.12rem 0.35rem;
     border-radius: 0.375rem;
@@ -646,7 +707,9 @@ const breadcrumbs = [
     background-color: #1e293b !important;
     color: #e2e8f0;
     border: 1px solid #334155;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
   @media (min-width: 640px) {
     .prose-content pre {
@@ -811,7 +874,11 @@ const breadcrumbs = [
   /* Dark mode styling for formulas */
   .dark .prose-content .katex-display,
   .dark .prose-content p:has(> .katex:only-child) {
-    background: linear-gradient(180deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%) !important;
+    background: linear-gradient(
+      180deg,
+      rgba(30, 41, 59, 0.75) 0%,
+      rgba(15, 23, 42, 0.9) 100%
+    ) !important;
     border: none !important;
     color: #f8fafc !important;
   }
@@ -854,7 +921,10 @@ const breadcrumbs = [
     vertical-align: baseline;
     border: none !important;
   }
-  .dark .prose-content :not(.katex-display):not(p:has(> .katex:only-child)) > .katex {
+  .dark
+    .prose-content
+    :not(.katex-display):not(p:has(> .katex:only-child))
+    > .katex {
     background-color: rgba(30, 41, 59, 0.7);
     color: #f8fafc;
     border: none !important;
