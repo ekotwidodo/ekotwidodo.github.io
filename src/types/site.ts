@@ -137,6 +137,10 @@ export interface SitePagesConfig {
   cv: PageHeaderConfig;
 }
 
+export interface AnalyticsConfig {
+  google_tag_id?: string;
+}
+
 export interface SiteConfig {
   name: string;
   short_name?: string;
@@ -157,4 +161,5 @@ export interface SiteConfig {
   menu: SiteMenuConfig;
   pages: SitePagesConfig;
   contact: ContactConfig;
+  analytics?: AnalyticsConfig;
 }

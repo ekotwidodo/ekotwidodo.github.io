@@ -283,3 +283,8 @@ contact:
     enabled: false
     title: ""
     embed_url: ""
+
+# 8. Web Analytics & Tracking (Google Tag / GA4)
+analytics:
+  google_tag_id: "G-RLPTQX81M7"
+

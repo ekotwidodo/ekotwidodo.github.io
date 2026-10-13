@@ -218,6 +218,14 @@ const SiteConfigSchema = z.object({
         title: '',
         embed_url: ''
       }
+    })),
+  analytics: z
+    .object({
+      google_tag_id: z.string().optional().default('')
+    })
+    .optional()
+    .default(() => ({
+      google_tag_id: ''
     }))
 });
 
@@ -260,7 +268,10 @@ function loadSiteConfig(): SiteConfig {
     },
     menu: validated.menu,
     pages: validated.pages,
-    contact: validated.contact
+    contact: validated.contact,
+    analytics: {
+      google_tag_id: validated.analytics?.google_tag_id || ''
+    }
   };
 }
 

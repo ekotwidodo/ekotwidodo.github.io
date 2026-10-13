@@ -77,6 +77,29 @@ const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
         }
       })();
     </script>
+
+    <!-- Google tag (gtag.js) -->
+    {
+      siteConfig.analytics?.google_tag_id && (
+        <>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.google_tag_id}`}
+          ></script>
+          <script
+            is:inline
+            set:html={`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', '${siteConfig.analytics.google_tag_id}');
+            `}
+          ></script>
+        </>
+      )
+    }
   </head>
   <body class="flex min-h-screen flex-col overflow-x-hidden bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-100">
     <!-- Header Navigation -->
