@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <!-- Card & Element Shadow -->
+    <filter id="panel-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <filter id="node-shadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="960" height="480" rx="16" fill="#f8fafc"/>
+
+  <!-- Top Title & Subtitle -->
+  <g transform="translate(40, 30)">
+    <text x="0" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#0f172a">Representasi Graph: Visual vs Adjacency Matrix vs Adjacency List</text>
+    <text x="0" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#64748b">Menyimpan struktur jejaring 4 orang (Rina, Dodi, Sari, Bima) ke dalam dua format data komputasi</text>
+  </g>
+
+  <!-- ==================== PANEL 1: GRAPH VISUAL (KIRI) ==================== -->
+  <g transform="translate(40, 95)">
+    <rect width="260" height="345" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#panel-shadow)"/>
+    
+    <!-- Title Badge -->
+    <rect x="15" y="14" width="230" height="30" rx="6" fill="#eff6ff"/>
+    <text x="130" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="middle">1. Visual Graf (Topologi)</text>
+
+    <!-- Graph Edges -->
+    <!-- Rina(130, 95) -> Dodi(65, 175) -->
+    <line x1="130" y1="95" x2="65" y2="175" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Rina(130, 95) -> Sari(195, 175) -->
+    <line x1="130" y1="95" x2="195" y2="175" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Dodi(65, 175) -> Bima(130, 255) -->
+    <line x1="65" y1="175" x2="130" y2="255" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Sari(195, 175) -> Bima(130, 255) -->
+    <line x1="195" y1="175" x2="130" y2="255" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Nodes -->
+    <!-- Rina -->
+    <g transform="translate(130, 95)" filter="url(#node-shadow)">
+      <circle cx="0" cy="0" r="26" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="0" y="4" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">Rina</text>
+    </g>
+
+    <!-- Dodi -->
+    <g transform="translate(65, 175)" filter="url(#node-shadow)">
+      <circle cx="0" cy="0" r="26" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+      <text x="0" y="4" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Dodi</text>
+    </g>
+
+    <!-- Sari -->
+    <g transform="translate(195, 175)" filter="url(#node-shadow)">
+      <circle cx="0" cy="0" r="26" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+      <text x="0" y="4" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">Sari</text>
+    </g>
+
+    <!-- Bima -->
+    <g transform="translate(130, 255)" filter="url(#node-shadow)">
+      <circle cx="0" cy="0" r="26" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2"/>
+      <text x="0" y="4" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Bima</text>
+    </g>
+
+    <text x="130" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">4 Node &amp; 4 Edge Tanpa Arah</text>
+  </g>
+
+  <!-- ==================== PANEL 2: ADJACENCY MATRIX (TENGAH) ==================== -->
+  <g transform="translate(325, 95)">
+    <rect width="310" height="345" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#panel-shadow)"/>
+    
+    <!-- Title Badge -->
+    <rect x="15" y="14" width="280" height="30" rx="6" fill="#f0fdf4"/>
+    <text x="155" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#15803d" text-anchor="middle">2. Adjacency Matrix (4 × 4)</text>
+
+    <!-- Matrix Table -->
+    <g transform="translate(25, 65)">
+      <!-- Column Headers -->
+      <text x="75" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">Rina</text>
+      <text x="125" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Dodi</text>
+      <text x="175" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">Sari</text>
+      <text x="225" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Bima</text>
+
+      <!-- Row 1: Rina -->
+      <text x="10" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af">Rina</text>
+      <!-- Cell (0,0) = 0 -->
+      <rect x="55" y="32" width="40" height="30" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="75" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+      <!-- Cell (0,1) = 1 -->
+      <rect x="105" y="32" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="125" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+      <!-- Cell (0,2) = 1 -->
+      <rect x="155" y="32" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="175" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+      <!-- Cell (0,3) = 0 -->
+      <rect x="205" y="32" width="40" height="30" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="225" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+
+      <!-- Row 2: Dodi -->
+      <text x="10" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#b45309">Dodi</text>
+      <!-- Cell (1,0) = 1 -->
+      <rect x="55" y="74" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="75" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+      <!-- Cell (1,1) = 0 -->
+      <rect x="105" y="74" width="40" height="30" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="125" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+      <!-- Cell (1,2) = 0 -->
+      <rect x="155" y="74" width="40" height="30" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="175" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+      <!-- Cell (1,3) = 1 -->
+      <rect x="205" y="74" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="225" y="94" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+
+      <!-- Row 3: Sari -->
+      <text x="10" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#be185d">Sari</text>
+      <!-- Cell (2,0) = 1 -->
+      <rect x="55" y="116" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="75" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+      <!-- Cell (2,1) = 0 -->
+      <rect x="105" y="116" width="40" height="30" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="125" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+      <!-- Cell (2,2) = 0 -->
+      <rect x="155" y="116" width="40" height="30" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="175" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+      <!-- Cell (2,3) = 1 -->
+      <rect x="205" y="116" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="225" y="136" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+
+      <!-- Row 4: Bima -->
+      <text x="10" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3730a3">Bima</text>
+      <!-- Cell (3,0) = 0 -->
+      <rect x="55" y="158" width="40" height="30" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="75" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+      <!-- Cell (3,1) = 1 -->
+      <rect x="105" y="158" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="125" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+      <!-- Cell (3,2) = 1 -->
+      <rect x="155" y="158" width="40" height="30" rx="4" fill="#dcfce7" stroke="#86efac"/>
+      <text x="175" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">1</text>
+      <!-- Cell (3,3) = 0 -->
+      <rect x="205" y="158" width="40" height="30" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="225" y="178" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#94a3b8" text-anchor="middle">0</text>
+    </g>
+
+    <text x="155" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0f172a" text-anchor="middle">Kebutuhan Memori: O(|V|²)</text>
+    <text x="155" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Matriks simetris (undirected graph)</text>
+  </g>
+
+  <!-- ==================== PANEL 3: ADJACENCY LIST (KANAN) ==================== -->
+  <g transform="translate(660, 95)">
+    <rect width="260" height="345" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#panel-shadow)"/>
+    
+    <!-- Title Badge -->
+    <rect x="15" y="14" width="230" height="30" rx="6" fill="#faf5ff"/>
+    <text x="130" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#7e22ce" text-anchor="middle">3. Adjacency List (Daftar Tetangga)</text>
+
+    <!-- List Items -->
+    <g transform="translate(18, 65)">
+      <!-- Item Rina -->
+      <g transform="translate(0, 0)">
+        <rect width="65" height="36" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+        <text x="32" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">Rina</text>
+        <!-- Arrow -> -->
+        <line x1="69" y1="18" x2="88" y2="18" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M83 13 L89 18 L83 23" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="96" y="5" width="60" height="26" rx="4" fill="#fef3c7" stroke="#d97706"/>
+        <text x="126" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#b45309" text-anchor="middle">Dodi</text>
+        <rect x="160" y="5" width="60" height="26" rx="4" fill="#fce7f3" stroke="#db2777"/>
+        <text x="190" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#be185d" text-anchor="middle">Sari</text>
+      </g>
+
+      <!-- Item Dodi -->
+      <g transform="translate(0, 52)">
+        <rect width="65" height="36" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+        <text x="32" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Dodi</text>
+        <!-- Arrow -> -->
+        <line x1="69" y1="18" x2="88" y2="18" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M83 13 L89 18 L83 23" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="96" y="5" width="60" height="26" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="126" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">Rina</text>
+        <rect x="160" y="5" width="60" height="26" rx="4" fill="#e0e7ff" stroke="#4f46e5"/>
+        <text x="190" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#3730a3" text-anchor="middle">Bima</text>
+      </g>
+
+      <!-- Item Sari -->
+      <g transform="translate(0, 104)">
+        <rect width="65" height="36" rx="6" fill="#fce7f3" stroke="#db2777" stroke-width="1.5"/>
+        <text x="32" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">Sari</text>
+        <!-- Arrow -> -->
+        <line x1="69" y1="18" x2="88" y2="18" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M83 13 L89 18 L83 23" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="96" y="5" width="60" height="26" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="126" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">Rina</text>
+        <rect x="160" y="5" width="60" height="26" rx="4" fill="#e0e7ff" stroke="#4f46e5"/>
+        <text x="190" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#3730a3" text-anchor="middle">Bima</text>
+      </g>
+
+      <!-- Item Bima -->
+      <g transform="translate(0, 156)">
+        <rect width="65" height="36" rx="6" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.5"/>
+        <text x="32" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Bima</text>
+        <!-- Arrow -> -->
+        <line x1="69" y1="18" x2="88" y2="18" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M83 13 L89 18 L83 23" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="96" y="5" width="60" height="26" rx="4" fill="#fef3c7" stroke="#d97706"/>
+        <text x="126" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#b45309" text-anchor="middle">Dodi</text>
+        <rect x="160" y="5" width="60" height="26" rx="4" fill="#fce7f3" stroke="#db2777"/>
+        <text x="190" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#be185d" text-anchor="middle">Sari</text>
+      </g>
+    </g>
+
+    <text x="130" y="295" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#0f172a" text-anchor="middle">Kebutuhan Memori: O(|V| + |E|)</text>
+    <text x="130" y="318" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Hanya mencatat relasi yang eksis</text>
+  </g>
+</svg>

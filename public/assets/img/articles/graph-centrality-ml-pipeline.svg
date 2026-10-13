@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" width="100%" height="100%">
+  <defs>
+    <!-- Soft Shadows -->
+    <filter id="card-shadow" x="-8%" y="-8%" width="116%" height="116%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+    
+    <!-- Linear Gradient for Arrows -->
+    <linearGradient id="arrow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="260" rx="14" fill="#f8fafc"/>
+
+  <!-- Top Title -->
+  <g transform="translate(35, 24)">
+    <text x="0" y="16" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0f172a">Alur Pemanfaatan Centrality dalam Pipeline Machine Learning</text>
+    <text x="0" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">Dari data topologi mentah hingga prediksi klasifikasi entitas</text>
+  </g>
+
+  <!-- ==================== 5 TAHAPAN PIPELINE ==================== -->
+  
+  <!-- TAHAP 1: Raw Graph Data -->
+  <g transform="translate(35, 75)">
+    <rect width="155" height="155" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="12" width="28" height="20" rx="4" fill="#eff6ff"/>
+    <text x="26" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">01</text>
+    <text x="46" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af">Graf Mentah</text>
+    
+    <!-- Mini Graphic: Nodes & Edges -->
+    <g transform="translate(77, 65)">
+      <circle cx="-25" cy="-10" r="7" fill="#93c5fd"/>
+      <circle cx="20" cy="-12" r="7" fill="#93c5fd"/>
+      <circle cx="-5" cy="18" r="7" fill="#2563eb"/>
+      <line x1="-25" y1="-10" x2="20" y2="-12" stroke="#cbd5e1" stroke-width="2"/>
+      <line x1="-25" y1="-10" x2="-5" y2="18" stroke="#cbd5e1" stroke-width="2"/>
+      <line x1="20" y1="-12" x2="-5" y2="18" stroke="#cbd5e1" stroke-width="2"/>
+    </g>
+
+    <text x="77" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Data Jaringan</text>
+    <text x="77" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Relasi, transaksi, atau</text>
+    <text x="77" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">jejaring pertemanan</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <g transform="translate(196, 142)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15 -4 L21 0 L15 4" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TAHAP 2: Hitung Metrik Centrality -->
+  <g transform="translate(222, 75)">
+    <rect width="155" height="155" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="12" width="28" height="20" rx="4" fill="#fef3c7"/>
+    <text x="26" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#b45309" text-anchor="middle">02</text>
+    <text x="46" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#92400e">Hitung Metrik</text>
+
+    <!-- Mini Graphic: Centrality Badges -->
+    <g transform="translate(16, 48)">
+      <rect x="0" y="0" width="123" height="18" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="61" y="13" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">Degree Centrality</text>
+      <rect x="0" y="22" width="123" height="18" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+      <text x="61" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#475569" text-anchor="middle">Betweenness</text>
+    </g>
+
+    <text x="77" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Ekstraksi Skor</text>
+    <text x="77" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Closeness, PageRank,</text>
+    <text x="77" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">dan nilai peran node</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <g transform="translate(383, 142)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15 -4 L21 0 L15 4" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TAHAP 3: Tabel Fitur Node -->
+  <g transform="translate(409, 75)">
+    <rect width="155" height="155" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="12" width="28" height="20" rx="4" fill="#f3e8ff"/>
+    <text x="26" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#7e22ce" text-anchor="middle">03</text>
+    <text x="46" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6b21a8">Tabel Fitur</text>
+
+    <!-- Mini Graphic: Table lines -->
+    <g transform="translate(18, 48)">
+      <rect x="0" y="0" width="119" height="38" rx="4" fill="#faf5ff" stroke="#e9d5ff"/>
+      <line x1="0" y1="12" x2="119" y2="12" stroke="#d8b4fe"/>
+      <line x1="40" y1="0" x2="40" y2="38" stroke="#d8b4fe"/>
+      <line x1="80" y1="0" x2="80" y2="38" stroke="#d8b4fe"/>
+      <circle cx="20" cy="25" r="2.5" fill="#a855f7"/>
+      <circle cx="60" cy="25" r="2.5" fill="#a855f7"/>
+      <circle cx="100" cy="25" r="2.5" fill="#a855f7"/>
+    </g>
+
+    <text x="77" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Fitur Tabular</text>
+    <text x="77" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">Gabungkan atribut node</text>
+    <text x="77" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">+ metrik topologi</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <g transform="translate(570, 142)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15 -4 L21 0 L15 4" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TAHAP 4: Pelatihan Model ML -->
+  <g transform="translate(596, 75)">
+    <rect width="155" height="155" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="12" width="28" height="20" rx="4" fill="#fce7f3"/>
+    <text x="26" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#be185d" text-anchor="middle">04</text>
+    <text x="46" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#9d174d">Latih Model</text>
+
+    <!-- Mini Graphic: AI Cog/Model -->
+    <g transform="translate(77, 65)">
+      <rect x="-30" y="-16" width="60" height="32" rx="6" fill="#fdf2f8" stroke="#f472b6"/>
+      <text x="0" y="4" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" fill="#be185d" text-anchor="middle">ML Model</text>
+    </g>
+
+    <text x="77" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">Training Model</text>
+    <text x="77" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">XGBoost, Random Forest,</text>
+    <text x="77" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">atau Logistic Reg</text>
+  </g>
+
+  <!-- Arrow 4 -> 5 -->
+  <g transform="translate(757, 142)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M15 -4 L21 0 L15 4" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TAHAP 5: Prediksi & Inferensi -->
+  <g transform="translate(783, 75)">
+    <rect width="142" height="155" rx="10" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="12" width="28" height="20" rx="4" fill="#dcfce7"/>
+    <text x="26" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" fill="#15803d" text-anchor="middle">05</text>
+    <text x="46" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#166534">Prediksi</text>
+
+    <!-- Mini Graphic: Target / Check -->
+    <g transform="translate(71, 65)">
+      <circle cx="0" cy="0" r="16" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+      <path d="M-5 0 L-2 4 L6 -4" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <text x="71" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#14532d" text-anchor="middle">Hasil Analisis</text>
+    <text x="71" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">Deteksi fraud, bot,</text>
+    <text x="71" y="144" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">atau kategori akun</text>
+  </g>
+</svg>
