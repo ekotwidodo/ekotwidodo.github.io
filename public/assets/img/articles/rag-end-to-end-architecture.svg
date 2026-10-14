@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 620" width="100%" height="100%">
+  <defs>
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Clean Canvas Background -->
+  <rect width="1020" height="620" rx="16" fill="#f8fafc"/>
+
+  <!-- Top Title Banner Box -->
+  <g transform="translate(30, 20)">
+    <rect width="960" height="64" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    <rect x="16" y="14" width="70" height="36" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="51" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="800" fill="#1d4ed8" text-anchor="middle">RAG</text>
+    <text x="102" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0f172a">End-to-End Retrieval-Augmented Generation Architecture</text>
+    <text x="102" y="49" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">Bridging offline document indexing with real-time semantic retrieval and grounded LLM generation</text>
+  </g>
+
+  <!-- ==================== PIPELINE 1: OFFLINE DATA INGESTION & INDEXING ==================== -->
+  <g transform="translate(30, 102)">
+    <!-- Container Card -->
+    <rect width="960" height="210" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#soft-shadow)"/>
+    
+    <!-- Stage Label Box -->
+    <rect x="20" y="16" width="310" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8"/>
+    <text x="175" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">PHASE 1: Offline Ingestion &amp; Indexing Pipeline</text>
+
+    <!-- Step 1: External Sources -->
+    <g transform="translate(30, 60)">
+      <rect width="180" height="126" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <rect x="10" y="10" width="160" height="26" rx="6" fill="#e2e8f0"/>
+      <text x="90" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e293b" text-anchor="middle">1. Knowledge Sources</text>
+      
+      <rect x="10" y="44" width="160" height="70" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="90" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">• PDFs &amp; Markdown Docs</text>
+      <text x="90" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">• Enterprise Relational DBs</text>
+      <text x="90" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">• API &amp; Live News Feeds</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <line x1="220" y1="123" x2="260" y2="123" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 2: Document Chunking -->
+    <g transform="translate(270, 60)">
+      <rect width="180" height="126" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <rect x="10" y="10" width="160" height="26" rx="6" fill="#e2e8f0"/>
+      <text x="90" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1e293b" text-anchor="middle">2. Document Chunking</text>
+      
+      <rect x="10" y="44" width="160" height="70" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="90" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">• Split into semantic units</text>
+      <text x="90" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">• Chunk size (e.g. 512 tok)</text>
+      <text x="90" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#475569" text-anchor="middle">• Overlap (e.g. 10-15%)</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <line x1="460" y1="123" x2="500" y2="123" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Step 3: Vector Embeddings -->
+    <g transform="translate(510, 60)">
+      <rect width="180" height="126" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <rect x="10" y="10" width="160" height="26" rx="6" fill="#dbeafe"/>
+      <text x="90" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle">3. Embedding Model</text>
+      
+      <rect x="10" y="44" width="160" height="70" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+      <text x="90" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#1e40af" text-anchor="middle">• Text to dense vector</text>
+      <text x="90" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#1e40af" text-anchor="middle">• Multi-dimensional space</text>
+      <text x="90" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#1e40af" text-anchor="middle">• High-dimensional vectors</text>
+    </g>
+
+    <!-- Arrow 3 -> 4 -->
+    <line x1="700" y1="123" x2="740" y2="123" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+    <!-- Step 4: Vector Database -->
+    <g transform="translate(750, 60)">
+      <rect width="180" height="126" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <rect x="10" y="10" width="160" height="26" rx="6" fill="#dcfce7"/>
+      <text x="90" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#15803d" text-anchor="middle">4. Vector Database</text>
+      
+      <rect x="10" y="44" width="160" height="70" rx="6" fill="#ffffff" stroke="#bbf7d0"/>
+      <text x="90" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534" text-anchor="middle">• Pinecone, Qdrant, Chroma</text>
+      <text x="90" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534" text-anchor="middle">• Milvus / pgvector</text>
+      <text x="90" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534" text-anchor="middle">• Indexed by similarity (HNSW)</text>
+    </g>
+  </g>
+
+  <!-- ==================== PIPELINE 2: REAL-TIME INFERENCE & GENERATION ==================== -->
+  <g transform="translate(30, 330)">
+    <!-- Container Card -->
+    <rect width="960" height="260" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#soft-shadow)"/>
+
+    <!-- Stage Label Box -->
+    <rect x="20" y="16" width="320" height="28" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="180" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1e40af" text-anchor="middle">PHASE 2: Real-Time Retrieval &amp; Generation Loop</text>
+
+    <!-- Query Step -->
+    <g transform="translate(30, 60)">
+      <rect width="165" height="175" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+      <rect x="10" y="10" width="145" height="26" rx="6" fill="#e2e8f0"/>
+      <text x="82" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e293b" text-anchor="middle">A. User Query</text>
+
+      <rect x="10" y="44" width="145" height="120" rx="6" fill="#ffffff" stroke="#e2e8f0"/>
+      <text x="82" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle">Prompt / Question:</text>
+      <text x="82" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#475569" text-anchor="middle">"What are our Q3</text>
+      <text x="82" y="102" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#475569" text-anchor="middle">travel refund rules?"</text>
+      <rect x="18" y="118" width="129" height="34" rx="4" fill="#f1f5f9"/>
+      <text x="82" y="132" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Vectorized via same</text>
+      <text x="82" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">embedding model</text>
+    </g>
+
+    <!-- Arrow A -> B -->
+    <line x1="205" y1="147" x2="230" y2="147" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+    <!-- Search & Re-rank Step -->
+    <g transform="translate(240, 60)">
+      <rect width="185" height="175" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <rect x="10" y="10" width="165" height="26" rx="6" fill="#dbeafe"/>
+      <text x="92" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af" text-anchor="middle">B. Semantic Retrieval</text>
+
+      <rect x="10" y="44" width="165" height="120" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+      <text x="92" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#1d4ed8" text-anchor="middle">Vector Search &amp; Re-Rank</text>
+      <text x="92" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#475569" text-anchor="middle">• Hybrid: BM25 + Vector</text>
+      <text x="92" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#475569" text-anchor="middle">• Cross-Encoder Scorer</text>
+      <rect x="18" y="118" width="149" height="34" rx="4" fill="#eff6ff"/>
+      <text x="92" y="132" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#1e40af" text-anchor="middle">Top-k relevant chunks</text>
+      <text x="92" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#2563eb" text-anchor="middle">retrieved from Vector DB</text>
+    </g>
+
+    <!-- Arrow B -> C -->
+    <line x1="435" y1="147" x2="460" y2="147" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+    <!-- Augmentation Step -->
+    <g transform="translate(470, 60)">
+      <rect width="180" height="175" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+      <rect x="10" y="10" width="160" height="26" rx="6" fill="#fde68a"/>
+      <text x="90" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">C. Context Augmentation</text>
+
+      <rect x="10" y="44" width="160" height="120" rx="6" fill="#ffffff" stroke="#fcd34d"/>
+      <text x="90" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">Prompt Engineering</text>
+      <text x="90" y="86" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#78350f" text-anchor="middle">• System instructions</text>
+      <text x="90" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#78350f" text-anchor="middle">• Retrieved context text</text>
+      <rect x="18" y="118" width="144" height="34" rx="4" fill="#fffbeb"/>
+      <text x="90" y="132" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#b45309" text-anchor="middle">Synthesizes prompt</text>
+      <text x="90" y="145" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#92400e" text-anchor="middle">with factual boundaries</text>
+    </g>
+
+    <!-- Arrow C -> D -->
+    <line x1="660" y1="147" x2="685" y2="147" stroke="#d97706" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Generator LLM Step -->
+    <g transform="translate(695, 60)">
+      <rect width="235" height="175" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <rect x="10" y="10" width="215" height="26" rx="6" fill="#dcfce7"/>
+      <text x="117" y="27" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d" text-anchor="middle">D. LLM Grounded Generation</text>
+
+      <rect x="10" y="44" width="215" height="120" rx="6" fill="#ffffff" stroke="#86efac"/>
+      <text x="117" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#166534" text-anchor="middle">Foundation Model Execution</text>
+      <text x="117" y="84" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" fill="#166534" text-anchor="middle">• GPT-4o, Claude 3.5, Gemini</text>
+      <rect x="18" y="96" width="199" height="58" rx="4" fill="#f0fdf4" stroke="#bbf7d0"/>
+      <text x="117" y="112" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" fill="#15803d" text-anchor="middle">Final Factual Output:</text>
+      <text x="117" y="126" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#166534" text-anchor="middle">Accurate response + Exact citations</text>
+      <text x="117" y="140" font-family="system-ui, -apple-system, sans-serif" font-size="8.5" fill="#15803d" text-anchor="middle">Zero hallucination / audit-ready</text>
+    </g>
+  </g>
+</svg>
