@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 520" width="100%" height="100%">
+  <defs>
+    <filter id="soft-card-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  <!-- Clean Light Canvas Background -->
+  <rect width="980" height="520" rx="16" fill="#f8fafc"/>
+
+  <!-- Top Title Card -->
+  <g transform="translate(30, 20)">
+    <rect width="920" height="60" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#soft-card-shadow)"/>
+    <text x="24" y="28" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" fill="#0f172a">Dua Jalur Utama Menuju Gelar Doktor (PhD)</text>
+    <text x="24" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">Memahami perbedaan fundamental antara jalur beasiswa eksternal dan lowongan posisi riset bergaji (salaried position)</text>
+  </g>
+
+  <!-- ==================== COLUMN 1: JALUR BEASISWA MANDIRI ==================== -->
+  <g transform="translate(30, 96)">
+    <rect width="445" height="400" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#soft-card-shadow)"/>
+
+    <!-- Header Box -->
+    <rect x="18" y="16" width="409" height="38" rx="8" fill="#fef3c7" stroke="#fcd34d"/>
+    <text x="222" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#92400e" text-anchor="middle">Jalur 1: Beasiswa Mandiri (Scholarship-Led)</text>
+    <text x="222" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#b45309" text-anchor="middle">Proposal Sendiri &amp; Lembaga Donor Eksternal</text>
+
+    <!-- Step 1 -->
+    <g transform="translate(18, 66)">
+      <rect width="409" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="8" y="8" width="28" height="20" rx="4" fill="#fed7aa"/>
+      <text x="22" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#9a3412" text-anchor="middle">1</text>
+      <text x="44" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Menyusun Proposal Riset Independen</text>
+      <text x="44" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Menentukan topik, metodologi, dan hipotesis dari nol.</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(18, 126)">
+      <rect width="409" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="8" y="8" width="28" height="20" rx="4" fill="#fed7aa"/>
+      <text x="22" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#9a3412" text-anchor="middle">2</text>
+      <text x="44" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Cold Email ke Calon Supervisor</text>
+      <text x="44" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Menghubungi profesor untuk meminta kesediaan membimbing (LoA).</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(18, 186)">
+      <rect width="409" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="8" y="8" width="28" height="20" rx="4" fill="#fed7aa"/>
+      <text x="22" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#9a3412" text-anchor="middle">3</text>
+      <text x="44" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Melamar ke Lembaga Donor Beasiswa</text>
+      <text x="44" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Mengikuti seleksi LPDP, AAS, Chevening, Fulbright, dll.</text>
+    </g>
+
+    <!-- Characteristics Box -->
+    <g transform="translate(18, 248)">
+      <rect width="409" height="136" rx="8" fill="#fffbeb" stroke="#fef3c7"/>
+      <rect x="10" y="8" width="110" height="20" rx="4" fill="#fde68a"/>
+      <text x="65" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#92400e" text-anchor="middle">Karakteristik Jalur:</text>
+      <text x="14" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#78350f">• Status resmi: <b>Mahasiswa</b> penerima beasiswa (stipend).</text>
+      <text x="14" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#78350f">• Fleksibilitas tinggi dalam menentukan topik riset sendiri.</text>
+      <text x="14" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#78350f">• Waktu tunggu seleksi beasiswa seringkali berjenjang dan cukup panjang.</text>
+      <text x="14" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#78350f">• Terikat kontrak pengabdian / kepulangan dari lembaga donor.</text>
+    </g>
+  </g>
+
+  <!-- ==================== COLUMN 2: JALUR LOWONGAN POSISI RISET ==================== -->
+  <g transform="translate(505, 96)">
+    <rect width="445" height="400" rx="12" fill="#ffffff" stroke="#3b82f6" stroke-width="2" filter="url(#soft-card-shadow)"/>
+
+    <!-- Header Box -->
+    <rect x="18" y="16" width="409" height="38" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="222" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Jalur 2: Lowongan Riset / Posisi Bergaji (Vacancy-Led)</text>
+    <text x="222" y="47" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#3b82f6" text-anchor="middle">Didanai Langsung oleh Proyek / Universitas / Industri</text>
+
+    <!-- Step 1 -->
+    <g transform="translate(18, 66)">
+      <rect width="409" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="8" y="8" width="28" height="20" rx="4" fill="#dbeafe"/>
+      <text x="22" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#1d4ed8" text-anchor="middle">1</text>
+      <text x="44" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Lab Memperoleh Hibah Riset (Grants)</text>
+      <text x="44" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Profesor memenangkan dana penelitian dan butuh periset baru.</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(18, 126)">
+      <rect width="409" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="8" y="8" width="28" height="20" rx="4" fill="#dbeafe"/>
+      <text x="22" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#1d4ed8" text-anchor="middle">2</text>
+      <text x="44" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Membuka Lowongan Resmi (PhD Vacancy)</text>
+      <text x="44" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Dipublikasikan di portal karir kampus (AcademicTransfer, jobs.ac.uk, dll).</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(18, 186)">
+      <rect width="409" height="52" rx="6" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="8" y="8" width="28" height="20" rx="4" fill="#dbeafe"/>
+      <text x="22" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="800" fill="#1d4ed8" text-anchor="middle">3</text>
+      <text x="44" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Melamar Seperti Melamar Pekerjaan</text>
+      <text x="44" y="39" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">Submit CV, motivation letter, portofolio, lalu wawancara teknis.</text>
+    </g>
+
+    <!-- Characteristics Box -->
+    <g transform="translate(18, 248)">
+      <rect width="409" height="136" rx="8" fill="#f0fdf4" stroke="#dcfce7"/>
+      <rect x="10" y="8" width="110" height="20" rx="4" fill="#bbf7d0"/>
+      <text x="65" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">Karakteristik Jalur:</text>
+      <text x="14" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534">• Status resmi: <b>Karyawan / Peneliti</b> (bergaji bulanan resmi + tunjangan).</text>
+      <text x="14" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534">• Hak pensiun, asuransi kesehatan penuh, dan cuti tahunan berbayar.</text>
+      <text x="14" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534">• Tidak butuh LoA terpisah; diterima di lowongan otomatis terdaftar PhD.</text>
+      <text x="14" y="98" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" fill="#166534">• Umum berlaku di Belanda, Jerman, Swedia, Denmark, Swiss, &amp; Austria.</text>
+    </g>
+  </g>
+</svg>
