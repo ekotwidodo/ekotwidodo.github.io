@@ -263,20 +263,12 @@ Building a prototype RAG script in Python using LangChain or LlamaIndex can be a
 ### The RAG Triad: Evaluating Quality
 To iteratively optimize a RAG application, teams utilize automated evaluation frameworks (such as Ragas, TruLens, or DeepEval) to benchmark performance along three core dimensions:
 
-```text
-       ┌────────────────────────┐
-       │     User Query         │
-       └────┬──────────────┬────┘
-            │              │
-      Context Relevance    Answer Relevance
-            │              │
-            ▼              ▼
-┌──────────────────┐    ┌──────────────────┐
-│ Retrieved Chunks │◀───│ Generated Answer │
-└──────────────────┘    └──────────────────┘
-            ▲                    │
-            └──── Groundedness ──┘
-```
+<figure class="my-8">
+  <img src="/assets/img/articles/rag-triad-evaluation-metrics.svg" alt="The RAG Triad Evaluation Metrics Diagram" class="w-full rounded-xl border border-slate-200 dark:border-slate-800" />
+  <figcaption class="mt-3 text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+    The RAG Triad: Evaluating Context Relevance, Groundedness (Faithfulness), and Answer Relevance to prevent hallucinations and retrieval failures.
+  </figcaption>
+</figure>
 
 1. **Context Relevance**: Did the retrieval layer fetch passages that directly pertain to the user's prompt without extraneous clutter?
 2. **Groundedness (Faithfulness)**: Can every single claim in the generated output be mathematically traced back to the retrieved context chunks? (Zero hallucination check).
@@ -286,7 +278,7 @@ By tracking these metrics systematically in a continuous integration (CI) pipeli
 
 ---
 
-## Kesimpulan & Rangkuman Eksekutif
+## Conclusion & Executive Summary
 
 Retrieval-Augmented Generation has established itself as the architectural gold standard for deploying Generative AI in enterprise settings. By decoupling *parametric reasoning* from *non-parametric factual storage*, RAG overcomes the foundational limitations of standalone LLMs—eliminating knowledge cutoffs, curbing hallucinations, enabling granular security, and drastically reducing operational costs.
 
